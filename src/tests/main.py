@@ -1,5 +1,5 @@
 from HC_Lattice import HCLattice
-n_sites = [2, 2]
+n_sites = [3, 3]
 pbc = False
 static_charges = None # {(0,0): 1, (1, 2): -1}
 encoding = 'ed' # only ed works currently: gray not possible
@@ -18,10 +18,10 @@ config = {
     'puregauge': True,
     'static_charges_values': static_charges,
     'e_op_out_plus': False,
-    'magnetic_basis': True,
+    'magnetic_basis': False,
     'encoding': encoding,
     'l': 1,
-    'L': 8,
+    'L': 1,
 }
 HS = HamiltonianQED_sym(config, display_hamiltonian=False) # Hamiltonian(as)Symbols
 HO = HamiltonianQED_oprt(config, HS, sparse_pauli=True) # Hamiltonian(as)Operators
@@ -37,7 +37,7 @@ import scipy as sp
 EH = None
 if encoding == 'ed':
     # here as Pauli matricies
-    EH = HO.get_hamiltonian(g_var=0.5, m_var=3, omega=1, fact_b_op=1, fact_e_op=1, lambd=1e3)
+    EH = HO.get_hamiltonian(g_var=1., m_var=0, omega=0, fact_b_op=0.5, fact_e_op=0.5, lambd=1e3)
 
     # Compress Sparse Row: faster computation
     EH = sp.sparse.csr_matrix(EH)
@@ -47,7 +47,7 @@ elif encoding == 'gray':
 
 
 
-
+print(EH.toarray())
 
 
 # Eigenwerte, Eigenbasis

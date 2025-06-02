@@ -324,11 +324,8 @@ class HamiltonianQED_sym:
                         coeff = (
                             -1 if self.e_op_out_plus else 1
                         )  # if -1 then U in H_k / if 1 then U^dag in H_k
-                    print(k, Symbol(k))
                     ga_tmp += coeff * Symbol(k)
 
-            print('debug:', ga_tmp)
-            print('debug:', gc_tmp)
             list_gauss.append(ga_tmp)
         if gc_tmp != 0:
             list_gauss.append(gc_tmp)

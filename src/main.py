@@ -9,7 +9,7 @@ import primme
 import matplotlib.pyplot as plt
 
 def to_base_10(digits: np.ndarray, base: int) -> int:
-    return (digits * base**np.arange(digits.shape[0])).sum()
+    return (digits * base**np.arange(digits.shape[0]-1, -1, -1)).sum()
 
 def build_edges(config: dict) -> nx.MultiGraph: 
     '''
@@ -113,6 +113,7 @@ def build_plaquettes(G: nx.MultiGraph, config: dict) -> nx.MultiGraph:
     '''
     n_x = config['n_x'] if 'n_x' in config else config['n']
     n_y = config['n_y'] if 'n_y' in config else config['n']
+    pbc = config['pbc']
 
     print('>>building plaquettes..')# build plaquettes
     free_edge_list = [edge for edge in G.edges(data=True) if edge[2]['gauss_sol'] == edge[2]['E']]
@@ -126,6 +127,13 @@ def build_plaquettes(G: nx.MultiGraph, config: dict) -> nx.MultiGraph:
         if edge[2]['direction'] == 'y':
             G.nodes[(x, y)]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': -1})
             G.nodes[((x-1)%n_x, y)]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': 1})
+
+    if not pbc:
+        print('>>removing periodic edges..')
+        for y in range(n_y):
+            G.nodes[(n_x-1, y)]['plaquette'] = list()
+        for x in range(n_x):
+            G.nodes[(x, n_y-1)]['plaquette'] = list()
 
     return G
 
@@ -148,13 +156,13 @@ def build_total_electric_operator(solution_list: list, free_e_op_list: list, bas
         E_OP += ((equation+l)%digit_base-l)**2
 
     for i in E['row']:
-        E['data'][i] = E_OP.subs(zip(free_e_op_list, base[i]))/2
+        E['data'][i] = E_OP.subs(zip(free_e_op_list, base[i]))
 
     E_sparse = sparse.csr_matrix((E['data'], (E['row'], E['column'])))
-    return E_sparse
+    return E_sparse/2
     
 
-def build_total_plaquette_operator(G: nx.MultiGraph, base: np.ndarray) -> sparse.csr_matrix:
+def build_total_plaquette_operator(G: nx.MultiGraph, base: np.ndarray, free_e_op_list: list) -> sparse.csr_matrix:
     '''
         Build the plaquette operator of the lattice.
     '''
@@ -163,22 +171,34 @@ def build_total_plaquette_operator(G: nx.MultiGraph, base: np.ndarray) -> sparse
 
     digit_base = 2*l+1
     phys_dim = base.shape[0]
+    free_e_op_count = len(free_e_op_list)
 
     print('>>building magnetic hamiltonian..')  # build magnetic hamiltonian
-    P = {'row': np.arange(phys_dim, dtype=np.int32),
-         'column': np.arange(phys_dim, dtype=np.int32),
-         'data':np.zeros(phys_dim)}
+    P = {'row': np.repeat(np.arange(phys_dim, dtype=np.int32), free_e_op_count),
+         'column': np.zeros(phys_dim*free_e_op_count, dtype=np.int32),
+         'data':np.zeros(phys_dim*free_e_op_count)}
+    print(P['column'].shape)
+
+    print('fs', free_e_op_count, phys_dim)
 
     for i in range(phys_dim):
+        counter = 0
         for pos in G.nodes:
             plaquette = G.nodes[pos]['plaquette']
-            u = base[i]
+            u = base[i] + l
+            #print()
+            #print(u)
+            #print()
             if not not plaquette:
+                idx = i*free_e_op_count+counter
+                #print(idx, i, counter)
                 for op in plaquette:
-                    u[op['index']] = (u[op['index']] + op['shift']) % digit_base
+                    u[op['index']] = ((u[op['index']] + op['shift']) % digit_base)
                 j = to_base_10(u, digit_base)
-                P['column'][i] = j
-                P['data'][i] = -1/2
+                P['column'][idx] = j
+                P['data'][idx] = 1
+                #print(i, j)
+                counter += 1
                 #H_B[i, j] = H_B_data[i]
 
     P_sparse = sparse.csr_matrix((P['data'], (P['row'], P['column'])))
@@ -193,7 +213,8 @@ def diagonalize_hamiltonian(E_sparse: sparse.csr_matrix, B_sparse: sparse.csr_ma
     k = 6
     phys_dim = E_sparse.shape[0]
 
-    H_sparse = g**2*E_sparse+B_sparse/g**2
+    H_sparse = g**2*E_sparse-B_sparse/g**2
+    print(H_sparse.toarray())
 
     if phys_dim < k:
         H_sparse = H_sparse.toarray()
@@ -218,9 +239,15 @@ free_e_op_list, solution_list = solve_linear_system(G, linear_system)
 base = build_base(free_e_op_list, config)
 G = build_plaquettes(G, config)
 E_sparse = build_total_electric_operator(solution_list, free_e_op_list, base)
-B_sparse = build_total_plaquette_operator(G, base)
-#diagonalize_hamiltonian(E_sparse, B_sparse, config)
+B_sparse = build_total_plaquette_operator(G, base, free_e_op_list)
+EW, EB = diagonalize_hamiltonian(E_sparse, B_sparse, config)
+idx = EW.argsort()
+EW = EW[idx]
+EB = EB[:, idx]
 
+print(EW[:3])
+
+exit()
 betas = np.arange(10)*0.2+0.8
 P_expectaiton_values = np.zeros(betas.shape[0])
 for i, beta in enumerate(betas):
