@@ -1,5 +1,5 @@
 from HC_Lattice import HCLattice
-n_sites = [3, 3]
+n_sites = [2, 2]
 pbc = False
 static_charges = None # {(0,0): 1, (1, 2): -1}
 encoding = 'ed' # only ed works currently: gray not possible
@@ -37,7 +37,7 @@ import scipy as sp
 EH = None
 if encoding == 'ed':
     # here as Pauli matricies
-    EH = HO.get_hamiltonian(g_var=1., m_var=0, omega=0, fact_b_op=0.5, fact_e_op=0.5, lambd=1e3)
+    EH = HO.get_hamiltonian(g_var=1., m_var=0, omega=0, fact_b_op=1.0, fact_e_op=1.0, lambd=1e3)
 
     # Compress Sparse Row: faster computation
     EH = sp.sparse.csr_matrix(EH)
@@ -45,9 +45,9 @@ elif encoding == 'gray':
     # no encoding needed
     EH = HO
 
-
-
-print(EH.toarray())
+import numpy as np
+print(np.diag(EH.toarray()))
+print(EH.shape)
 
 
 # Eigenwerte, Eigenbasis
@@ -59,4 +59,4 @@ EB = EB[:, idx]
 
 
 for i, wert, in enumerate(EW):
-    print('E_%d=%.2f' % (i, wert)) if wert<9e2 else print('', end='')
+    print('E_%d=%.8f' % (i, wert)) if wert<9e2 else print('', end='')

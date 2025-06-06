@@ -153,11 +153,16 @@ def build_total_electric_operator(solution_list: list, free_e_op_list: list, bas
 
     E_OP = 0
     for equation in solution_list:
+        print(equation)
+        print(equation.subs(zip(free_e_op_list, base[0])))
         E_OP += ((equation+l)%digit_base-l)**2
+        #E_OP += equation**2
+
 
     for i in E['row']:
         E['data'][i] = E_OP.subs(zip(free_e_op_list, base[i]))
 
+    print(E['data'][np.argsort(E['data'])])
     E_sparse = sparse.csr_matrix((E['data'], (E['row'], E['column'])))
     return E_sparse/2
     
@@ -177,31 +182,34 @@ def build_total_plaquette_operator(G: nx.MultiGraph, base: np.ndarray, free_e_op
     P = {'row': np.repeat(np.arange(phys_dim, dtype=np.int32), free_e_op_count),
          'column': np.zeros(phys_dim*free_e_op_count, dtype=np.int32),
          'data':np.zeros(phys_dim*free_e_op_count)}
-    print(P['column'].shape)
+    #print(P['column'].shape)
 
-    print('fs', free_e_op_count, phys_dim)
+    #print('fs', free_e_op_count, phys_dim)
 
     for i in range(phys_dim):
         counter = 0
         for pos in G.nodes:
+            overflow=False
             plaquette = G.nodes[pos]['plaquette']
             u = base[i] + l
-            #print()
-            #print(u)
-            #print()
             if not not plaquette:
                 idx = i*free_e_op_count+counter
-                #print(idx, i, counter)
                 for op in plaquette:
-                    u[op['index']] = ((u[op['index']] + op['shift']) % digit_base)
+                    new_val = (u[op['index']] + op['shift'])
+                    if new_val == new_val % digit_base:
+                        u[op['index']] = new_val
+                    else:
+                        overflow = True
+                if overflow:
+                    continue
                 j = to_base_10(u, digit_base)
                 P['column'][idx] = j
                 P['data'][idx] = 1
-                #print(i, j)
                 counter += 1
-                #H_B[i, j] = H_B_data[i]
 
-    P_sparse = sparse.csr_matrix((P['data'], (P['row'], P['column'])))
+        #P['data'][0] = 0
+    P_sparse = sparse.csr_matrix((P['data'], (P['row'], P['column'])), shape=(phys_dim, phys_dim))
+    print(P_sparse.toarray())
     return (P_sparse+P_sparse.T)/2
 
 def diagonalize_hamiltonian(E_sparse: sparse.csr_matrix, B_sparse: sparse.csr_matrix, config: dict) -> tuple:
@@ -215,6 +223,7 @@ def diagonalize_hamiltonian(E_sparse: sparse.csr_matrix, B_sparse: sparse.csr_ma
 
     H_sparse = g**2*E_sparse-B_sparse/g**2
     print(H_sparse.toarray())
+    print(H_sparse.shape)
 
     if phys_dim < k:
         H_sparse = H_sparse.toarray()
@@ -227,7 +236,7 @@ def diagonalize_hamiltonian(E_sparse: sparse.csr_matrix, B_sparse: sparse.csr_ma
 
 config = {'l': 1,
           'g': 1,
-          'n': 3,
+          'n': 2,
           'k': 6, 
           'static_charges': {}, 
           'pbc': False}
@@ -238,6 +247,9 @@ linear_system = build_linear_system(G)
 free_e_op_list, solution_list = solve_linear_system(G, linear_system)
 base = build_base(free_e_op_list, config)
 G = build_plaquettes(G, config)
+for edge in G.edges(data=True):
+    print(edge[0], edge[1], edge[2]['gauss_sol'])
+#exit()
 E_sparse = build_total_electric_operator(solution_list, free_e_op_list, base)
 B_sparse = build_total_plaquette_operator(G, base, free_e_op_list)
 EW, EB = diagonalize_hamiltonian(E_sparse, B_sparse, config)
@@ -247,7 +259,7 @@ EB = EB[:, idx]
 
 print(EW[:3])
 
-exit()
+#exit()
 betas = np.arange(10)*0.2+0.8
 P_expectaiton_values = np.zeros(betas.shape[0])
 for i, beta in enumerate(betas):
@@ -260,7 +272,7 @@ for i, beta in enumerate(betas):
 
     ground_state = EB[:, 0]
 
-    P_expectaiton_values[i] = ground_state @ B_sparse @ ground_state.T
+    P_expectaiton_values[i] = ground_state.T @ B_sparse @ ground_state
 
 plt.plot(betas, P_expectaiton_values)
 plt.show()
