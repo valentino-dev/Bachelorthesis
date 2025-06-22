@@ -1,4 +1,4 @@
-.PHONY: run
+.PHONY: run test lat
 
 
 run:
@@ -9,3 +9,7 @@ run:
 test:
 	cd src/tests;\
 		python main.py
+
+lat:
+	cd src;\
+		python lattice.py

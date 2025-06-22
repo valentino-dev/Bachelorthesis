@@ -6,11 +6,10 @@ I couldn't open style file sn-mathphys-num.bst
  : \bibstyle{sn-mathphys-num
  :                          }
 I'm skipping whatever remains of this command
-I found no \citation commands---while reading file main.aux
 I found no style file---while reading file main.aux
-You've used 0 entries,
+You've used 1 entry,
             0 wiz_defined-function locations,
-            85 strings with 501 characters,
+            87 strings with 531 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0
@@ -49,4 +48,4 @@ warning$ -- 0
 while$ -- 0
 width$ -- 0
 write$ -- 0
-(There were 3 error messages)
+(There were 2 error messages)

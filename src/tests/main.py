@@ -1,6 +1,6 @@
 from HC_Lattice import HCLattice
-n_sites = [2, 2]
-pbc = False
+n_sites = [3, 3]
+pbc = True
 static_charges = None # {(0,0): 1, (1, 2): -1}
 encoding = 'ed' # only ed works currently: gray not possible
 HCL = HCLattice(n_sites=n_sites, pbc=pbc) # HyperCubeLattice
@@ -20,7 +20,7 @@ config = {
     'e_op_out_plus': False,
     'magnetic_basis': False,
     'encoding': encoding,
-    'l': 1,
+    'l': 2,
     'L': 1,
 }
 HS = HamiltonianQED_sym(config, display_hamiltonian=False) # Hamiltonian(as)Symbols
@@ -46,7 +46,7 @@ elif encoding == 'gray':
     EH = HO
 
 import numpy as np
-print(np.diag(EH.toarray()))
+#print('tr', np.diag(EH.toarray()).sum())
 print(EH.shape)
 
 
@@ -55,6 +55,7 @@ EW, EB = primme.eigsh(EH, k=3, which='SA')
 
 idx = EW.argsort()
 EW = EW[idx]
+print(EW.sum())
 EB = EB[:, idx]
 
 
