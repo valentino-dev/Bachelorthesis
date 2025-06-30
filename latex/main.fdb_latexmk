@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1750424677.6171 "main.aux" "main.bbl" "main" 1750598715.81941 2
+["bibtex main"] 1751276463.06601 "main.aux" "main.bbl" "main" 1751276685.37718 2
   "./refs.bib" 1750424677.27032 830 54475c6585eeff3e29ac55e5f8e05ff1 ""
-  "main.aux" 1750598715.28121 1562 54e6ee5546032fba54b9dd6579d63eb9 "pdflatex"
+  "main.aux" 1751276684.91801 3362 e167f07984683743755b8ef1de5772c2 "pdflatex"
   "sn-mathphys-num.bst" 0 -1 0 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1750598714.23171 "main.tex" "main.pdf" "main" 1750598715.81971 2
+["pdflatex"] 1751276683.85914 "main.tex" "main.pdf" "main" 1751276685.37747 0
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm" 1246382020 924 9904cf1d39e9767e7a3622f2a125a565 ""
@@ -63,8 +63,10 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm" 1229303445 688 37338d6ab346c2f1466b29e195316aa4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm" 1229303445 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/rsfs/rsfs7.tfm" 1229303445 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb" 1248133631 34793 87a84b12f86dfd35a1cf1bb142b75602 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1248133631 32166 b0c356b15f19587482a9217ce1d8fa67 ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -209,12 +211,24 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1728937341 5474851 4ed67577533af4c9bcc5e8bed469707c ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1728937456 3325958 03a95b99139dcaa92fad834a3bb8117a ""
   "/usr/local/texlive/2024/texmf.cnf" 1728937336.35001 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "images/PlaquetteExp2x2PBC.pdf" 1750589802.66097 134179 6ece765ab0d8b495de67c99641b76f26 ""
-  "main.aux" 1750598715.28121 1562 54e6ee5546032fba54b9dd6579d63eb9 "pdflatex"
-  "main.bbl" 1750424677.82332 0 d41d8cd98f00b204e9800998ecf8427e "bibtex main"
-  "main.out" 1750598715.28221 503 9af01837797baa326bc5ea4550234dc3 "pdflatex"
-  "main.tex" 1750255692.92862 1546 123af0f2b20738d7e3256d7c452639fa ""
-  "sections/Theory.tex" 1750598713.68519 9411 2b331ad5425782e71c5c523b76d77f2b ""
+  "images/PlaquetteExp2x2.pdf" 1750856894.0424 105730 71cb19ba6a0b6d0c48240e777e568dbd ""
+  "images/PlaquetteExp2x2Log.pdf" 1750856814.47331 137483 d2485b464003b35ed6a884eed7559c6b ""
+  "images/PlaquetteExp2x2PBC.pdf" 1750856933.40544 104402 83d31e8e57151fcfbe02576a6239bd1d ""
+  "images/PlaquetteExp2x2PBCLog.pdf" 1750856892.5834 135682 4b9f9a39acf694f28d7bda713bf3af48 ""
+  "images/PlaquetteExp3x3.pdf" 1750857108.84966 104845 4cfd7911579b7144a30d89f02951030b ""
+  "images/PlaquetteExp3x3Log.pdf" 1750857033.60356 136231 df978b138cc4435a243cb47cd34b8a58 ""
+  "images/PlaquetteExp3x3PBC.pdf" 1750857871.89918 103096 cf030d2d66a6da7af515bc5bce34d813 ""
+  "images/PlaquetteExp3x3PBCLog.pdf" 1750857093.54264 134175 290d581fb3e9866c9e9ee140bb27350e ""
+  "images/quark-antiquark-potential.pdf" 1750944352.50709 201215 77d2b9be7aae4280751026d15f1c8968 ""
+  "images/quark-antiquark-potential2.pdf" 1750944422.8934 168136 4e5e0dcf3e2294a0acd9a50090699743 ""
+  "main.aux" 1751276684.91801 3362 e167f07984683743755b8ef1de5772c2 "pdflatex"
+  "main.bbl" 1751276463.22666 0 d41d8cd98f00b204e9800998ecf8427e "bibtex main"
+  "main.out" 1751276684.91993 754 0d0d18a92a4b55c4ff54403959367395 "pdflatex"
+  "main.tex" 1751276682.91152 1637 ff1b29a053e82e6a5928b999eaf6a01f ""
+  "sections/implementation.tex" 1751276091.77845 1986 ea44123f353e5b72513cf51dfba1da56 ""
+  "sections/introduction.tex" 1751276501.81418 939 bad84b2d2b849b162bbe78103504be07 ""
+  "sections/results.tex" 1751276087.10143 2028 ac7db5684a6c6bba01efb13c4197a09b ""
+  "sections/theory.tex" 1751276088.65044 9092 de17c8df823227852be4e344ea59d657 ""
   "sn-jnl.cls" 1746188231.88289 55331 2adf3041e7f64a0f542a04760be0043f ""
   (generated)
   "main.aux"

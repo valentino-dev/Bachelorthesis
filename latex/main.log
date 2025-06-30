@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  22 JUN 2025 15:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  30 JUN 2025 11:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -698,48 +698,48 @@ Package babel Info: Importing font and identification data for ngerman
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 45.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 45.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 46.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 46.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 46.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 46.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 45.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 46.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 46.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for LY/yfrak/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for LYG/ygoth/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for LY/yfrak/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for LYG/ygoth/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -801,19 +801,19 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \S on input line 45.
-LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 45.
+LaTeX Info: Redefining \S on input line 46.
+LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 46.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `normal'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 45.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 46.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 45.
-Package hyperref Info: Link coloring ON on input line 45.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 46.
+Package hyperref Info: Link coloring ON on input line 46.
  (./main.out) (./main.out)
 \@outlinefile=\write3
 \openout3 = `main.out'.
 
-LaTeX Info: Command `\dddot' is already robust on input line 45.
-LaTeX Info: Command `\ddddot' is already robust on input line 45.
+LaTeX Info: Command `\dddot' is already robust on input line 46.
+LaTeX Info: Command `\ddddot' is already robust on input line 46.
 
 
 Package siunitx Warning: Detected the "physics" package:
@@ -829,194 +829,175 @@ Package siunitx Warning: Detected the "physics" package:
 (/usr/local/texlive/2024/texmf-dist/tex/latex/translations/translations-basic-dictionary-german.trsl
 File: translations-basic-dictionary-german.trsl (german translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 45.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 46.
 \c@lstlisting=\count363
-LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 52.
+LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 6.62477pt on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 6.62477pt on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 6.62477pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 52.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 52.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/gelasiomath/untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 6.62477pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
+LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 6.62477pt on input line 52.
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 53.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 6.62477pt on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 12.045pt on input line 52.
+(Font)              scaled to size 12.045pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 8.79279pt on input line 52.
+(Font)              scaled to size 8.79279pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 6.62477pt on input line 52.
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 52.
+(Font)              scaled to size 6.62477pt on input line 53.
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 6.07271pt on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 11.04124pt on input line 52.
+(Font)              scaled to size 11.04124pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 8.06006pt on input line 52.
+(Font)              scaled to size 8.06006pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 6.07271pt on input line 52.
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 52.
+(Font)              scaled to size 6.07271pt on input line 53.
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 53.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.52065> not available
-(Font)              size <6> substituted on input line 52.
+(Font)              size <6> substituted on input line 53.
 
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.52065> not available
-(Font)              size <6> substituted on input line 52.
+(Font)              size <6> substituted on input line 53.
 
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.52065pt on input line 52.
+(Font)              scaled to size 5.52065pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.03749pt on input line 52.
+(Font)              scaled to size 10.03749pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.32732pt on input line 52.
+(Font)              scaled to size 7.32732pt on input line 53.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.52065pt on input line 52.
-(./sections/Theory.tex
+(Font)              scaled to size 5.52065pt on input line 53.
+(./sections/introduction.tex) (./sections/theory.tex
 
 Package natbib Warning: Citation `RevModPhys.51.659' on page 1 undefined on input line 3.
 
-./sections/Theory.tex:5: Missing { inserted.
-<to be read again> 
-                   \gdef 
-l.5 ... On the sites the static charges $Q_\vec{r}
-                                                  $ positioned. We associate...
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
 
-./sections/Theory.tex:5: Missing } inserted.
-<inserted text> 
-                }
-l.5 ...On the sites the static charges $Q_\vec{r}$
-                                                   positioned. We associate ...
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <5.52065> not available
@@ -1067,8 +1048,6 @@ LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
 
 
 
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -1094,48 +1073,6 @@ Underfull \hbox (badness 1184) in paragraph at lines 73--74
 []\OT1/cmr/m/n/10 The heu-ri-stic ex-plai-na-ti-on of the form of
  []
 
-./sections/Theory.tex:78: Missing { inserted.
-<to be read again> 
-                   \gdef 
-l.78 \end{align}
-                
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-./sections/Theory.tex:78: Missing } inserted.
-<inserted text> 
-                }
-l.78 \end{align}
-                
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./sections/Theory.tex:78: Missing { inserted.
-<to be read again> 
-                   \gdef 
-l.78 \end{align}
-                
-A left brace was mandatory here, so I've put one in.
-You might want to delete and/or insert some corrections
-so that I will find a matching right brace soon.
-(If you're confused by all this, try typing `I}' now.)
-
-./sections/Theory.tex:78: Missing } inserted.
-<inserted text> 
-                }
-l.78 \end{align}
-                
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
 
 
 
@@ -1146,17 +1083,70 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[2]
-<images/PlaquetteExp2x2PBC.pdf, id=65, 462.52798pt x 346.89601pt>
+[2]) (./sections/implementation.tex
+
+) (./sections/results.tex
+<images/PlaquetteExp2x2.pdf, id=76, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp2x2.pdf Graphic file (type pdf)
+<use images/PlaquetteExp2x2.pdf>
+Package pdftex.def Info: images/PlaquetteExp2x2.pdf  used on input line 4.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+<images/PlaquetteExp2x2Log.pdf, id=77, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp2x2Log.pdf Graphic file (type pdf)
+<use images/PlaquetteExp2x2Log.pdf>
+Package pdftex.def Info: images/PlaquetteExp2x2Log.pdf  used on input line 10.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/PlaquetteExp2x2PBC.pdf, id=78, 462.52798pt x 346.89601pt>
 File: images/PlaquetteExp2x2PBC.pdf Graphic file (type pdf)
 <use images/PlaquetteExp2x2PBC.pdf>
-Package pdftex.def Info: images/PlaquetteExp2x2PBC.pdf  used on input line 95.
+Package pdftex.def Info: images/PlaquetteExp2x2PBC.pdf  used on input line 16.
 (pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
-) (./main.bbl)
 
-Package natbib Warning: There were undefined citations.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
+<images/PlaquetteExp2x2PBCLog.pdf, id=79, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp2x2PBCLog.pdf Graphic file (type pdf)
+<use images/PlaquetteExp2x2PBCLog.pdf>
+Package pdftex.def Info: images/PlaquetteExp2x2PBCLog.pdf  used on input line 22.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/PlaquetteExp3x3.pdf, id=80, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp3x3.pdf Graphic file (type pdf)
+<use images/PlaquetteExp3x3.pdf>
+Package pdftex.def Info: images/PlaquetteExp3x3.pdf  used on input line 28.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/PlaquetteExp3x3Log.pdf, id=81, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp3x3Log.pdf Graphic file (type pdf)
+<use images/PlaquetteExp3x3Log.pdf>
+Package pdftex.def Info: images/PlaquetteExp3x3Log.pdf  used on input line 34.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/PlaquetteExp3x3PBC.pdf, id=82, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp3x3PBC.pdf Graphic file (type pdf)
+<use images/PlaquetteExp3x3PBC.pdf>
+Package pdftex.def Info: images/PlaquetteExp3x3PBC.pdf  used on input line 40.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/PlaquetteExp3x3PBCLog.pdf, id=83, 462.52798pt x 346.89601pt>
+File: images/PlaquetteExp3x3PBCLog.pdf Graphic file (type pdf)
+<use images/PlaquetteExp3x3PBCLog.pdf>
+Package pdftex.def Info: images/PlaquetteExp3x3PBCLog.pdf  used on input line 46.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
@@ -1172,10 +1162,96 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.58 \end{document}
-                   
+l.50 \newpage
+              <./images/PlaquetteExp2x2.pdf>]
+<images/quark-antiquark-potential.pdf, id=116, 462.52798pt x 346.89601pt>
+File: images/quark-antiquark-potential.pdf Graphic file (type pdf)
+<use images/quark-antiquark-potential.pdf>
+Package pdftex.def Info: images/quark-antiquark-potential.pdf  used on input line 54.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+<images/quark-antiquark-potential2.pdf, id=117, 462.52798pt x 346.89601pt>
+File: images/quark-antiquark-potential2.pdf Graphic file (type pdf)
+<use images/quark-antiquark-potential2.pdf>
+Package pdftex.def Info: images/quark-antiquark-potential2.pdf  used on input line 60.
+(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+)
 
- <./images/PlaquetteExp2x2PBC.pdf>] (./main.aux)
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./main.bbl)
+
+Package natbib Warning: There were undefined citations.
+
+
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[4
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                    <./images/PlaquetteExp2x2Log.pdf> <./images/PlaquetteExp2x2PBC.pdf> <./images/PlaquetteExp2x2PBCLog.pdf> <./images/PlaquetteExp3x3.pdf> <./images/PlaquetteExp3x3Log.pdf>]
+
+
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                   
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.59 \end{document}
+                    <./images/PlaquetteExp3x3PBC.pdf> <./images/PlaquetteExp3x3PBCLog.pdf> <./images/quark-antiquark-potential.pdf> <./images/quark-antiquark-potential2.pdf>] (./main.aux)
  ***********
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-09-10>
@@ -1186,21 +1262,21 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.47935pt have occurred.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 9AF01837797BAA326BC5EA4550234DC3;503.
+(rerunfilecheck)             Checksum: 0D0D18A92A4B55C4FF54403959367395;754.
  ) 
 Here is how much of TeX's memory you used:
- 22621 strings out of 473579
- 397646 string characters out of 5728233
- 791209 words of memory out of 5000000
- 45116 multiletter control sequences out of 15000+600000
+ 22725 strings out of 473579
+ 400925 string characters out of 5728233
+ 793212 words of memory out of 5000000
+ 45198 multiletter control sequences out of 15000+600000
  613125 words of font info for 183 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 90i,17n,93p,541b,940s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txbsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (3 pages, 287457 bytes).
+ 90i,17n,93p,553b,940s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txbsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (5 pages, 403358 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
- 21 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 277 compressed objects within 3 object streams
+ 34 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 
