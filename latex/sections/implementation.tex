@@ -1,0 +1,21 @@
+\section{Implementation}
+\subsection{}
+
+For the implementation we construct the lattice and place all operators on thier links. Then we calculate each entry
+\begin{align*}
+	\bra{i}\hat{H}\ket{j} = & \frac{g^2}{2}\sum_{\vec{r}}\left(e_{\vec{r}, x}^2+e_{\vec{r}, y}^2\right)\delta_{ij}           \\
+	                        & -\frac{1}{2a^2g^2}\sum_{\vec{r}}\bra{i}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}\right)\ket{j}
+\end{align*}
+with $\ket{i}\in\cal{H}$. Let us calculate $\bra{i}\hat{P}_{\vec{r}}\ket{j}$:
+\begin{align*}
+	\bra{i}\hat{P}_{\vec{r}}\ket{j}= & \bra{i}\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}\ket{j} \\
+	=                                & \bra{i}\ket{e^{(j)}_{\vec{r}, x}+1}\otimes\ket{e^{(j)}_{\vec{r}+x, y}+1}                                      \\
+	                                 & \otimes\ket{e^{(j)}_{\vec{r}+y, x}-1}\otimes\ket{e^{(j)}_{\vec{r}, y}-1}                                      \\
+	                                 & \bigotimes_\text{rest links}\ket{e^{(j)}_{\vec{r}', \mu'}}                                                          \\
+	=                                & \Braket{i|k}                                                                                                  \\
+	=                                & \delta_{ik}
+\end{align*}
+The formulation reads as following: State $\ket{j}$ will be transformed by the plaquette operator $\hat{P}_{\vec{r}}$ into some state $\ket{k}$. Thus $\hat{P}_{\vec{r}}$ gets an entry at row $\bra{i}$ and collumn $\ket{j}$ if, and only if, state $\ket{j}$ is transformed into state $\ket{i}$. Now knowing $\hat{P}_{\vec{r}}$ in matrix representation, trivialy yealds $\hat{P}_{\vec{r}}^{\dag}=\left(\hat{P}_{\vec{r}}^{*}\right)^{T}$ and with it the matrix representation of the magnetic hamiltonian.
+
+On a side note, going through states $\ket{i}$ means, counting up in base $2l+1$ with the link states $\ket{e_{\vec{r}, \mu}}$ being the "digits".
+

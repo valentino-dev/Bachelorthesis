@@ -1,32 +1,32 @@
-\section{}
+\section{Theory}
 \subsection{Discretisation}
-We start by discretising the positional space into sites and links. The sites are spaced by the lattice spacing $a$. To optain the continuum theory in the limit of $a\rightarrow0$ we need to introduce the coupling constant $g$\cite{RevModPhys.51.659}.
+We start by discretising the positional space into sites and links. The sites are spaced by the lattice spacing $a$. To optain the continuum theory in the limit of $a\rightarrow 0$ we need to introduce the coupling constant $g$\cite{RevModPhys.51.659}.
 \\
-We associate each site with a corresponding positional vector $\vec{r}=(r_x, r_y)$. On the sites the static charges $Q_\vec{r}$ positioned. We associate each link with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example with $\vec{r}=(1, 2)$ and $\mu=x$ we would denote the link that points from the site $(1, 2)$ to the $x$ direction. We could denote the same link with $\vec{r}=(2, 2)$ and $\mu=-x$.
+We associate each site with a corresponding positional vector $\vec{r}=(r_x, r_y)$. On the sites the static charges $Q_{\vec{r}}$ positioned. We associate each link with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example with $\vec{r}=(1, 2)$ and $\mu=x$ we would denote the link that points from the site $(1, 2)$ to the $x$ direction. We could denote the same link with $\vec{r}=(2, 2)$ and $\mu=-x$.
 
 On the links are the electric field operators $\hat{E}_{\vec{r},\mu}$ positioned. Each electric field $\hat{E}_{\vec{r}, \mu}$ has the vector potential $\hat{A}_{\vec{r}, \mu}$ as its canonical conjugate variable. Thus
 \begin{align}
-	[\hat{E}_{\vec{r_i}, \mu}, \hat{A}_{\vec{r_j}, \nu}]=i\delta^{(3)}(\vec{r_i}-\vec{r_j})\delta_{\mu\nu}.\label{eq:com}
+  [\hat{E}_{\vec{r}_{i}, \mu}, \hat{A}_{\vec{r}_{j}, \nu}]=i\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}.\label{eq:com}
 \end{align}
-We construct a unitary operator $\hat{U}_{\vec{r_j}, \nu}$ (also called link operator) by using the vector potential as the generator in the Lie algebra $\mathfrak{g}$. Thus through the exponential mapping we get the elements of the Lie group G:
+We construct a unitary operator $\hat{U}_{\vec{r}_{j}, \nu}$ (also called link operator) by using the vector potential as the generator in the Lie algebra $\mathfrak{g}$. Thus through the exponential mapping we get the elements of the Lie group G:
 \begin{align}
 	\hat{U}_{\vec{r}, \mu} = e^{iag\hat{A}_{\vec{r}, \mu}}.\label{eq:exp}
 \end{align}
 
 The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}_{\vec{r}, \nu}$ of dimension $n\cross n$. By taking $n=1$ we choose the U(1) theory, where the Phase, thus our vector potantial, is an element of $\mathbb{R}$. Through equation \ref{eq:com} and \ref{eq:exp} we arrive at
 \begin{align}
-	[\hat{E}_{\vec{r_i}, \mu}, \hat{U}_{\vec{r_j}, \nu}]      & =\delta^{(3)}(\vec{r_i}-\vec{r_j})\delta_{\mu\nu}\hat{U}_{\vec{r_j}, \nu},\label{eq:comu1}       \\
-	[\hat{E}_{\vec{r_i}, \mu}, \hat{U}_{\vec{r_j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r_i}-\vec{r_j})\delta_{\mu\nu}\hat{U}_{\vec{r_j}, \nu}\dag. \label{eq:comu2}
+  [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}]      & =\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu},\label{eq:comu1}       \\
+  [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}\dag. \label{eq:comu2}
 \end{align}
 
 To explore the effect of the operators on the states, we choose to be in the electric basis with the basis states $\ket{e_{\vec{r_i}, \mu}}$. The basis is made up of all possible states at the links. We optain
 \begin{align}
-	\hat{E}_{\vec{r_i}, \mu}\ket{e_{\vec{r_i}, \mu}}=e_{\vec{r_i}, \mu}\ket{e_{\vec{r_i}, \mu}}.\label{eq:eig}
+  \hat{E}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}=e_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}.\label{eq:eig}
 \end{align}
 Furthermore with equation \ref{eq:comu1}, \ref{eq:comu2} and \ref{eq:eig} we get
 \begin{align}
-	\hat{U}_{\vec{r_i}, \mu}\ket{e_{\vec{r_i}, \mu}}      & =\ket{e_{\vec{r_i}, \mu}+1}\text{ and}\label{eq:eigu1} \\
-	\hat{U}_{\vec{r_i}, \mu}^\dag\ket{e_{\vec{r_i}, \mu}} & =\ket{e_{\vec{r_i}, \mu}-1}.\label{eq:eigu2}
+  \hat{U}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}      & =\ket{e_{\vec{r}_{i}, \mu}+1}\text{ and}\label{eq:eigu1} \\
+  \hat{U}_{\vec{r}_{i}, \mu}^\dag\ket{e_{\vec{r}_{i}, \mu}} & =\ket{e_{\vec{r}_{i}, \mu}-1}.\label{eq:eigu2}
 \end{align}
 We see the unitary operators, also called linked operators, act as ladder operators.
 \subsection{Truncation}
@@ -72,27 +72,13 @@ where we denote e.g. $\vec{r}+x=(r_x+1,r_y)$. We take the hermitian conjugate of
 
 The heuristic explaination of the form of the magnetic Hamiltonian is the following: The Plaquettes, as they are closed loops, are essentially conductor loops that introduce a magnetic moment by Farady's law, that is then measured by the magnetic hamiltonian. % TODO: is this correct?
 
-Last but not least we take a look at the electric Hamiltonian. It is essentially the sum over each lattice site over the square of the electric field. Here we use the electric field operators $\hat{E}^2_{\vec{r},\mu}$. But not all of them are free. Gauss's law constraints about the half of them such that the others are truly free. The formulation reads
+Last but not least we take a look at the electric Hamiltonian. It is essentially the sum over each lattice site over the square of the electric field. Here we use the electric field operators $\hat{E}^{2}_{\vec{r},\mu}$. But not all of them are free. Gauss's law constraints about the half of them such that the others are truly free. The formulation reads
 \begin{align}
-	\left[\sum_{\mu=x,y}\left(\hat{E}_{\vec{r},\mu}-\hat{E}_{\vec{r}-\mu,\mu}\right)-\hat{q}_{\vec{r}}-Q_\vec{r}\right]\ket{\Psi}=0.
+  \left[\sum_{\mu=x,y}\left(\hat{E}_{\vec{r},\mu}-\hat{E}_{\vec{r}-\mu,\mu}\right)-\hat{q}_{\vec{r}}-Q_{\vec{r}}\right]\ket{\Psi}=0.
 \end{align}
-Here we sum over all electric field operators that are linked to a site $\vec{r}$ and are expecting them to be the same as the charge deposited on the site. Only those states $\ket{\Psi}$, which produce this relation, are thus physicaly possible. They live in the physical space $\cal{H}_{\text{ph}}$:
+Here we sum over all electric field operators that are linked to a site $\vec{r}$ and are expecting them to be the same as the charge deposited on the site. Only those lattice states $\ket{\Psi}$, which produce this relation, are thus physicaly possible. They live in the physical space $\cal{H}_{\text{ph}}$:
 \begin{align}
 	\ket{\Psi}\in\cal{H}_{\text{ph}},
 \end{align}
 where we denote by $\cal{H}$ the space in which a lattice configuration lives. Here the physical Hamiltonian is a subspace of the the complete Hamiltonian.
 
-\subsection{Implementation}
-For the implementation we construct the lattice and place all operators on thier place. Then we calculate each entry
-\begin{align}
-	\bra{i}\hat{H}\ket{j}.
-\end{align}
-
-
-
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=0.45\textwidth]{images/PlaquetteExp2x2PBC.pdf}
-  \end{center}
-  \caption{Plaquette expectation values for 2x2 pbc lattice.}
-\end{figure}

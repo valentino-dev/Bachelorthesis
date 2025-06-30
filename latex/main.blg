@@ -7,9 +7,9 @@ I couldn't open style file sn-mathphys-num.bst
  :                          }
 I'm skipping whatever remains of this command
 I found no style file---while reading file main.aux
-You've used 1 entry,
+You've used 2 entries,
             0 wiz_defined-function locations,
-            87 strings with 531 characters,
+            89 strings with 565 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0

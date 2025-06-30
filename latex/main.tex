@@ -1,5 +1,6 @@
 \RequirePackage{amsthm} %https://tex.stackexchange.com/questions/687324/unknown-theoremstyle-warning-with-springer-nature-template
 \documentclass[sn-mathphys-num,iicol]{sn-jnl}
+%\documentclass[sn-mathphys-num,iicol]{jnl}
 
 %\usepackage{sn-jnl.sty}
 \usepackage{graphicx}%
@@ -49,10 +50,10 @@
 \affil*[1]{Rheinische Friedrich--Wilhelms--Universität, Bonn}
 
 \maketitle
-\newpage
-\newpage
-\input{sections/Theory.tex}
-%\input{sections/plaqueteexp.tex}
+\input{sections/introduction.tex}
+\input{sections/theory.tex}
+\input{sections/implementation.tex}
+\input{sections/results.tex}
 
 \bibliography{refs}
 \end{document}

@@ -4,13 +4,32 @@ import sympy
 import copy
 import scipy
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import time
 import primme
 import multiprocessing
 
-plt.rcParams.update({"text.usetex": True, "font.family": "serif"})
-plt.rc('font', size=16)
-
+mpl.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": [],                   # blank entries should cause plots
+    "font.sans-serif": [],              # to inherit fonts from the document
+    "font.monospace": [],
+    "axes.labelsize": 16,               # LaTeX default is 10pt font.
+    "font.size": 16,
+    "legend.fontsize": 16,               # Make the legend/label fonts
+    "xtick.labelsize": 16,               # a little smaller
+    "ytick.labelsize": 16,
+    "text.latex.preamble": r"""
+        \usepackage{amsmath}
+        \usepackage{siunitx}
+        \usepackage{physics}
+        \usepackage{amsfonts}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{braket}
+    """
+})
 def timeit(func):
     def inner(*args):
         start = time.time()
@@ -20,11 +39,11 @@ def timeit(func):
         return result
     return inner
 
-class Node:
-    def __init__(self, idx, pos=np.array([]), static_charge = 0., edges=dict(), attributes=dict()):
+class Site:
+    def __init__(self, idx, pos=np.array([]), static_charge = 0., links=dict(), attributes=dict()):
         self.idx = idx
         self.attributes = attributes
-        self.edges = edges
+        self.links = links
         self.pos = pos
         self.static_charge = 0
 
@@ -39,7 +58,7 @@ class Node:
         self.attributes[idx] = item
 
 
-class Edge:
+class Link:
     def __init__(self, u, v, attributes=dict()):
         self.u = u
         self.v = v
@@ -66,10 +85,10 @@ class Lattice:
         default_config = {
             'l': 1,
             'g': 1,
-            'k': 3,
+            'k': 6,
             'dims': (2, 2),
             'pbc': False,
-            'static_charges': dict()
+            'static_charges': dict(),
         }
 
         for attr in default_config.keys():
@@ -88,16 +107,16 @@ class Lattice:
         self.build_total_plaquette_operator()
 
     def __str__(self) -> str:
-        return f'{[str(node) for node in self]}'
+        return f'{[str(site) for site in self]}'
 
     def __iter__(self):
-        return iter(self.nodes.values())
+        return iter(self.sites.values())
 
     def __getitem__(self, idx):
-        return self.nodes[idx]
+        return self.sites[idx]
 
     def __setitem__(self, idx, item):
-        self.nodes[idx] = item
+        self.sites[idx] = item
 
 
     def idx_to_pos(self, idx: int) -> np.ndarray:
@@ -107,82 +126,83 @@ class Lattice:
         return int(pos @ self.projection_vector)
 
     def build(self):
-        nodes = dict()
+        sites = dict()
         for i in range(self.dims.prod()):
-            nodes[i] = copy.deepcopy(Node(i, self.idx_to_pos(i)))
-        edges = dict()
+            sites[i] = copy.deepcopy(Site(i, self.idx_to_pos(i)))
+        links = dict()
 
-        for u_idx in nodes:
-            u_node = nodes[u_idx]
+        for u_idx in sites:
+            u_site = sites[u_idx]
             for dim_idx in range(len(self.dims)):
-                v_pos = copy.deepcopy(u_node.pos)
+                v_pos = copy.deepcopy(u_site.pos)
                 v_pos[dim_idx] = (v_pos[dim_idx] + 1) % self.dims[dim_idx]
                 v_idx = self.pos_to_idx(v_pos)
                 if v_idx > u_idx or self.pbc:
-                    edge = Edge(u_idx, v_idx)
-                    edge['direction'] = dim_idx
-                    u_node.edges[(u_idx, v_idx)] = edge
-                    nodes[v_idx].edges[(u_idx, v_idx)] = edge
-                    edges[(u_idx, v_idx)] = edge
+                    link = copy.deepcopy(Link(u_idx, v_idx))
+                    link['direction'] = dim_idx
+                    link['idx'] = len(links)
+                    u_site.links[(u_idx, v_idx)] = link
+                    sites[v_idx].links[(u_idx, v_idx)] = link
+                    links[(u_idx, v_idx)] = link
+
         
-        self.nodes = nodes
-        self.edges = edges
+        self.sites = sites
+        self.links = links
 
     def add_static_charges(self) -> None:
         for pos in self.static_charges.keys():
-            self.nodes[self.pos_to_idx(pos)].static_charge = self.static_charges[pos]
+            self.sites[self.pos_to_idx(pos)].static_charge = self.static_charges[pos]
         
     def build_linear_system(self) -> None:
         '''
             Build the linear system of equations from the gauss law.
         '''
 
-        print('>>building linear system from gauss law..')  # use gauss law of nodes for linear system 
+        print('>>building linear system from gauss law..')  # use gauss law of sites for linear system 
         linear_system = list()
-        for node in self:
-            gauss_eq = -node.static_charge
-            #print(node.edges.keys())
-            for edge in node.edges.values():
-                if edge.v == node.idx:
-                    gauss_eq += edge.E
+        for site in self:
+            gauss_eq = -site.static_charge
+            for links in site.links.values():
+                if links.v == site.idx:
+                    gauss_eq -= links.E
                 else:
-                    gauss_eq -= edge.E
-            #print(gauss_eq)
-            node['gauss_eq'] = gauss_eq
+                    gauss_eq += links.E
+            site['gauss_eq'] = gauss_eq
             linear_system.append(gauss_eq)
 
         self.linear_system=linear_system
 
     def solve_linear_system(self) -> None:
         '''
-            Solve the linear system of equations and associate the solutions to the edges.
+            Solve the linear system of equations and associate the solutions to the links.
         '''
 
         print('>>solving linear system..')  # solve linear system
-        e_op_list = [edge.E for edge in self.edges.values()]
+        e_ops = [link.E for link in self.links.values()]
 
-        solution = sympy.linsolve(self.linear_system, e_op_list)
-        free_e_op_list = list(set(solution.free_symbols))
+        solution = sympy.linsolve(self.linear_system, e_ops)
 
-        code = [np.array([ord(char)*1e3**i for i, char in enumerate(str(e))]).sum() for e in free_e_op_list ]
+        idx_order = np.arange(len(e_ops), dtype=np.int32)
+        #np.random.shuffle(idx_order)
+        print(idx_order)
+
+
+        print('>>associating solutions to links..')  # associate solutions to links 
+        self.dynamic_links = list()
+        self.dynamic_e_ops = list()
+        self.solution_list = [(next(iter(solution)))[i] for i in idx_order.tolist()]
+
+        for i, link in enumerate([list(self.links.values())[i] for i in idx_order.tolist()]):
+            link['gauss_sol'] = self.solution_list[i]
+            if link['gauss_sol'] == link.E:
+                self.dynamic_links.append(link)
+                self.dynamic_e_ops.append(link.E)
+
         
-        free_e_op_list = [free_e_op_list[i] for i in np.argsort(code)[::-1]]
-
-        print(f'\nFree electric field operators: %d\n'%(len(free_e_op_list)))
-
-        print('>>associating solutions to edges..')  # associate solutions to edges
-        solution_list = (next(iter(solution)))
-        for i, edge in enumerate(self.edges.values()):
-            edge['gauss_sol'] = solution_list[i]
         
-        #print(e_op_list)
-        #print(solution_list)
-        
-        self.phys_dim = self.digit_base**len(free_e_op_list)
+        self.phys_dim = self.digit_base**len(self.dynamic_links)
         print(f'Physical Dimension: %.0f'%(self.phys_dim))
-
-        self.free_e_op_list = free_e_op_list
-        self.solution_list = solution_list
+        print(f'\nDynamic links: %d\n'%(len(self.dynamic_links)))
 
     def build_plaquettes(self) -> None:
         '''
@@ -190,33 +210,33 @@ class Lattice:
         '''
 
         print('>>building plaquettes..')  # build plaquettes
-        free_edge_list = [edge for edge in self.edges.values() if edge['gauss_sol'] == edge.E]
-        for node in self:
-            node['plaquette'] = list()
-        for edge in free_edge_list:
-            idx = edge.u
-            pos = copy.deepcopy(self.nodes[idx].pos)
+        for site in self:
+            site['plaquette'] = list()
+        for link in self.dynamic_links:
+            idx = link.u
+            pos = copy.deepcopy(self.sites[idx].pos)
 
             # If not deggad, then shift = 1. If deggad, then shift = -1.
 
-            if edge['direction'] == 0:
-                self.nodes[idx]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': 1})
+            if link['direction'] == 0:
+                self.sites[idx]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': 1})
                 pos[1] = (pos[1]-1) % self.dims[1]
-                self.nodes[self.pos_to_idx(pos)]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': -1})
-            elif edge['direction'] == 1:
-                self.nodes[idx]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': -1})
+                self.sites[self.pos_to_idx(pos)]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': -1})
+            elif link['direction'] == 1:
+                self.sites[idx]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': -1})
                 pos[0] = (pos[0]-1) % self.dims[0]
-                self.nodes[self.pos_to_idx(pos)]['plaquette'].append({'index': free_edge_list.index(edge), 'shift': 1})
+                self.sites[self.pos_to_idx(pos)]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': 1})
 
+        
         if not self.pbc:
             print('>>removing periodic plaquettes..')
             for y in range(self.dims[1]):
-                self.nodes[self.pos_to_idx(np.array([self.dims[1]-1, y]))]['plaquette'] = list()
+                self.sites[self.pos_to_idx(np.array([self.dims[1]-1, y]))]['plaquette'] = list()
             for x in range(self.dims[0]):
-                self.nodes[self.pos_to_idx(np.array([x, self.dims[1]-1]))]['plaquette'] = list()
+                self.sites[self.pos_to_idx(np.array([x, self.dims[1]-1]))]['plaquette'] = list()
 
     def idx_to_state(self, idx):
-        return np.array(((idx // self.digit_base**np.arange(len(self.free_e_op_list)-1, -1, -1)) % self.digit_base))
+        return np.array(((idx // self.digit_base**np.arange(len(self.dynamic_links)-1, -1, -1)) % self.digit_base))
 
     def state_to_idx(self, digits: np.ndarray) -> int:
         return (digits * self.digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
@@ -224,7 +244,7 @@ class Lattice:
     def get_electric_element(self, idx):
         progress = (idx/self.phys_dim*100)
         print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (idx/self.phys_dim*100), end='\r')
-        return self.E_OP.subs(zip(self.free_e_op_list, self.idx_to_state(idx) - self.l))
+        return self.E_OP.subs(zip(self.dynamic_e_ops, self.idx_to_state(idx) - self.l))
 
     @timeit
     def build_total_electric_operator(self) -> None:
@@ -240,7 +260,6 @@ class Lattice:
         self.E_OP = 0
         for equation in self.solution_list:
             self.E_OP += equation**2
-
         pool_obj = multiprocessing.Pool()
         tasks = E['row']
 
@@ -264,10 +283,10 @@ class Lattice:
         i_state = self.idx_to_state(idx)
         idx_column = [0]
         idx_data = [0]
-        for node in self:
-            if not not node['plaquette']:
+        for site in self:
+            if not not site['plaquette']:
                 f_state = copy.deepcopy(i_state)
-                for u_op in node['plaquette']:
+                for u_op in site['plaquette']:
                     f_state[u_op['index']] += u_op['shift']
                 
                 # if all shifts dont exit truncation (if not one exits trunction), the plaquette operation makes a contribution
@@ -320,7 +339,7 @@ class Lattice:
             Diagonalize the hamiltonian.
         '''
         partial_diagonalisation = self.phys_dim > self.k and self.k > 0
-        print(f'>>>diagonalizing Hamiltonian {f"to k=%d" % (self.k) if partial_diagonalisation else "entirely"}..')
+        print(f'>>>diagonalizing Hamiltonian {f"to k=%d" % (self.k) if partial_diagonalisation else "entirely"} with g=%.4f..'%(self.g))
 
         self.H_sparse = self.g**2*self.E-self.B/self.g**2
 
@@ -377,6 +396,7 @@ class Lattice:
 
             B_expectation_values[i] = ground_state.T @ self.B @ ground_state / num_plaquettes
         return B_expectation_values
+    
 
             
 
@@ -386,8 +406,11 @@ if __name__ == '__main__':
     #time.sleep(1)
 
     '''
-    lattice = Lattice(config={'k': 3, 'dims': (3, 3), 'pbc': False, 'l':1})
+    lattice = Lattice(config={'k': 6, 'dims': (2, 2), 'pbc': True, 'l':1, 'g':1})
     lattice.diagonalize_hamiltonian()
+    #print([ele for ele in lattice.E])
+    #print(lattice.E)
+    #print(lattice.B)
     lattice.printEW()
     #EWs[i] = lattice.EW[0]
 
@@ -396,21 +419,78 @@ if __name__ == '__main__':
     #lattice.printB()
     '''
 
-    plt.ylabel('$<P>$')
-    plt.xlabel(r'$\beta=1/g^2$')
-    plt.tight_layout()
-    plt.grid()
-    for k in np.arange(3, 4, dtype=np.int32):
-        for l in np.arange(1)+4:
-            lattice = Lattice(config={'k': k, 'dims': (2, 2), 'pbc': True, 'l':l})
-            #betas = 10**(np.arange(10e1)*0.2-0.8e1)
-            betas = 10**(np.linspace(-2, 2, 20))
-            #betas = np.linspace(1e-3, 10, 50)
-            p_exp = lattice.get_plaquette_expectation_values(betas)
-            plt.plot(betas, p_exp, marker='v', label=f'k=%d, l=%d'%(k, l), linestyle='dashed')
-    plt.xscale('log')
-    plt.legend()
-    plt.savefig('../latex/images/PlaquetteExp2x2PBC.pdf')
     '''
+    configs = [
+        #{'dims': (2, 2), 'pbc': False, 'log':True, 'max_l':8},
+        #{'dims': (2, 2), 'pbc': True, 'log':True, 'max_l':4},
+        #{'dims': (3, 3), 'pbc': False, 'log':True, 'max_l':5},
+        #{'dims': (3, 3), 'pbc': True, 'log':True, 'max_l':1},
+        #{'dims': (2, 2), 'pbc': False, 'log':False, 'max_l':8},
+        #{'dims': (2, 2), 'pbc': True, 'log':False, 'max_l':4},
+        #{'dims': (3, 3), 'pbc': False, 'log':False, 'max_l':5},
+        {'dims': (3, 3), 'pbc': True, 'log':False, 'max_l':1},
+    ]
+    for i in range(len(configs)):
+        plt.clf()
+        if configs[i]['log']:
+            betas = 10**(np.linspace(-2, 2, 20))
+        else: 
+            betas = np.arange(10)*0.2+0.8
+        for l in np.arange(configs[i]['max_l'])+1:
+            print(f'\n------------- Truncating to l=%d -------------'%(l))
+            configs[i]['l'] = l
+            lattice = Lattice(config=configs[i])
+            p_exp = lattice.get_plaquette_expectation_values(betas)
+            plt.plot(betas, p_exp, marker='v', label=f'l=%d'%(l), linestyle='dashed')
+
+        plt.ylabel('$\Braket{P}$')
+        plt.xlabel(r'$\beta=1/g^2$')
+        plt.tight_layout()
+        plt.grid()
+        if configs[i]['log']:
+            plt.xscale('log')
+        plt.legend()
+        string = f'{configs[i]["dims"][0]}x{configs[i]["dims"][1]}'
+        string += 'PBC' if configs[i]['pbc'] else ''
+        string += ('Log' if configs[i]['log'] else '')
+        plt.savefig(f'../latex/images/PlaquetteExp{string}.pdf')
 
     '''
+
+    static_charges = [{(0, 0): 1, (0, 1): -1},
+                      {(0, 0): 1, (1, 1): -1},
+                      {(0, 0): 1, (0, 2): -1},
+                      {(0, 0): 1, (1, 2): -1},
+                      {(0, 0): 1, (2, 2): -1},
+                      {(0, 0): 1, (0, 3): -1},
+                      {(0, 0): 1, (1, 3): -1},
+                      {(0, 0): 1, (2, 3): -1},
+                      {(0, 0): 1, (3, 3): -1}]
+    config = {'k': 6, 'dims': (4, 4), 'pbc': False, 'l':1, 'g':1}
+    lattice = Lattice(config=config)
+    lattice.diagonalize_hamiltonian()
+    e0 = lattice.EW[0]
+    ground_state = lattice.EB[:, 0]
+    e_pots = np.zeros(len(static_charges))
+    distances = list()
+
+    for i, static_charge in enumerate(static_charges):
+        positions = np.array(list(static_charge.keys()))
+        distances.append(((positions[0] - positions[1])**2).sum()**(1/2))
+        config['static_charges'] = static_charge
+        print(config)
+        lattice = Lattice(config=config)
+        lattice.diagonalize_hamiltonian()
+        print(lattice.EW[0])
+        #ew = lattice.EB[:, 0].T @ lattice.H_sparse @ lattice.EB[:, 0]
+        ew = ground_state @ lattice.H_sparse @ ground_state
+        e_pots[i] = ew - e0
+
+    plt.scatter(distances, e_pots, marker='x', label='$q\\bar{q}$')
+    plt.grid()
+    plt.legend()
+    plt.xlabel(r'r')
+    plt.ylabel(r'$E_{pot}=\braket{\hat{H}}-\braket{\hat{H}_0}$')
+    #plt.title(r'Potential energy of $q\bar{q}$ for $3\cross3$ with no PBC and $g=l=1$', fontsize=14)
+    plt.tight_layout()
+    plt.savefig(f'../latex/images/quark-antiquark-potential2.pdf')

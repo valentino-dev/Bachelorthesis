@@ -1,6 +1,6 @@
 from HC_Lattice import HCLattice
-n_sites = [3, 3]
-pbc = True
+n_sites = [2, 2]
+pbc = False
 static_charges = None # {(0,0): 1, (1, 2): -1}
 encoding = 'ed' # only ed works currently: gray not possible
 HCL = HCLattice(n_sites=n_sites, pbc=pbc) # HyperCubeLattice
@@ -20,7 +20,7 @@ config = {
     'e_op_out_plus': False,
     'magnetic_basis': False,
     'encoding': encoding,
-    'l': 2,
+    'l': 1,
     'L': 1,
 }
 HS = HamiltonianQED_sym(config, display_hamiltonian=False) # Hamiltonian(as)Symbols
