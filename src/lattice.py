@@ -1,4 +1,6 @@
-from re import A
+import os
+import json
+import hashlib
 import numpy as np
 import sympy
 import copy
@@ -8,6 +10,7 @@ import matplotlib as mpl
 import time
 import primme
 import multiprocessing
+import pickle
 
 mpl.rcParams.update({
     "text.usetex": True,
@@ -38,6 +41,7 @@ def timeit(func):
         print(f'{func} took %.4f seconds.'%(stop-start))
         return result
     return inner
+
 
 class Site:
     def __init__(self, idx, pos=np.array([]), static_charge = 0., links=dict(), attributes=dict()):
@@ -78,26 +82,31 @@ class Link:
 
 
 class Lattice:
+
+    default_config = {
+        'l': 1,
+        'g': 1,
+        'k': 6,
+        'dims': (2, 2),
+        'pbc': False,
+        'static_charges': dict(),
+    }
+
     def __init__(self, config=dict()):
         '''
             Initiating Lattice.
         '''
-        default_config = {
-            'l': 1,
-            'g': 1,
-            'k': 6,
-            'dims': (2, 2),
-            'pbc': False,
-            'static_charges': dict(),
-        }
-
-        for attr in default_config.keys():
-            self.__setattr__(attr, config[attr] if attr in config else default_config[attr])
+        self.config = dict()
+        for attr in self.default_config.keys():
+            self.__setattr__(attr, config[attr] if attr in config else self.default_config[attr])
+            self.config[attr] = config[attr] if attr in config else self.default_config[attr]
 
         self.dims = np.array(self.dims)
         self.projection_vector = np.array([self.dims[:dim_idx].prod() for dim_idx in range(len(self.dims))])
         self.digit_base = 2*self.l+1
 
+
+    def calculate_E_and_B_op(self):
         self.build()
         self.add_static_charges()
         self.build_linear_system()
@@ -106,8 +115,51 @@ class Lattice:
         self.build_plaquettes()
         self.build_total_plaquette_operator()
 
+    '''
     def __str__(self) -> str:
-        return f'{[str(site) for site in self]}'
+        dims_str = ''
+        for i in range(len(dims)-1):
+            dims_str += f'%d_'%(dims[i])
+        dims_str += f'%d'%(dims[-1])
+
+        static_charges_str = ''
+        for i in range(len(static_charges)-1):
+            charge_key = static_charges.keys()[i]
+            charge = static_charges.values()[i]
+            static_charges_str += f'({charge_key[0]}_{charge_key[1]})_{charge}'
+
+        static_charges_str += f'({charge_key[0]}_{charge_key[1]})_{charge}'
+
+
+        return f'l_%d.g_%.2f.k_%d.dims_({%s}).pbc_.static_charges_'
+        #return f'{[str(site) for site in self]}'
+    '''
+
+    def set_param(self, param, value):
+        self.config[param] = value
+        self.__setattr__(param, value)
+
+    def dict_to_tuple(self, dictionary):
+        for key in dictionary:
+            if type(dictionary[key]) == dict:
+                dictionary[key] = self.dict_to_tuple(dictionary[key])
+            
+        return tuple(list(dictionary.items()))
+
+
+    def __hash__(self):
+        for key in self.default_config:
+            self.config[key] = self.config[key] if key in self.config else self.default_config[key]
+
+        #serialized = json.dumps(self.config, sort_keys=True, separators=(',', ':')).encode('utf-8')
+        serialized = str(self.config).encode('utf-8')
+        digest = hashlib.sha256(serialized).digest()
+        return int.from_bytes(digest[:8], 'big')
+
+    def __eq__(self, other):
+        dprint(type(self), type(other))
+        return isinstance(other, Lattice) and self.config == other.config
+        #return isinstance(other, Lattice) and self.__hash__() == other.__hash__()
 
     def __iter__(self):
         return iter(self.sites.values())
@@ -183,8 +235,6 @@ class Lattice:
         solution = sympy.linsolve(self.linear_system, e_ops)
 
         idx_order = np.arange(len(e_ops), dtype=np.int32)
-        #np.random.shuffle(idx_order)
-        print(idx_order)
 
 
         print('>>associating solutions to links..')  # associate solutions to links 
@@ -352,10 +402,10 @@ class Lattice:
         if partial_diagonalisation:
             #EW, EB = scipy.sparse.linalg.eigsh(self.H_sparse, k=self.k, which='SA')
 
-            #X = np.random.default_rng(42).normal(size=(self.phys_dim, self.k)) 
-            #EW, EB = scipy.sparse.linalg.lobpcg(self.H_sparse, X, largest=False, maxiter=500)
+            X = np.random.default_rng(42).normal(size=(self.phys_dim, self.k)) 
+            EW, EB = scipy.sparse.linalg.lobpcg(self.H_sparse, X, largest=False, maxiter=500)
 
-            EW, EB = primme.eigsh(self.H_sparse, k=self.k, which='SA')
+            #EW, EB = primme.eigsh(self.H_sparse, k=self.k, which='SA')
             
         else:
             EW, EB = scipy.linalg.eigh(self.H_sparse.toarray())
@@ -389,108 +439,30 @@ class Lattice:
         num_plaquettes = (self.dims).prod() if self.pbc else (self.dims-1).prod()
 
         for i, beta in enumerate(beta_list):
-            self.g = 1/beta**(1/2)
+            self.set_param('g', 1/beta**(1/2))
             self.diagonalize_hamiltonian()
             ground_state = self.EB[:, 0]
 
 
             B_expectation_values[i] = ground_state.T @ self.B @ ground_state / num_plaquettes
         return B_expectation_values
-    
 
+def save(lattices):
+    with open('../data/lattices.pickle', 'wb') as handle:
+        pickle.dump(lattices, handle, protocol=pickle.HIGHEST_PROTOCOL)
             
+def load(path=None):
+    if not path:
+        path = '../data/lattices.pickle'
 
-if __name__ == '__main__':
-    EWs = np.zeros(10)
-    #for i in range(10):
-    #time.sleep(1)
+    if os.path.exists(path):
+        lattcies = None
+        with open(path, 'rb') as handle:
+            lattices = pickle.load(handle)
 
-    '''
-    lattice = Lattice(config={'k': 6, 'dims': (2, 2), 'pbc': True, 'l':1, 'g':1})
-    lattice.diagonalize_hamiltonian()
-    #print([ele for ele in lattice.E])
-    #print(lattice.E)
-    #print(lattice.B)
-    lattice.printEW()
-    #EWs[i] = lattice.EW[0]
+        return lattices
+    else:
+        return dict()
 
-    #print(EWs.std())
-    #lattice.printE()
-    #lattice.printB()
-    '''
-
-    '''
-    configs = [
-        #{'dims': (2, 2), 'pbc': False, 'log':True, 'max_l':8},
-        #{'dims': (2, 2), 'pbc': True, 'log':True, 'max_l':4},
-        #{'dims': (3, 3), 'pbc': False, 'log':True, 'max_l':5},
-        #{'dims': (3, 3), 'pbc': True, 'log':True, 'max_l':1},
-        #{'dims': (2, 2), 'pbc': False, 'log':False, 'max_l':8},
-        #{'dims': (2, 2), 'pbc': True, 'log':False, 'max_l':4},
-        #{'dims': (3, 3), 'pbc': False, 'log':False, 'max_l':5},
-        {'dims': (3, 3), 'pbc': True, 'log':False, 'max_l':1},
-    ]
-    for i in range(len(configs)):
-        plt.clf()
-        if configs[i]['log']:
-            betas = 10**(np.linspace(-2, 2, 20))
-        else: 
-            betas = np.arange(10)*0.2+0.8
-        for l in np.arange(configs[i]['max_l'])+1:
-            print(f'\n------------- Truncating to l=%d -------------'%(l))
-            configs[i]['l'] = l
-            lattice = Lattice(config=configs[i])
-            p_exp = lattice.get_plaquette_expectation_values(betas)
-            plt.plot(betas, p_exp, marker='v', label=f'l=%d'%(l), linestyle='dashed')
-
-        plt.ylabel('$\Braket{P}$')
-        plt.xlabel(r'$\beta=1/g^2$')
-        plt.tight_layout()
-        plt.grid()
-        if configs[i]['log']:
-            plt.xscale('log')
-        plt.legend()
-        string = f'{configs[i]["dims"][0]}x{configs[i]["dims"][1]}'
-        string += 'PBC' if configs[i]['pbc'] else ''
-        string += ('Log' if configs[i]['log'] else '')
-        plt.savefig(f'../latex/images/PlaquetteExp{string}.pdf')
-
-    '''
-
-    static_charges = [{(0, 0): 1, (0, 1): -1},
-                      {(0, 0): 1, (1, 1): -1},
-                      {(0, 0): 1, (0, 2): -1},
-                      {(0, 0): 1, (1, 2): -1},
-                      {(0, 0): 1, (2, 2): -1},
-                      {(0, 0): 1, (0, 3): -1},
-                      {(0, 0): 1, (1, 3): -1},
-                      {(0, 0): 1, (2, 3): -1},
-                      {(0, 0): 1, (3, 3): -1}]
-    config = {'k': 6, 'dims': (4, 4), 'pbc': False, 'l':1, 'g':1}
-    lattice = Lattice(config=config)
-    lattice.diagonalize_hamiltonian()
-    e0 = lattice.EW[0]
-    ground_state = lattice.EB[:, 0]
-    e_pots = np.zeros(len(static_charges))
-    distances = list()
-
-    for i, static_charge in enumerate(static_charges):
-        positions = np.array(list(static_charge.keys()))
-        distances.append(((positions[0] - positions[1])**2).sum()**(1/2))
-        config['static_charges'] = static_charge
-        print(config)
-        lattice = Lattice(config=config)
-        lattice.diagonalize_hamiltonian()
-        print(lattice.EW[0])
-        #ew = lattice.EB[:, 0].T @ lattice.H_sparse @ lattice.EB[:, 0]
-        ew = ground_state @ lattice.H_sparse @ ground_state
-        e_pots[i] = ew - e0
-
-    plt.scatter(distances, e_pots, marker='x', label='$q\\bar{q}$')
-    plt.grid()
-    plt.legend()
-    plt.xlabel(r'r')
-    plt.ylabel(r'$E_{pot}=\braket{\hat{H}}-\braket{\hat{H}_0}$')
-    #plt.title(r'Potential energy of $q\bar{q}$ for $3\cross3$ with no PBC and $g=l=1$', fontsize=14)
-    plt.tight_layout()
-    plt.savefig(f'../latex/images/quark-antiquark-potential2.pdf')
+def dprint(*args):
+    print('debug:', *args)

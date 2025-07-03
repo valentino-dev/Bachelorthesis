@@ -3,6 +3,10 @@
 %\documentclass[sn-mathphys-num,iicol]{jnl}
 
 %\usepackage{sn-jnl.sty}
+\usepackage[pscoord]{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
+
+\usepackage[absolute,overlay]{textpos}
+\usepackage{tikz}
 \usepackage{graphicx}%
 \usepackage{multirow}%
 \usepackage{amsmath,amssymb,amsfonts}%
@@ -38,10 +42,13 @@
 
 \raggedbottom
 
-\newcommand{\td}{\text{d}}
-
 \titleformat{\subsection}{}{\thesubsection}{1em}{\itshape}
 \titleformat{\subsubsection}{}{\thesubsubsection}{1em}{\itshape}
+
+\setlength{\TPHorizModule}{1mm} % Units in mm
+\setlength{\TPVertModule}{1mm}
+
+
 
 \begin{document}
         
@@ -50,6 +57,15 @@
 \affil*[1]{Rheinische Friedrich--Wilhelms--Universität, Bonn}
 
 \maketitle
+\clearpage
+\begin{tikzpicture}[remember picture, overlay]
+\node[anchor=north west] at ([xshift=4.5cm,yshift=0cm]current page.north west) {
+    \begin{minipage}{0.75\textwidth}
+    \tableofcontents
+  \end{minipage}
+};
+\end{tikzpicture}
+\clearpage
 \input{sections/introduction.tex}
 \input{sections/theory.tex}
 \input{sections/implementation.tex}

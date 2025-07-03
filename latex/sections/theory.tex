@@ -1,7 +1,9 @@
+\,\\[160pt]
 \section{Theory}
 \subsection{Discretisation}
+
 We start by discretising the positional space into sites and links. The sites are spaced by the lattice spacing $a$. To optain the continuum theory in the limit of $a\rightarrow 0$ we need to introduce the coupling constant $g$\cite{RevModPhys.51.659}.
-\\
+
 We associate each site with a corresponding positional vector $\vec{r}=(r_x, r_y)$. On the sites the static charges $Q_{\vec{r}}$ positioned. We associate each link with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example with $\vec{r}=(1, 2)$ and $\mu=x$ we would denote the link that points from the site $(1, 2)$ to the $x$ direction. We could denote the same link with $\vec{r}=(2, 2)$ and $\mu=-x$.
 
 On the links are the electric field operators $\hat{E}_{\vec{r},\mu}$ positioned. Each electric field $\hat{E}_{\vec{r}, \mu}$ has the vector potential $\hat{A}_{\vec{r}, \mu}$ as its canonical conjugate variable. Thus
@@ -12,8 +14,9 @@ We construct a unitary operator $\hat{U}_{\vec{r}_{j}, \nu}$ (also called link o
 \begin{align}
 	\hat{U}_{\vec{r}, \mu} = e^{iag\hat{A}_{\vec{r}, \mu}}.\label{eq:exp}
 \end{align}
-
-The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}_{\vec{r}, \nu}$ of dimension $n\cross n$. By taking $n=1$ we choose the U(1) theory, where the Phase, thus our vector potantial, is an element of $\mathbb{R}$. Through equation \ref{eq:com} and \ref{eq:exp} we arrive at
+\\\\
+\\[180pt]
+The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}_{\vec{r}, \nu}$ of dimension $n\cross n$. By taking $n=1$ we choose the U(1) theory, where the phase, thus our vector potantial, is an element of $\mathbb{R}$. Through equation \ref{eq:com} and \ref{eq:exp} we arrive at
 \begin{align}
   [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}]      & =\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu},\label{eq:comu1}       \\
   [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}\dag. \label{eq:comu2}
