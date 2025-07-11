@@ -1,0 +1,175 @@
+%% BioMed_Central_Bib_Style_v1.01
+
+\begin{thebibliography}{5}
+% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
+\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
+\ifx \binits  \undefined \def \binits#1{#1}\fi
+\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
+\ifx \batitle  \undefined \def \batitle#1{#1}\fi
+\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
+\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
+\ifx \byear  \undefined \def \byear#1{#1}\fi
+\ifx \bissue  \undefined \def \bissue#1{#1}\fi
+\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
+\ifx \blpage  \undefined \def \blpage #1{#1}\fi
+\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
+\ifx \doiurl  \undefined \def \doiurl#1{\url{https://doi.org/#1}}\fi
+\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
+\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
+\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
+\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
+\ifx \beditor  \undefined \def \beditor#1{#1}\fi
+\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
+\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
+\ifx \bedition  \undefined \def \bedition#1{#1}\fi
+\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
+\ifx \blocation  \undefined \def \blocation#1{#1}\fi
+\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
+\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
+\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
+\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
+\ifx \barticle \undefined \def \barticle#1{#1}\fi
+\bibcommenthead
+\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
+\ifx \botherref \undefined \def \botherref #1{#1}\fi
+\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
+\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
+\ifx \bbook \undefined \def \bbook#1{#1}\fi
+\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
+\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
+\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
+\ifx \endbibitem  \undefined \def \endbibitem {}\fi
+\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
+\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
+\csname PreBibitemsHook\endcsname
+
+%%% 1
+\bibitem[\protect\citeauthoryear{Kogut}{1979}]{RevModPhys.51.659}
+\begin{barticle}
+\bauthor{\bsnm{Kogut}, \binits{J.B.}}:
+\batitle{An introduction to lattice gauge theory and spin systems}.
+\bjtitle{Rev. Mod. Phys.}
+\bvolume{51},
+\bfpage{659}--\blpage{713}
+(\byear{1979})
+\doiurl{10.1103/RevModPhys.51.659}
+\end{barticle}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Kogut and Susskind}{1975}]{PhysRevD.11.395}
+\begin{barticle}
+\bauthor{\bsnm{Kogut}, \binits{J.}},
+\bauthor{\bsnm{Susskind}, \binits{L.}}:
+\batitle{Hamiltonian formulation of wilson's lattice gauge theories}.
+\bjtitle{Phys. Rev. D}
+\bvolume{11},
+\bfpage{395}--\blpage{408}
+(\byear{1975})
+\doiurl{10.1103/PhysRevD.11.395}
+\end{barticle}
+\endbibitem
+
+%%% 3
+\bibitem[\protect\citeauthoryear{Meurer et~al.}{2017}]{10.7717/peerj-cs.103}
+\begin{barticle}
+\bauthor{\bsnm{Meurer}, \binits{A.}},
+\bauthor{\bsnm{Smith}, \binits{C.P.}},
+\bauthor{\bsnm{Paprocki}, \binits{M.}},
+\bauthor{\bsnm{{C}ert\'{i}k}, \binits{O.}},
+\bauthor{\bsnm{Kirpichev}, \binits{S.B.}},
+\bauthor{\bsnm{Rocklin}, \binits{M.}},
+\bauthor{\bsnm{Kumar}, \binits{A.}},
+\bauthor{\bsnm{Ivanov}, \binits{S.}},
+\bauthor{\bsnm{Moore}, \binits{J.K.}},
+\bauthor{\bsnm{Singh}, \binits{S.}},
+\bauthor{\bsnm{Rathnayake}, \binits{T.}},
+\bauthor{\bsnm{Vig}, \binits{S.}},
+\bauthor{\bsnm{Granger}, \binits{B.E.}},
+\bauthor{\bsnm{Muller}, \binits{R.P.}},
+\bauthor{\bsnm{Bonazzi}, \binits{F.}},
+\bauthor{\bsnm{Gupta}, \binits{H.}},
+\bauthor{\bsnm{Vats}, \binits{S.}},
+\bauthor{\bsnm{Johansson}, \binits{F.}},
+\bauthor{\bsnm{Pedregosa}, \binits{F.}},
+\bauthor{\bsnm{Curry}, \binits{M.J.}},
+\bauthor{\bsnm{Terrel}, \binits{A.R.}},
+\bauthor{\bsnm{Rou\v{c}ka}, \binits{v.p.}},
+\bauthor{\bsnm{Saboo}, \binits{A.}},
+\bauthor{\bsnm{Fernando}, \binits{I.}},
+\bauthor{\bsnm{Kulal}, \binits{S.}},
+\bauthor{\bsnm{Cimrman}, \binits{R.}},
+\bauthor{\bsnm{Scopatz}, \binits{A.}}:
+\batitle{Sympy: symbolic computing in python}.
+\bjtitle{PeerJ Computer Science}
+\bvolume{3},
+\bfpage{103}
+(\byear{2017})
+\doiurl{10.7717/peerj-cs.103}
+\end{barticle}
+\endbibitem
+
+%%% 4
+\bibitem[\protect\citeauthoryear{Virtanen et~al.}{2020}]{2020SciPy-NMeth}
+\begin{barticle}
+\bauthor{\bsnm{Virtanen}, \binits{P.}},
+\bauthor{\bsnm{Gommers}, \binits{R.}},
+\bauthor{\bsnm{Oliphant}, \binits{T.E.}},
+\bauthor{\bsnm{Haberland}, \binits{M.}},
+\bauthor{\bsnm{Reddy}, \binits{T.}},
+\bauthor{\bsnm{Cournapeau}, \binits{D.}},
+\bauthor{\bsnm{Burovski}, \binits{E.}},
+\bauthor{\bsnm{Peterson}, \binits{P.}},
+\bauthor{\bsnm{Weckesser}, \binits{W.}},
+\bauthor{\bsnm{Bright}, \binits{J.}},
+\bauthor{\bsnm{{van der Walt}}, \binits{S.J.}},
+\bauthor{\bsnm{Brett}, \binits{M.}},
+\bauthor{\bsnm{Wilson}, \binits{J.}},
+\bauthor{\bsnm{Millman}, \binits{K.J.}},
+\bauthor{\bsnm{Mayorov}, \binits{N.}},
+\bauthor{\bsnm{Nelson}, \binits{A.R.J.}},
+\bauthor{\bsnm{Jones}, \binits{E.}},
+\bauthor{\bsnm{Kern}, \binits{R.}},
+\bauthor{\bsnm{Larson}, \binits{E.}},
+\bauthor{\bsnm{Carey}, \binits{C.J.}},
+\bauthor{\bsnm{Polat}, \binits{{\. I}.}},
+\bauthor{\bsnm{Feng}, \binits{Y.}},
+\bauthor{\bsnm{Moore}, \binits{E.W.}},
+\bauthor{\bsnm{{ VanderPlas}}, \binits{J.}},
+\bauthor{\bsnm{Laxalde}, \binits{D.}},
+\bauthor{\bsnm{Perktold}, \binits{J.}},
+\bauthor{\bsnm{Cimrman}, \binits{R.}},
+\bauthor{\bsnm{Henriksen}, \binits{I.}},
+\bauthor{\bsnm{Quintero}, \binits{E.A.}},
+\bauthor{\bsnm{Harris}, \binits{C.R.}},
+\bauthor{\bsnm{Archibald}, \binits{A.M.}},
+\bauthor{\bsnm{Ribeiro}, \binits{A.H.}},
+\bauthor{\bsnm{Pedregosa}, \binits{F.}},
+\bauthor{\bsnm{{van Mulbregt}}, \binits{P.}},
+\bauthor{\bsnm{{SciPy 1.0 Contributors}}}:
+\batitle{{{SciPy} 1.0: Fundamental Algorithms for Scientific Computing in Python}}.
+\bjtitle{Nature Methods}
+\bvolume{17},
+\bfpage{261}--\blpage{272}
+(\byear{2020})
+\doiurl{10.1038/s41592-019-0686-2}
+\end{barticle}
+\endbibitem
+
+%%% 5
+\bibitem[\protect\citeauthoryear{Crippa et~al.}{2024}]{crippa2024}
+\begin{botherref}
+\oauthor{\bsnm{Crippa}, \binits{A.}},
+\oauthor{\bsnm{Romiti}, \binits{S.}},
+\oauthor{\bsnm{Funcke}, \binits{L.}},
+\oauthor{\bsnm{Jansen}, \binits{K.}},
+\oauthor{\bsnm{Kühn}, \binits{S.}},
+\oauthor{\bsnm{Stornati}, \binits{P.}},
+\oauthor{\bsnm{Urbach}, \binits{C.}}:
+Towards determining the (2+1)-dimensional Quantum Electrodynamics running coupling with Monte Carlo and quantum computing methods
+(2024).
+\url{https://arxiv.org/abs/2404.17545}
+\end{botherref}
+\endbibitem
+
+\end{thebibliography}

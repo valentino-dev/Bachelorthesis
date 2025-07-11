@@ -6,13 +6,15 @@
 \usepackage[pscoord]{eso-pic}% The zero point of the coordinate systemis the lower left corner of the page (the default).
 
 \usepackage[absolute,overlay]{textpos}
+\usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
 \usepackage{graphicx}%
 \usepackage{multirow}%
+\usepackage{cuted}
 \usepackage{amsmath,amssymb,amsfonts}%
 \usepackage{amsthm}%
 \usepackage{physics}
-\usepackage[locale=DE]{siunitx}
+\usepackage[locale=US]{siunitx}
 \usepackage{mathrsfs}%
 \usepackage[title]{appendix}%
 \usepackage{xcolor}%
@@ -27,8 +29,12 @@
 \usepackage{yfonts}
 \usepackage{braket}
 \usepackage{dsfont}
+\usepackage{subfig}
 \usepackage[tiny]{titlesec}%
-\usepackage[ngerman]{babel}
+\usepackage[american]{babel}
+\usepackage{cleveref}
+
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, decorations.markings}
 
 \theoremstyle{thmstyleone}
 \newtheorem{theorem}{Theorem}
@@ -51,25 +57,62 @@
 
 
 \begin{document}
-        
-\title[]{Bestimmung des Quark-Antiquark Potentials in der Hamiltonischen Formulierung der kompakten U(1) Eichtheorie.}
+
+\title[]{Determination of the quark-antiquark potential in the Hamiltonian formulation of the compact U(1) gauge theory.}
 \author*[1]{\fnm{Angelo} \sur{Brade}}\email{s72abrad@uni-bonn.de}
 \affil*[1]{Rheinische Friedrich--Wilhelms--Universität, Bonn}
 
 \maketitle
+\begingroup
+%\setlength{\tabcolsep}{20pt}
+\renewcommand{\arraystretch}{1.8}
+\begin{textblock*}{140mm}(32.5mm, 150mm)
+	\begin{center}
+		\begin{tabular}{c}
+			\large{Bachelorarbeit in Physik angefertigt im}                     \\
+			\large{Helmholtz-Institut für Strahlen- und Kernphysik}             \\
+			\\
+			\large{vorgelegt der Mathematisch-Naturwissenschaftlichen Fakultät} \\
+			\large{der}                                                         \\
+			\large{Rheinischen Friedrich-Wilhelms-Universität Bonn}             \\
+			\\
+			\large{Juli 2025}
+		\end{tabular}
+	\end{center}
+\end{textblock*}
+\endgroup
+
 \clearpage
 \begin{tikzpicture}[remember picture, overlay]
-\node[anchor=north west] at ([xshift=4.5cm,yshift=0cm]current page.north west) {
-    \begin{minipage}{0.75\textwidth}
-    \tableofcontents
-  \end{minipage}
-};
+	\node[anchor=north west] at ([xshift=4.5cm,yshift=-2.5cm]current page.north west) {
+		\begin{minipage}{0.75\textwidth}
+			\tableofcontents
+		\end{minipage}
+	};
 \end{tikzpicture}
+
 \clearpage
 \input{sections/introduction.tex}
 \input{sections/theory.tex}
 \input{sections/implementation.tex}
 \input{sections/results.tex}
+\input{sections/conclusion.tex}
+\input{sections/acknowledgements.tex}
 
+\clearpage
 \bibliography{refs}
+
+\clearpage
+\begin{textblock*}{140mm}(32.5mm, 150mm)
+	Ich versichere, dass ich diese Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie die Zitate kenntlich gemacht habe.\\[40pt]
+	\begin{center}
+		\begin{tabular}{lr}
+			Bonn, ......................................... \hspace{3cm}\, & ..................................................., \\
+			\hspace{2cm}Datum                                              & Unterschrift\hspace{1.5cm}\,
+		\end{tabular}
+	\end{center}
+	\,\\[20pt]
+	1. Gutachter: Prof. Dr. Carsten Urbach \\
+	2. Gutachterin: Jun.-Prof. Dr. Lena Funcke
+\end{textblock*}
 \end{document}
