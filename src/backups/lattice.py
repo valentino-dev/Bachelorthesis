@@ -1,5 +1,4 @@
 import os
-import math
 import hashlib
 import numpy as np
 import sympy
@@ -8,49 +7,11 @@ import scipy
 import time
 import multiprocessing
 import pickle
-import primme
-from functools import partial
-
-
-
-states_per_kernal = 16
-def magnetic_kernal(sites, digit_base, num_dynamic_links, phys_dim, operation_idx):
-
-    def idx_to_state(digit_base, num_dynamic_links, idx):
-        return np.array(((idx // digit_base**np.arange(num_dynamic_links-1, -1, -1)) % digit_base))
-
-    def state_to_idx(digit_base, digits: np.ndarray) -> int:
-        return (digits * digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
-
-    ideces = np.arange(operation_idx*states_per_kernal, (operation_idx+1)*states_per_kernal)
-    ideces = ideces[ideces < phys_dim]
-
-    idx_row = [0]
-    idx_column = [0]
-    idx_data = [0]
-    for idx in ideces:
-        if idx%20==0:
-            progress = (idx/phys_dim*100)
-            print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (progress), end='\r')
-        i_state = idx_to_state(digit_base, num_dynamic_links, idx)
-        for site in sites.values():
-            if not not site['plaquette']:
-                f_state = copy.deepcopy(i_state)
-                for u_op in site['plaquette']:
-                    f_state[u_op['index']] += u_op['shift']
-                
-                # if all shifts dont exit truncation (if not one exits trunction), the plaquette operation makes a contribution
-                if not (f_state - (f_state % digit_base)).any():
-                    idx_row.append(idx)
-                    idx_column.append(state_to_idx(digit_base, f_state))
-                    idx_data.append(1.)
-
-    return [idx_row, idx_column, idx_data]
 
 def timeit(func):
-    def inner(*args, **kwargs):
+    def inner(*args):
         start = time.time()
-        result = func(*args, **kwargs)
+        result = func(*args)
         stop = time.time()
         print(f'{func} took %.4f seconds.'%(stop-start))
         return result
@@ -99,6 +60,8 @@ class Lattice:
 
     default_config = {
         'l': 1,
+        'g': 1,
+        'k': 6,
         'dims': (2, 2),
         'pbc': False,
         'static_charges': dict(),
@@ -116,8 +79,6 @@ class Lattice:
         self.dims = np.array(self.dims)
         self.projection_vector = np.array([self.dims[:dim_idx].prod() for dim_idx in range(len(self.dims))])
         self.digit_base = 2*self.l+1
-        self.eigenvalues = dict()
-        self.eigenvectors = dict()
 
         print(f'>>num of used threads: %d'%(multiprocessing.cpu_count()))
 
@@ -129,7 +90,7 @@ class Lattice:
         self.solve_linear_system()
         self.build_total_electric_operator()
         self.build_plaquettes()
-        self.build_total_magnetic_operator()
+        self.build_total_plaquette_operator()
 
     '''
     def __str__(self) -> str:
@@ -173,6 +134,7 @@ class Lattice:
         return int.from_bytes(digest[:8], 'big')
 
     def __eq__(self, other):
+        dprint(type(self), type(other))
         return isinstance(other, Lattice) and self.config == other.config
         #return isinstance(other, Lattice) and self.__hash__() == other.__hash__()
 
@@ -193,10 +155,6 @@ class Lattice:
         return int(pos @ self.projection_vector)
 
     def build(self):
-        '''
-
-        '''
-        print('>>building lattice..')
         sites = dict()
         for i in range(self.dims.prod()):
             sites[i] = copy.deepcopy(Site(i, self.idx_to_pos(i)))
@@ -216,9 +174,9 @@ class Lattice:
                     sites[v_idx].links[(u_idx, v_idx)] = link
                     links[(u_idx, v_idx)] = link
 
+        
         self.sites = sites
         self.links = links
-        self.add_static_charges()
 
     def add_static_charges(self) -> None:
         for pos in self.static_charges.keys():
@@ -228,8 +186,6 @@ class Lattice:
         '''
             Build the linear system of equations from the gauss law.
         '''
-        if not hasattr(self, 'sites'):
-            self.build()
 
         print('>>building linear system from gauss law..')  # use gauss law of sites for linear system 
         linear_system = list()
@@ -249,9 +205,6 @@ class Lattice:
         '''
             Solve the linear system of equations and associate the solutions to the links.
         '''
-
-        if not hasattr(self, 'linear_system'):
-            self.build_linear_system()
 
         print('>>solving linear system..')  # solve linear system
         e_ops = [link.E for link in self.links.values()]
@@ -282,9 +235,6 @@ class Lattice:
         '''
             Build the plaquettes of the lattice.
         '''
-
-        if not self.dynamic_links:
-            self.solve_linear_system()
 
         print('>>building plaquettes..')  # build plaquettes
         for site in self:
@@ -318,10 +268,9 @@ class Lattice:
     def state_to_idx(self, digits: np.ndarray) -> int:
         return (digits * self.digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
 
-    def electric_kernal(self, idx):
+    def get_electric_element(self, idx):
         progress = (idx/self.phys_dim*100)
-        if idx%20==0:
-            print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (idx/self.phys_dim*100), end='\r')
+        #print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (idx/self.phys_dim*100), end='\r')
         return self.E_OP.subs(zip(self.dynamic_e_ops, self.idx_to_state(idx) - self.l))
 
     @timeit
@@ -330,11 +279,7 @@ class Lattice:
             Build the electric operator of the lattice.
         '''
 
-        if not hasattr(self, 'dynamic_links'):
-            self.solve_linear_system()
-
         print('>>building electric hamiltonian..')  # build electric hamiltonian
-
         E = {'row': np.arange(self.phys_dim, dtype=np.int32),
                'column': np.arange(self.phys_dim, dtype=np.int32),
                'data':np.zeros(self.phys_dim)}
@@ -342,11 +287,10 @@ class Lattice:
         self.E_OP = 0
         for equation in self.solution_list:
             self.E_OP += equation**2
-
-        print('>>Mapping results..')
+        pool_obj = multiprocessing.Pool()
         tasks = E['row']
-        with multiprocessing.Pool() as pool:
-            result = pool.map(self.electric_kernal, tasks)
+
+        result = pool_obj.map(self.get_electric_element, tasks)
         
         '''
 
@@ -356,26 +300,43 @@ class Lattice:
             result.append(job_result)
         '''
 
-        print('>>Createing sparse matrix..')
+
         E['data'] = np.array(result, dtype=np.float32)
         self.E = scipy.sparse.csr_matrix((E['data'], (E['row'], E['column']))) / 2
 
+    def get_magnetic_vector(self, idx):
+        progress = (idx/self.phys_dim*100)
+        #print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (idx/self.phys_dim*100), end='\r')
+        i_state = self.idx_to_state(idx)
+        idx_column = [0]
+        idx_data = [0]
+        for site in self:
+            if not not site['plaquette']:
+                f_state = copy.deepcopy(i_state)
+                for u_op in site['plaquette']:
+                    f_state[u_op['index']] += u_op['shift']
+                
+                # if all shifts dont exit truncation (if not one exits trunction), the plaquette operation makes a contribution
+                if not (f_state - (f_state % self.digit_base)).any():
+                    idx_column.append(self.state_to_idx(f_state))
+                    idx_data.append(1.)
+
+        return [[idx]*len(idx_column), idx_column, idx_data]
+
                     
     @timeit
-    def build_total_magnetic_operator(self) -> None:
+    def build_total_plaquette_operator(self) -> None:
         '''
             Build the plaquette operator of the lattice.
         '''
-        if  not hasattr(next(self.__iter__()), 'plquette'):
-            self.build_plaquettes()
 
         print('>>building magnetic hamiltonian..')  # build magnetic hamiltonian
 
-        print('>>mapping results..')
-        tasks = np.arange(math.ceil(self.phys_dim/states_per_kernal))
-        with multiprocessing.Pool() as pool:
-            result = pool.starmap(magnetic_kernal, [(self.sites, self.digit_base, len(self.dynamic_links), self.phys_dim, task) for task in tasks])
+        pool_obj = multiprocessing.Pool()
+        tasks = np.arange(self.phys_dim) 
 
+
+        result = pool_obj.map(self.get_magnetic_vector, tasks)
 
         '''
 
@@ -385,7 +346,7 @@ class Lattice:
             result.append(job_result)
         '''
         
-        print('>>sorting results..')# sorting results
+        # sorting results
         row = list()
         column = list()
         data = list()
@@ -397,65 +358,65 @@ class Lattice:
             for x in xs[2]:
                 data.append(x)
 
-        print('>>createing sparse matrix..')
         P_sparse = scipy.sparse.csr_matrix((data, (row, column)), shape=(self.phys_dim, self.phys_dim))
         self.B = (P_sparse+P_sparse.T)/2
 
     @timeit
-    def diagonalize_hamiltonian(self, g, k=1) -> None:
+    def diagonalize_hamiltonian(self) -> None:
         '''
             Diagonalize the hamiltonian.
         '''
-        if g in self.eigenvalues:
-            return
+        partial_diagonalisation = self.phys_dim > self.k and self.k > 0
+        print(f'>>>diagonalizing Hamiltonian {f"to k=%d" % (self.k) if partial_diagonalisation else "entirely"} with g=%.4f..'%(self.g))
 
-        if not hasattr(self, 'E'):
-            self.build_total_electric_operator()
-
-        if not hasattr(self, 'B'):
-            self.build_total_magnetic_operator()
+        self.H_sparse = self.g**2*self.E-self.B/self.g**2
 
 
-        partial_diagonalisation = self.phys_dim > k and k > 0
-        print(f'>>>diagonalizing Hamiltonian {f"to k=%d" % (k) if partial_diagonalisation else "entirely"} with g=%.4f..'%(g))
-        
-        self.H_sparse = g**2*self.E-self.B/g**2
-    
-        ncv = min(max(2*k+1, 20), self.phys_dim)
         if partial_diagonalisation:
-            #eigval, eigvec  = scipy.sparse.linalg.eigsh(self.H_sparse, k=k, sigma=0.0, which='LM', ncv=ncv)
-            eigval, eigvec  = scipy.sparse.linalg.eigsh(self.H_sparse, k=k, which='SA', ncv=ncv)
-            #eigval, eigvec  = primme.eigsh(self.H_sparse, k=k, which='SA', ncv=ncv)
+
+            #X = np.random.default_rng(42).normal(size=(self.phys_dim, self.k)) 
+            #EW, EB = scipy.sparse.linalg.lobpcg(self.H_sparse, X, largest=False, maxiter=500)
+            EW, EB = scipy.sparse.linalg.eigsh(self.H_sparse, k=self.k, which='SA')
         else:
-            eigval, eigvec = scipy.linalg.eigh(self.H_sparse.toarray())
-            idx = eigval.argsort()
-            eigval = eigval[idx]
-            eigvec = eigvec[:, idx]
 
-        self.eigenvalues[g] = eigval
-        self.eigenvectors[g] = eigvec
+            EW, EB = scipy.linalg.eigh(self.H_sparse.toarray())
+            idx = EW.argsort()
+            EW = EW[idx]
+            EB = EB[:, idx]
 
+        self.EW = EW
+        self.EB = EB
 
-    def printEV(self):
-        for g in self.eigenvalues:
-            print(f'\nEW for g=%.2f: ' % (g))
-            for i in range(3):
-                print(f'%.4f'%(self.eigenvalues[g][i]))
+    def printEW(self):
+        idx = self.EW.argsort()
+        EW = self.EW[idx]
+        
+        print('\nEW: ')
+        for i in range(3):
+            print(f'%.4f'%(EW[i]))
+
+    def printE(self):
+        print(f'\nTrace {np.diag(self.E.toarray()).sum()} with Diag of E: {np.diag(self.E.toarray())}')
+        #print(f'{self.E.toarray()}')
+
+    def printB(self):
+        print(f'\nDiag of B: {np.diag(self.B.toarray())}')
+        print(f'{self.B.toarray()}')
+        print(f'{self.B.sum()}')
 
     def get_plaquette_expectation_values(self, beta_list):
-        print('>>calculating plqauette expection values..')
-        g_list = 1/beta_list**(1/2)
-        expectation_values = np.zeros(len(beta_list))
+        B_expectation_values = np.zeros(len(beta_list))
 
         num_plaquettes = (self.dims).prod() if self.pbc else (self.dims-1).prod()
-        for i, g in enumerate(g_list):
-            if g not in self.eigenvectors:
-                self.diagonalize_hamiltonian(g, k=1)
 
-            ground_state = self.eigenvectors[g][:, 0]
+        for i, beta in enumerate(beta_list):
+            self.set_param('g', 1/beta**(1/2))
+            self.diagonalize_hamiltonian()
+            ground_state = self.EB[:, 0]
 
-            expectation_values[i] = ground_state.T @ self.B @ ground_state / num_plaquettes
-        return expectation_values
+
+            B_expectation_values[i] = ground_state.T @ self.B @ ground_state / num_plaquettes
+        return B_expectation_values
 
 def save(lattices):
     with open('../data/lattices.pickle', 'wb') as handle:
@@ -472,7 +433,6 @@ def load(path=None):
 
         return lattices
     else:
-        print(f'WARNING: Path {path} not existant. Returning empty dict!')
         return dict()
 
 def dprint(*args):
