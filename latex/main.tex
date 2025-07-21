@@ -8,9 +8,7 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
-\usepackage{graphicx}%
-\usepackage{multirow}%
-\usepackage{cuted}
+\usepackage{graphicx}% \usepackage{multirow}% \usepackage{cuted}
 \usepackage{amsmath,amssymb,amsfonts}%
 \usepackage{amsthm}%
 \usepackage{physics}
@@ -59,8 +57,8 @@
 \begin{document}
 
 \title[]{Determination of the quark-antiquark potential in the Hamiltonian formulation of the compact U(1) gauge theory.}
-\author*[1]{\fnm{Angelo} \sur{Brade}}\email{s72abrad@uni-bonn.de}
-\affil*[1]{Rheinische Friedrich--Wilhelms--Universität, Bonn}
+\author{\fnm{Angelo} \sur{Brade}}\email{s72abrad@uni-bonn.de}
+\affil{Rheinische Friedrich--Wilhelms--Universität, Bonn}
 
 \maketitle
 \begingroup
@@ -92,14 +90,17 @@
 \end{tikzpicture}
 
 \clearpage
+\input{sections/abstract.tex}
 \input{sections/introduction.tex}
 \input{sections/theory.tex}
 \input{sections/implementation.tex}
 \input{sections/results.tex}
+\input{sections/outlook.tex}
 \input{sections/conclusion.tex}
 \input{sections/acknowledgements.tex}
 
-\clearpage
+
+\,\clearpage
 \bibliography{refs}
 
 \clearpage

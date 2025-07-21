@@ -1,41 +1,43 @@
 %\,\\[160pt]
 \section{Theory}
-\subsection{Discretisation}
+\subsection{Discretization}
 
-We start by discretising the positional space into sites and links. The sites are spaced by the lattice spacing $a$. To optain the continuum theory in the limit of $a\rightarrow 0$ we need to introduce the coupling constant $g$\cite{RevModPhys.51.659}.
+The positional space is discretized into a lattice with sites that are connected by links. Sites are spaced by the lattice spacing $a$. To obtain the continuum theory in the limit of $a\rightarrow 0$, the coupling constant $g$ is introduced.\cite{RevModPhys.51.659}
 
-We associate each site with a corresponding positional vector $\vec{r}=(r_x, r_y)$. On the sites are the static charges $Q_{\vec{r}}$ positioned. We associate each link with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example with $\vec{r}=(1, 2)$ and $\mu=x$ we would denote the link that points from the site $(1, 2)$ to the $x$ direction. We could denote the same link with $\vec{r}=(2, 2)$ and $\mu=-x$.
+Each site is associated with a corresponding positional vector $\vec{r}=(r_x, r_y)\in \mathbb{Z}^{n_{x} \cross n_{y}}$ for a $n_{x} \cross n_{y}$ lattice. On the sites are the static charges $Q_{\vec{r}}$ positioned. Each link is associated with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example, the link that points from the site $(1, 2)$ to the $x$ direction is denote with $\vec{r}=(1, 2)$ and $\mu=x$. The same link is denoted with $\vec{r}=(2, 2)$ and $\mu=-x$.
 
-On the links are the electric field operators $\hat{E}_{\vec{r},\mu}$ positioned. Each electric field $\hat{E}_{\vec{r}, \mu}$ has the vector potential $\hat{A}_{\vec{r}, \mu}$ as its canonical conjugate variable. Thus
+On the links are the electric field operators $\hat{E}_{\vec{r},\mu}$ positioned. Each electric field $\hat{E}_{\vec{r}, \mu}$ has the vector potential $\hat{A}_{\vec{r}, \mu}$ as its canonical conjugate variable. Thus,
 \begin{align}
   [\hat{E}_{\vec{r}_{i}, \mu}, \hat{A}_{\vec{r}_{j}, \nu}]=i\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}.\label{eq:com}
 \end{align}
-We construct a unitary operator $\hat{U}_{\vec{r}_{j}, \nu}$ (also called link operator) by using the vector potential as the generator in the Lie algebra $\mathfrak{g}$. Thus through the exponential mapping we get the elements of the Lie group G:
+A unitary operator $\hat{U}_{\vec{r}_{j}, \nu}$, also referred to as the link operator, is constructed using the vector potential as the generator in the Lie algebra $\mathfrak{g}$. Through the exponential map, this yields elements of the associated Lie group G:
 \begin{align}
 	\hat{U}_{\vec{r}, \mu} = e^{iag\hat{A}_{\vec{r}, \mu}}.\label{eq:exp}
 \end{align}
-%\\\\
-%\\[180pt]
-The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}_{\vec{r}, \nu}$ of dimension $n\cross n$. By taking $n=1$ we choose the U(1) theory. With restricting $\hat{A}_{\vec{r}, \mu}$ to $ag\hat{A}_{\vec{r}, \mu}\in[0, 2\pi)$ we arrive at the compact U(1) theory. Through \crefrange{eq:com}{eq:exp} we get
+The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}_{\vec{r}, \nu}$ of dimension $n\cross n$. The U(1) theory is chosen by taking $n=1$. Restricting $\hat{A}_{\vec{r}, \mu}$ to $ag\hat{A}_{\vec{r}, \mu}\in[0, 2\pi)$, provides the compact U(1) theory. Through \Crefrange{eq:com}{eq:exp} the following relation is obtained: 
 \begin{align}
   [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}]      & =\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu},\label{eq:comu1}       \\
-  [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}\dag. \label{eq:comu2}
+  [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}^{\dag}. \label{eq:comu2}
 \end{align}
 
-To explore the effect of the operators on the states, we choose to be in the electric basis with the basis states $\ket{e_{\vec{r_i}, \mu}}$. The basis is made up of all possible states at the links. We optain
+To explore the effect of the operators on the states, the electric basis with the basis states $\ket{e_{\vec{r_i}, \mu}}$ is chosen. The basis is made up of all possible states at the links. Thus,
 \begin{align}
   \hat{E}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}=e_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}.\label{eq:eig}
 \end{align}
-Furthermore with \crefrange{eq:comu1}{eq:eig} we get
+Furthermore \Crefrange{eq:comu1}{eq:eig} give rise to 
 \begin{align}
   \hat{U}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}      & =\ket{e_{\vec{r}_{i}, \mu}+1}\text{ and}\label{eq:eigu1} \\
   \hat{U}_{\vec{r}_{i}, \mu}^\dag\ket{e_{\vec{r}_{i}, \mu}} & =\ket{e_{\vec{r}_{i}, \mu}-1}.\label{eq:eigu2}
 \end{align}
-We see the unitary operators, also called link operators, act as ladder operators.
+This means, the link operators act as ladder operators.
 \subsection{Truncation}
-Since each field can be any real value, there are infinitly many possible fields for each link, thus constructing an infinitly dimensional basis. To be computable we truncate the possbile values, such that the basis is finite.
+Since each field can take any real value, there are infinite many possible values for each link, thus constructing an infinite dimensional basis. To be computable, possible values are truncated, such that the basis is finite. Truncating means, doing calculations only to an finite order.
 
-Revisiting the elements of U(1) we see, that they live on the unit circle in the complex plane. By limiting the phase of our exponential mapping in equation \cref{eq:exp} to $[-l, l]$, the phase is now an element of $\mathbb{Z}_{2l+1}$. This also truncates the electric field, such that $e_{\vec{r_i}, \mu}\in[-l, l]$. The unitary operators, which as we saw act as ladder operators to the eigenstates, can now also be expressed as
+Revisiting U(1), shows that is homeomorphic to $S^1$, i.e. the unit circle on the complex plane. By limiting the phase of the exponential mapping in equation \Cref{eq:exp} to $[-l, l]$, the phase is now an element of $\mathbb{Z}_{2l+1}$. This also truncates the electric field, such that
+\begin{align}
+e_{\vec{r_i}, \mu}\in[-l, l].
+\end{align}
+The link operators, which act as ladder operators on the eigenstates, can now also be expressed as
 \begin{align*}
 	\hat{U}_{\vec{r}, \mu} \mapsto \begin{bmatrix}
 		                               0 & \,\dots\, & \,\dots \, & 0 \\
@@ -49,9 +51,9 @@ Revisiting the elements of U(1) we see, that they live on the unit circle in the
 		                                                                                    0 & \,\dots \, & \dots \, & 0 \\
 	                                                                                    \end{bmatrix}.
 \end{align*}
-The unitarity $\hat{U}_{\vec{r}, \mu}\hat{U}_{\vec{r}, \mu}^\dag\neq\mathds{1}$ for this is lost, but can be recovered in the continuum limit of $l\rightarrow\infty$. It is importend to point out, that we annihilate the first (last) state when using $\hat{U}_{\vec{r}}^{\dag}$ ($\hat{U}_{\vec{r}}$).
+The unitarity $\hat{U}_{\vec{r}, \mu}\hat{U}_{\vec{r}, \mu}^\dag\neq\mathds{1}$ for this is lost, but can be recovered in the continuum limit of $l\rightarrow\infty$. It is important to point out, that the first (last) state is annihilated when using $\hat{U}_{\vec{r}}^{\dag}$ ($\hat{U}_{\vec{r}}$).
 \subsection{Hamiltonian}
-The Hamiltonian for the system was orgininally formulated by Kogut and Susskind \cite{PhysRevD.11.395} and thus since known as the so called Kogut Susskind Hamiltonian. It reads
+The Hamiltonian for lattice gauge theory was originally formulated by Kogut and Susskind \cite{PhysRevD.11.395} and therefore since known as the so called Kogut Susskind Hamiltonian. It reads
 \begin{align*}
 	\hat{H}            = & \hat{H}_E+\hat{H}_B+\hat{H}_m+\hat{H}_{\text{kin}}\text{ with}                                                              \\
 	\hat{H}_E          = & \frac{g^2}{2}\sum_{\vec{r}} \left(\hat{E}^2_{\vec{r},x}+\hat{E}^2_{\vec{r},y}\right),                                       \\
@@ -61,43 +63,43 @@ The Hamiltonian for the system was orgininally formulated by Kogut and Susskind 
 	                     & -\frac{(-1)^{r_x+r_y}}{2a}\sum_{\vec{r}}\left(\phi^{\dag}_{\vec{r}}\hat{U}_{\vec{r}, y}\phi_{\vec{r}+y}+\text{h.c.}\right).
 \end{align*}
 
-Firstly, lets get rid of the part we do not need. At the beginnen we introduced the static charges $Q_{\vec{r}}$. They are called static, since they can not move. We say that they have infinit mass, which implies they will not introduce any field and can not be moved. Thus the fermionic fields $\hat{\phi}_{\vec{r}}$ vanish at all $\vec{r}$. This premiss yields
+At the beginning the static charges $Q_{\vec{r}}$ were introduced. They are called static, since they can not move and thus have no field. In the physical context they have infinite mass. Therefore the fermionic fields $\hat{\phi}_{\vec{r}}$ vanish at all $\vec{r}$. This premiss yields
 \begin{align*}
 	\hat{H}_{m}=\hat{H}_{\text{kin}}=0.
 \end{align*}
-The computation can also be done with dynamic charges $\hat{q}_{\vec{r}}$ where the mass and kinetik Hamiltonian will make contributions. In this case a phenomena called doubling problem will rise. A common approach for this problem are staggered fermions. We will not take a look at this and stay in the pure gauge case, where only gauge fields exist.
+The computation can also be done with dynamic charges $\hat{q}_{\vec{r}}$ where the mass and kinetic Hamiltonian will contribute. In this case a phenomenon called the doubling problem will rise. A common approach for this problem is staggered fermions. This will not be looked into further. Instead the, pure gauge case is used, where only gauge fields exist.
 
-Now we take a look at the two remaining terms. The electric Hamiltonian $\hat{H}_E$ and the magnetic Hamiltonian $\hat{H}_B$. For the latter one, we will take a look at the plaquette operator $\hat{P}_{\vec{r}}$. It is the smallest Wilson loop (a closed loop through the lattice on the link operators) and the oriented product of the link operators, i.e.
+Only the electric Hamiltonian $\hat{H}_E$ and the magnetic Hamiltonian $\hat{H}_B$ contribute. For the latter one, the plaquette operator $\hat{P}_{\vec{r}}$ is introduced. A plaquette is the smallest Wilson loop (a closed loop through the lattice on the link operators) and the corresponding operator is formed by the oriented product of the link operators, i.e.
 \begin{align}
 	\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y},
 \end{align}
-where e.g. $\vec{r}+x=(r_x+1,r_y)$. We take the hermitian conjugate of the two latter link operators since all link operators only show in positiv $x$ or $y$ direction and when going through the plaquette we are going against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so we rewrite it as 
+where e.g. $\vec{r}+x=(r_x+1,r_y)$. The hermitian conjugates of the two latter link operators are used since all link operators are oriented towards the positive $x$ or $y$ direction and when looping around the plaquette, the direction is against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so it is rewritten with the definition of real part as 
 \begin{align}
   \text{Re}(\hat{P}_{\vec{r}})=\frac{\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}}{2}.
 \end{align}
-We see that by taking the hermitian conjugate of the plaquette operator, we just go through the plaquette the other way around.
+The hermitian conjugate of the plaquette operator is the same as reversing the direction of the loop.
 
-The heuristic explaination of the form of the magnetic Hamiltonian is the following: The plaquettes, as they are closed loops, are essentially conductor loops that introduce a magnetic moment by Farady's law, that is then measured by the magnetic hamiltonian. % TODO: is this correct?
+The heuristic explanation of the form of the magnetic Hamiltonian is the following: The plaquettes, as they are closed loops, are essentially conductor loops which introduce a magnetic moment by Farady's law, that is then measured by the magnetic Hamiltonian. This analogy is not rigorous argument, but rather shall help build a first intuition.
 
-Now we take a look at the electric Hamiltonian. It is essentially the sum over each lattice site over the square of the electric field. Here we use the electric field operators $\hat{E}^{2}_{\vec{r},\mu}$ and have to do no modifications, since we work in the electric basis.
+The electric Hamiltonian is essentially the sum over each lattice site over the square of the electric field. Here the electric field operators $\hat{E}_{\vec{r},\mu}$ are being used and no modifications have to be made, since the electric operator is diagonal in the electric basis.
 
-So at the end, the total hamiltonian reads
+Finally, the total Hamiltonian reads
 \begin{align*}
-  \hat{H} = & \frac{g^2}{2}\sum_{\vec{r}}\left(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2\right)-\frac{1}{2a^2g^2}\sum_{\vec{r}}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}\right).
+  \hat{H} = & \frac{g^2}{2}\sum_{\vec{r}}\left(\hat{E}_{\vec{r}, x}^2+\hat{E}_{\vec{r}, y}^2\right)-\frac{1}{2a^2g^2}\sum_{\vec{r}}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}\right).
 \end{align*}
   
-\subsection{Gauss's Law}
-A constraint, that limits our possible states is Gauss's Law. It constraints by the number of lattice sites, such that some links are dependent on other links. The links, that are dependent on other links, are called fixed links. The links that are independent, are called dynamic links. The formulation reads
+\subsection{Gauss's law}
+A constraint that limits the possible states is Gauss's law. It constraints by the number of lattice sites, such that some links are dependent on other links. Links that are dependent on other links are called fixed links. While links that are independent are called dynamic links. This can be formulated as 
 \begin{align}
-  \left[\sum_{\mu=x,y}\left(\hat{E}_{\vec{r},\mu}-\hat{E}_{\vec{r}-\mu,\mu}\right)-\hat{q}_{\vec{r}}-Q_{\vec{r}}\right]\ket{\Psi}=0.
+  \left[\sum_{\mu=x,y}\left(\hat{E}_{\vec{r},\mu}-\hat{E}_{\vec{r}-\mu,\mu}\right)-Q_{\vec{r}}\right]\ket{\Psi}=0.
 \end{align}
-Here we sum over all electric field operators that are linked to a site $\vec{r}$ and are expecting them to be the same as the charge deposited on the site. Only those lattice states $\ket{\Psi}$, which produce this relation, are thus physicaly possible. They live in the physical space $\cal{H}_{\text{ph}}$:
+The law promises, that the sum over all electric field operators that are linked to a site $\vec{r}$ is equal to the charge deposited on the site. Only those lattice states $\ket{\Psi}$, which produce this relation, are thus physically possible. They live in the physical space $\cal{H}_{\text{ph}}$:
 \begin{align}
 	\ket{\Psi}\in\cal{H}_{\text{ph}},
 \end{align}
-where we denote by $\cal{H}$ the space in which a lattice configuration lives. Here the physical configuratino Hamiltonian $\cal{H}_{\text{ph}}$ is a subspace of the the complete configuration Hamiltonian $\cal{H}$.
+where $\cal{H}$ denotes the space in which a lattice configuration lives. Here the physical configuration Hamiltonian $\cal{H}_{\text{ph}}$ is a subspace of the complete configuration Hamiltonian $\cal{H}$.
 
-We will use this dependence of the fixed links, to represent them in terms of the dynamic links. This can by done analyticaly on paper or with the library \texttt{sympy}\cite{10.7717/peerj-cs.103} in python. For convenience, we will use the latter. It will be used to solve the generated linear system of eqations.
+The dependence on the fixed links is used to represent them in terms of the dynamic links. This can by done analytically on paper or with the library \texttt{sympy}\cite{10.7717/peerj-cs.103} in python. For convenience, the latter is used. This way the generated linear system of equations is solved.
 
 % TODO: concrete implementation
 

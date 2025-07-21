@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{5}
+\begin{thebibliography}{9}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -44,6 +44,51 @@
 \csname PreBibitemsHook\endcsname
 
 %%% 1
+\bibitem[\protect\citeauthoryear{Feynman}{1982}]{Feynman1982}
+\begin{barticle}
+\bauthor{\bsnm{Feynman}, \binits{R.P.}}:
+\batitle{Simulating physics with computers}.
+\bjtitle{International Journal of Theoretical Physics}
+\bvolume{21}(\bissue{6}),
+\bfpage{467}--\blpage{488}
+(\byear{1982})
+\doiurl{10.1007/BF02650179}
+\end{barticle}
+\endbibitem
+
+%%% 2
+\bibitem[\protect\citeauthoryear{Ba{\~{n}}uls et~al.}{2020}]{Bañuls2020}
+\begin{barticle}
+\bauthor{\bsnm{Ba{\~{n}}uls}, \binits{M.C.}},
+\bauthor{\bsnm{Blatt}, \binits{R.}},
+\bauthor{\bsnm{Catani}, \binits{J.}},
+\bauthor{\bsnm{Celi}, \binits{A.}},
+\bauthor{\bsnm{Cirac}, \binits{J.I.}},
+\bauthor{\bsnm{Dalmonte}, \binits{M.}},
+\bauthor{\bsnm{Fallani}, \binits{L.}},
+\bauthor{\bsnm{Jansen}, \binits{K.}},
+\bauthor{\bsnm{Lewenstein}, \binits{M.}},
+\bauthor{\bsnm{Montangero}, \binits{S.}},
+\bauthor{\bsnm{Muschik}, \binits{C.A.}},
+\bauthor{\bsnm{Reznik}, \binits{B.}},
+\bauthor{\bsnm{Rico}, \binits{E.}},
+\bauthor{\bsnm{Tagliacozzo}, \binits{L.}},
+\bauthor{\bsnm{Van~Acoleyen}, \binits{K.}},
+\bauthor{\bsnm{Verstraete}, \binits{F.}},
+\bauthor{\bsnm{Wiese}, \binits{U.-J.}},
+\bauthor{\bsnm{Wingate}, \binits{M.}},
+\bauthor{\bsnm{Zakrzewski}, \binits{J.}},
+\bauthor{\bsnm{Zoller}, \binits{P.}}:
+\batitle{Simulating lattice gauge theories within quantum technologies}.
+\bjtitle{The European Physical Journal D}
+\bvolume{74}(\bissue{8}),
+\bfpage{165}
+(\byear{2020})
+\doiurl{10.1140/epjd/e2020-100571-8}
+\end{barticle}
+\endbibitem
+
+%%% 3
 \bibitem[\protect\citeauthoryear{Kogut}{1979}]{RevModPhys.51.659}
 \begin{barticle}
 \bauthor{\bsnm{Kogut}, \binits{J.B.}}:
@@ -56,7 +101,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 2
+%%% 4
 \bibitem[\protect\citeauthoryear{Kogut and Susskind}{1975}]{PhysRevD.11.395}
 \begin{barticle}
 \bauthor{\bsnm{Kogut}, \binits{J.}},
@@ -70,7 +115,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 3
+%%% 5
 \bibitem[\protect\citeauthoryear{Meurer et~al.}{2017}]{10.7717/peerj-cs.103}
 \begin{barticle}
 \bauthor{\bsnm{Meurer}, \binits{A.}},
@@ -109,7 +154,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 4
+%%% 6
 \bibitem[\protect\citeauthoryear{Virtanen et~al.}{2020}]{2020SciPy-NMeth}
 \begin{barticle}
 \bauthor{\bsnm{Virtanen}, \binits{P.}},
@@ -156,7 +201,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 5
+%%% 7
 \bibitem[\protect\citeauthoryear{Crippa et~al.}{2024}]{crippa2024}
 \begin{botherref}
 \oauthor{\bsnm{Crippa}, \binits{A.}},
@@ -169,6 +214,31 @@
 Towards determining the (2+1)-dimensional Quantum Electrodynamics running coupling with Monte Carlo and quantum computing methods
 (2024).
 \url{https://arxiv.org/abs/2404.17545}
+\end{botherref}
+\endbibitem
+
+%%% 8
+\bibitem[\protect\citeauthoryear{Wu and Liu}{2025}]{wu2025accurategaugeinvarianttensornetwork}
+\begin{botherref}
+\oauthor{\bsnm{Wu}, \binits{Y.}},
+\oauthor{\bsnm{Liu}, \binits{W.-Y.}}:
+Accurate Gauge-Invariant Tensor Network Simulations for Abelian Lattice Gauge Theory in (2+1)D
+(2025).
+\url{https://arxiv.org/abs/2503.20566}
+\end{botherref}
+\endbibitem
+
+%%% 9
+\bibitem[\protect\citeauthoryear{Singh et~al.}{2011}]{Singh_2011}
+\begin{botherref}
+\oauthor{\bsnm{Singh}, \binits{S.}},
+\oauthor{\bsnm{Pfeifer}, \binits{R.N.C.}},
+\oauthor{\bsnm{Vidal}, \binits{G.}}:
+Tensor network states and algorithms in the presence of a global u(1) symmetry.
+Physical Review B
+\textbf{83}(11)
+(2011)
+\doiurl{10.1103/physrevb.83.115125}
 \end{botherref}
 \endbibitem
 

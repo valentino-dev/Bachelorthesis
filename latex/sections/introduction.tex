@@ -1,25 +1,8 @@
-\iffalse
-	\abstract{
-		\section{Introduction}
-		The hamiltonian formulation of lattice gauge theory was first regarded as to costly for reasonable calculations. With the upcomming of quantum computers, we now expect a significant speedup of calculations that can be representet with states. The use of entanglement of these states promisses an exponential improvement. This fact moves the hamiltonian formulation in a point of interest again. For that reason we will revisit this formulation and implement the theory on a classical computer.
-		I aim to give a good introduction such that other new students of the field will have a condensed understanding and intuition. The setup will be in the compact U(1) theory, pure gauge, truncated appropiately and reduced from the complete configuration space to a physical configuration subspace through Gauss's Law.
-		For the numerical results we will take a look at the expectation value for the plaquette operator and finaly calculate the $q\bar{q}$ potential.
-	}
-\fi
+\section{Introduction}
+The Hamiltonian formulation of lattice gauge theory was first regarded as too costly for reasonable calculations. With the advent of quantum computers a significant speedup of calculations, that can be represented with states, is expected. The use of entanglement of these states promises an exponential improvement. This fact moves the Hamiltonian formulation in a point of interest again.\cite{Feynman1982, Bañuls2020}\ For that reason this work will revisit this formulation and implement the theory on a classical computer.
 
-\iffalse
-	\begin{textblock*}{140mm}(32.5mm, 25mm)
-		\section{Introduction}
-		The hamiltonian formulation of lattice gauge theory was first regarded as to costly for reasonable calculations. With the upcomming of quantum computers, we now expect a significant speedup of calculations that can be representet with states. The use of entanglement of these states promisses an exponential improvement. This fact moves the hamiltonian formulation in a point of interest again. For that reason we will revisit this formulation and implement the theory on a classical computer.
-		I aim to give a good introduction such that other new students of the field will have a condensed understanding and intuition. The setup will be in the compact U(1) theory, truncated appropiately and reduced from the complete configuration space to a physical configuration space through Gauss's Law.
-		For the numerical results we will take a look at the expectation value for the plaquette operator and finaly calculate the $q\bar{q}$ potential.
-	\end{textblock*}
-\fi
+In the U(1) theory, the only properties of particles are their masses and their charges. Since this work will only focus on pure gauge, there are no fermionic fields, i.e no kinetic properties. This renders the mass obsolete and the only defining property left is the charge. For this reason quarks and antiquarks can be represented solely by a point-like charge.
 
-\begin{strip}
-	\section{Introduction}
-	The hamiltonian formulation of lattice gauge theory was first regarded as to costly for reasonable calculations. With the upcomming of quantum computers, we now expect a significant speedup of calculations that can be representet with states. The use of entanglement of these states promisses an exponential improvement. This fact moves the hamiltonian formulation in a point of interest again. For that reason we will revisit this formulation and implement the theory on a classical computer.
-	I aim to give a good introduction such that other new students of the field will have a condensed understanding and intuition. The setup will be in the compact U(1) theory, truncated appropiately and reduced from the complete configuration space to a physical configuration space through Gauss's Law.
-	For the numerical results we will take a look at the expectation value for the plaquette operator and finaly calculate the $q\bar{q}$ potential.
+When working on a pure gauge lattice the physical scale and thus the units are lost. Since this is a $(2+1)$ dimensional theory, i.e. two space and one time dimension, the unit scale can not be recovered. For this one would need a $(3+1)$ dimensional theory, such that experimental results can be matched with theoretical results from the lattice. This way the lattice spacing $a$, and thus the unit scale, can be determined.
 
-\end{strip}
+

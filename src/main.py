@@ -26,7 +26,7 @@ mpl.rcParams.update({
 })
 
 def potential():
-    g=0.8
+    g=1
     lattices = load()
     static_charges = [
                       {(0, 0): 1, (0, 1): -1},
@@ -70,6 +70,7 @@ def potential():
             check_lat(config, g)
 
     config['l'] = 1
+    check_lat(config, g)
 
     for charge in offset_static_charges:
         config['static_charges'] = charge
@@ -81,6 +82,7 @@ def potential():
         {(1, 1): 1, (2, 2): -1},
     ]
     config['pbc'] = True
+    check_lat(config, g)
 
     for charge in pbc_static_charges:
         config['static_charges'] = charge
@@ -92,6 +94,7 @@ def potential():
         {(1, 1): 1, (2, 2): -1},
     ]
     config = {'dims': (4, 4),'pbc':False, 'l':1}
+    check_lat(config, g)
 
     for charge in x4_static_charges:
         config['static_charges'] = charge
@@ -138,6 +141,9 @@ def potential():
     plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=1$, offset', marker='x', linestyle='', c='C0')
     
     config['pbc'] = True
+    lattice0 = Lattice(config=config)
+    e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
+
     e0_wcharge = np.zeros(len(pbc_static_charges))
     distance = np.zeros(len(pbc_static_charges))
     for i, charge in enumerate(pbc_static_charges):
@@ -155,6 +161,8 @@ def potential():
         {(1, 1): 1, (2, 2): -1},
     ]
     config = {'dims': (4, 4),'pbc':False, 'l':1}
+    lattice0 = Lattice(config=config)
+    e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
 
     e0_wcharge = np.zeros(len(x4_static_charges))
     distance = np.zeros(len(x4_static_charges))
@@ -172,8 +180,8 @@ def potential():
 
 
 
-    plt.xlabel('r')
-    plt.ylabel('V')
+    plt.xlabel('$r$')
+    plt.ylabel('$aV(r)$')
     plt.grid()
     plt.legend(ncol=2)
     gsize = ''
@@ -182,14 +190,14 @@ def potential():
 
     if g == 1.:
         gsize = 'normal'
-        #plt.ylim((-2.5, 1.5))
+        plt.ylim((-1, 2))
     elif g > 1.:
         gsize = 'large'
         plt.ylim((-2.5, 2.5))
     elif g < 1:
         gsize = 'small'
     print(gsize)
-    plt.savefig(f'../latex/images/quark_antiquark_potential_{gsize}_g.pdf')
+    plt.savefig(f'../latex/images/quark_antiquark_potential_{gsize}_g_corr.pdf')
 
 
 
@@ -251,6 +259,6 @@ def plaquette_exp():
 
 
 if __name__ == '__main__':
-    plaquette_exp()
+    #plaquette_exp()
     #one_lattice()
-    #potential()
+    potential()
