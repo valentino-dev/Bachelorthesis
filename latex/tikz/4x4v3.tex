@@ -1,0 +1,72 @@
+
+\begin{tikzpicture}[thick,decoration={
+				markings,
+				mark=at position 0.5 with {\arrow{>}}}
+	]
+
+	\tikzset{
+		site/.style={
+				circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		pcharge/.style={
+				circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+		ncharge/.style={
+				circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+			},
+	}
+	\node[pcharge, site](s1){\textbf{$+$}};
+	\node[site, right=0.8cm of s1](s2){};
+	\node[site, right=0.8cm of s2](s3){};
+	\node[ncharge, above=0.8cm of s1](s4){$1$};
+  \node[ncharge, above=0.8cm of s2](s5){$\sqrt{2}$};
+	\node[site, above=0.8cm of s3](s6){};
+	\node[ncharge, above=0.8cm of s4](s7){$3$};
+  \node[ncharge, above=0.8cm of s5](s8){$\sqrt{5}$};
+  \node[ncharge, above=0.8cm of s6](s9){$\sqrt{8}$};
+
+	\node[ncharge, above=0.8cm of s7](c1){};
+	\node[ncharge, above=0.8cm of s8](c2){};
+	\node[ncharge, above=0.8cm of s9](c3){};
+
+	\node[site, right=0.8cm of s3](c4){};
+	\node[site, right=0.8cm of s6](c5){};
+	\node[site, right=0.8cm of s9](c6){};
+	\node[ncharge, right=0.8cm of c3](c7){};
+
+
+	\draw[postaction={decorate}] (s1)--(s2);
+	\draw[postaction={decorate}] (s2)--(s3);
+
+	\draw[postaction={decorate}] (s1)--(s4);
+	\draw[postaction={decorate}] (s2)--(s5);
+	\draw[postaction={decorate}] (s3)--(s6);
+
+	\draw[postaction={decorate}] (s4)--(s5);
+	\draw[postaction={decorate}] (s5)--(s6);
+
+	\draw[postaction={decorate}] (s4)--(s7);
+	\draw[postaction={decorate}] (s5)--(s8);
+	\draw[postaction={decorate}] (s6)--(s9);
+
+	\draw[postaction={decorate}] (s7)--(s8);
+	\draw[postaction={decorate}] (s8)--(s9);
+
+	\draw[postaction={decorate}] (s7)--(c1);
+	\draw[postaction={decorate}] (s8)--(c2);
+	\draw[postaction={decorate}] (s9)--(c3);
+
+	\draw[postaction={decorate}] (s3)--(c4);
+	\draw[postaction={decorate}] (s6)--(c5);
+	\draw[postaction={decorate}] (s9)--(c6);
+
+	\draw[postaction={decorate}] (c3)--(c7);
+	\draw[postaction={decorate}] (c6)--(c7);
+
+	\draw[postaction={decorate}] (c1)--(c2);
+	\draw[postaction={decorate}] (c2)--(c3);
+
+	\draw[postaction={decorate}] (c4)--(c5);
+	\draw[postaction={decorate}] (c5)--(c6);
+
+\end{tikzpicture}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  21 JUL 2025 13:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.10.14)  30 JUL 2025 10:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1247,9 +1247,15 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 
 
 
-] (./main.toc)
-\tf@toc=\write5
-\openout5 = `main.toc'.
+]
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
+
+ []
+
+
+Overfull \hbox (3.65982pt too wide) in paragraph at lines 89--93
+ [] 
+ []
 
 
 
@@ -1266,6 +1272,25 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 [2
 
 
+] (./main.toc)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[3
+
+
 ] (./sections/abstract.tex
 CUTED [- LAST -]
 Extra skip:0.0pt
@@ -1279,8 +1304,9 @@ Pagestretch: 0.0pt
 CUTED [output]: 0.0pt
 CUTED [leftcolumn badness]: 0
 CUTED [rightcolumn badness]: 0
-) (./sections/introduction.tex) (./sections/theory.tex
+) (./sections/introduction.tex
 
+) (./sections/theory.tex
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <5.52065> not available
 (Font)              size <6> substituted on input line 7.
@@ -1337,7 +1363,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[3
+[1
 
 ]
 LaTeX Font Info:    Trying to load font information for U+dsrom on input line 54.
@@ -1355,7 +1381,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[4]
+[2]
 
 ) (./sections/implementation.tex
 Underfull \hbox (badness 5802) in paragraph at lines 2--3
@@ -1367,7 +1393,19 @@ Underfull \hbox (badness 1436) in paragraph at lines 2--3
 \OT1/cmr/m/n/10 via GitHub: [][]$https : / / github . com / valentino-[]dev /
  []
 
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[3]
 LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 25.
+
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.41652> not available
 (Font)              size <5> substituted on input line 25.
@@ -1419,16 +1457,6 @@ LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
 (Font)              scaled to size 4.41652pt on input line 25.
 
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[5]
 Underfull \hbox (badness 1014) in paragraph at lines 40--41
 []\OT1/cmr/m/n/10 With this pro-ce-dure ev-ery com-bi-na-tion of
  []
@@ -1445,7 +1473,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[6]
+[4]
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <4.41652> not available
 (Font)              size <5> substituted on input line 79.
@@ -1494,82 +1522,80 @@ LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
 (Font)              scaled to size 4.41652pt on input line 79.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 89.
+(Font)              size <5> substituted on input line 90.
 
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 89.
+(Font)              size <5> substituted on input line 90.
 
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 
 LaTeX Font Warning: Font shape `OT1/cmr/b/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 89.
+(Font)              size <5> substituted on input line 90.
 
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `OML/ntxmi/b/it' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `LMS/ntxsy/b/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `LMX/ntxexx/b/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxmia/b/it' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsym/b/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxsyc/b/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 7.3pt on input line 89.
+(Font)              scaled to size 7.3pt on input line 90.
 LaTeX Font Info:    Font shape `U/ntxexa/b/n' will be
-(Font)              scaled to size 5.5pt on input line 89.
+(Font)              scaled to size 5.5pt on input line 90.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 ) (./sections/results.tex
-
-<images/PlaquetteExp2x2PBC.pdf, id=182, 462.52798pt x 346.89601pt>
+<images/PlaquetteExp2x2PBC.pdf, id=188, 517.35373pt x 398.45058pt>
 File: images/PlaquetteExp2x2PBC.pdf Graphic file (type pdf)
 <use images/PlaquetteExp2x2PBC.pdf>
 Package pdftex.def Info: images/PlaquetteExp2x2PBC.pdf  used on input line 14.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+(pdftex.def)             Requested size: 204.85844pt x 157.7784pt.
 
 Underfull \hbox (badness 1014) in paragraph at lines 11--19
 \OT1/cmr/m/n/10 firm-ing the ex-pected. An in-ter-est-ing but not
@@ -1578,38 +1604,36 @@ Underfull \hbox (badness 1014) in paragraph at lines 11--19
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/PlaquetteExp3x3PBC.pdf, id=185, 462.52798pt x 346.89601pt>
+
+Overfull \vbox (1.30582pt too high) has occurred while \output is active []
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[5]
+<images/PlaquetteExp3x3PBC.pdf, id=206, 517.35373pt x 398.44173pt>
 File: images/PlaquetteExp3x3PBC.pdf Graphic file (type pdf)
 <use images/PlaquetteExp3x3PBC.pdf>
 Package pdftex.def Info: images/PlaquetteExp3x3PBC.pdf  used on input line 23.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+(pdftex.def)             Requested size: 204.85844pt x 157.77489pt.
+
+
+<images/quark_antiquark_potential_g_1.pdf, id=208, 517.31898pt x 635.30434pt>
+File: images/quark_antiquark_potential_g_1.pdf Graphic file (type pdf)
+<use images/quark_antiquark_potential_g_1.pdf>
+Package pdftex.def Info: images/quark_antiquark_potential_g_1.pdf  used on input line 41.
+(pdftex.def)             Requested size: 204.85844pt x 251.57741pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[7]
-<images/quark_antiquark_potential_normal_g.pdf, id=204, 462.52798pt x 346.89601pt>
-File: images/quark_antiquark_potential_normal_g.pdf Graphic file (type pdf)
-<use images/quark_antiquark_potential_normal_g.pdf>
-Package pdftex.def Info: images/quark_antiquark_potential_normal_g.pdf  used on input line 40.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
-
-
-<images/quark_antiquark_potential_normal_g_corr.pdf, id=205, 462.52798pt x 346.89601pt>
-File: images/quark_antiquark_potential_normal_g_corr.pdf Graphic file (type pdf)
-<use images/quark_antiquark_potential_normal_g_corr.pdf>
-Package pdftex.def Info: images/quark_antiquark_potential_normal_g_corr.pdf  used on input line 48.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
-
+(./tikz/3x3no.tex)
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1619,10 +1643,10 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[8 <./images/PlaquetteExp2x2PBC.pdf> <./images/PlaquetteExp3x3PBC.pdf> <./images/quark_antiquark_potential_normal_g.pdf> <./images/quark_antiquark_potential_normal_g_corr.pdf>] (./tikz/3x3no.tex) (./tikz/3x3pbcv1.tex) (./tikz/3x3pbcv2.tex)
+[6 <./images/PlaquetteExp2x2PBC.pdf> <./images/PlaquetteExp3x3PBC.pdf>] (./tikz/3x3pbcv1.tex) (./tikz/3x3pbcv2.tex)
 
 (./tikz/4x4v1.tex) (./tikz/4x4v2.tex)
-Overfull \hbox (6.12614pt too wide) in paragraph at lines 98--104
+Overfull \hbox (6.12614pt too wide) in paragraph at lines 92--98
  [][][] 
  []
 
@@ -1639,20 +1663,35 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[9]
-<images/quark_antiquark_potential_large_g.pdf, id=301, 462.52798pt x 346.89601pt>
-File: images/quark_antiquark_potential_large_g.pdf Graphic file (type pdf)
-<use images/quark_antiquark_potential_large_g.pdf>
-Package pdftex.def Info: images/quark_antiquark_potential_large_g.pdf  used on input line 115.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
+[7 <./images/quark_antiquark_potential_g_1.pdf>]
+<images/quark_antiquark_potential_g_5.pdf, id=292, 511.87923pt x 635.30434pt>
+File: images/quark_antiquark_potential_g_5.pdf Graphic file (type pdf)
+<use images/quark_antiquark_potential_g_5.pdf>
+Package pdftex.def Info: images/quark_antiquark_potential_g_5.pdf  used on input line 109.
+(pdftex.def)             Requested size: 204.85844pt x 254.25294pt.
+<images/quark_antiquark_potential_g_0.5.pdf, id=294, 526.49138pt x 635.30434pt>
+File: images/quark_antiquark_potential_g_0.5.pdf Graphic file (type pdf)
+<use images/quark_antiquark_potential_g_0.5.pdf>
+Package pdftex.def Info: images/quark_antiquark_potential_g_0.5.pdf  used on input line 118.
+(pdftex.def)             Requested size: 204.85844pt x 247.19574pt.
 
 
-<images/quark_antiquark_potential_small_g.pdf, id=303, 462.52798pt x 346.89601pt>
-File: images/quark_antiquark_potential_small_g.pdf Graphic file (type pdf)
-<use images/quark_antiquark_potential_small_g.pdf>
-Package pdftex.def Info: images/quark_antiquark_potential_small_g.pdf  used on input line 125.
-(pdftex.def)             Requested size: 204.85844pt x 153.6457pt.
-) (./sections/outlook.tex) (./sections/conclusion.tex
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<images/quark_antiquark_potential_g_0.1.pdf, id=296, 544.8361pt x 635.30434pt>
+File: images/quark_antiquark_potential_g_0.1.pdf Graphic file (type pdf)
+<use images/quark_antiquark_potential_g_0.1.pdf>
+Package pdftex.def Info: images/quark_antiquark_potential_g_0.1.pdf  used on input line 127.
+(pdftex.def)             Requested size: 204.85844pt x 238.86864pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+)
+
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1662,18 +1701,34 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[10 <./images/quark_antiquark_potential_large_g.pdf> <./images/quark_antiquark_potential_small_g.pdf>]) (./sections/acknowledgements.tex
+[8 <./images/quark_antiquark_potential_g_5.pdf> <./images/quark_antiquark_potential_g_0.5.pdf>]
+
+
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 10000) has occurred while \output is active
+[]| []
+ []
+
+[9
+
+ <./images/quark_antiquark_potential_g_0.1.pdf>] (./sections/outlook.tex) (./sections/conclusion.tex
+
+) (./sections/acknowledgements.tex
 CUTED [- LAST -]
-Extra skip:21.0pt
-Left:247.80997pt/1.94444pt
-Right:226.80997pt/1.94444pt
-Split: 246.30469pt
-Output:246.30469pt
+Extra skip:20.0pt
+Left:353.16995pt/1.94444pt
+Right:335.1144pt/0.0pt
+Split: 352.16467pt
+Output:352.16467pt
 Pageshrink: 0.0pt
 Pagestretch: 0.0pt
 @colht:614.57951pt
-CUTED [output]: 246.30469pt
-CUTED [leftcolumn badness]: 42
+CUTED [output]: 352.16467pt
+CUTED [leftcolumn badness]: 13
 CUTED [rightcolumn badness]: 10000
 )
 
@@ -1687,23 +1742,34 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[11
+[10
+
 
 ] (./main.bbl
-Underfull \hbox (badness 1147) in paragraph at lines 121--156
-\OT1/cmr/m/n/10 Ivanov, S., Moore, J.K., Singh, S., Rath-
+Underfull \hbox (badness 3291) in paragraph at lines 94--110
+[]\OT1/cmr/m/n/10 Garofalo, M., Har-tung, T., Jakobs, T.,
+ []
+
+
+Underfull \hbox (badness 2285) in paragraph at lines 94--110
+\OT1/cmr/m/n/10 Hamil-to-nian built from $\OML/ntxmi/m/it/10.03749 S[]$ \OT1/cmr/m/n/10 par-ti-tion-ings.
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 141--176
+[]\OT1/cmr/m/n/10 Meurer, A., Smith, C.P., Pa-procki, M.,
  []
 
 
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 207--219
+Underfull \hbox (badness 1931) in paragraph at lines 227--239
 \OT1/cmr/m/n/10 K., K^^?uhn, S., Stor-nati, P., Ur-bach, C.:
  []
 
 
-Underfull \hbox (badness 1158) in paragraph at lines 234--244
-\OT1/cmr/m/n/10 ence of a global u(1) sym-me-try. Phys-i-cal
+Underfull \hbox (badness 5119) in paragraph at lines 243--250
+[]\OT1/cmr/m/n/10 Wu, Y., Liu, W.-Y.: Ac-cu-rate Gauge-
  []
 
 )
@@ -1716,32 +1782,7 @@ Underfull \hbox (badness 10000) has occurred while \output is active
 []| []
  []
 
-[12
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
-
- []
-
-
-Overfull \hbox (3.65982pt too wide) in paragraph at lines 110--114
- [] 
- []
-
-
-
-
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \hbox (badness 10000) has occurred while \output is active
-[]| []
- []
-
-[13
-
+[11
 
 ] (./main.aux)
  ***********
@@ -1757,18 +1798,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: E291F8EB133C8F66F971BD285A784918;2084.
  ) 
 Here is how much of TeX's memory you used:
- 37697 strings out of 473579
- 734257 string characters out of 5728233
- 1135609 words of memory out of 5000000
- 59824 multiletter control sequences out of 15000+600000
+ 37703 strings out of 473579
+ 734226 string characters out of 5728233
+ 1131982 words of memory out of 5000000
+ 59828 multiletter control sequences out of 15000+600000
  641607 words of font info for 258 fonts, out of 8000000 for 9000
  1151 hyphenation exceptions out of 8191
- 90i,18n,133p,871b,1227s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,18n,133p,1101b,1227s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txbsys.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (13 pages, 385193 bytes).
+Output written on main.pdf (14 pages, 402428 bytes).
 PDF statistics:
- 476 PDF objects out of 1000 (max. 8388607)
- 393 compressed objects within 4 object streams
- 83 named destinations out of 1000 (max. 500000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 390 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
  179 words of extra memory for PDF output out of 10000 (max. 10000000)
 

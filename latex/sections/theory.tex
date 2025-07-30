@@ -20,18 +20,18 @@ The generated Lie group $G=\text{U}(n)$ has the complex matrix elements $\hat{U}
   [\hat{E}_{\vec{r}_{i}, \mu}, \hat{U}_{\vec{r}_{j}, \nu}^\dag] & =-\delta^{(3)}(\vec{r}_{i}-\vec{r}_{j})\delta_{\mu\nu}\hat{U}_{\vec{r}_{j}, \nu}^{\dag}. \label{eq:comu2}
 \end{align}
 
-To explore the effect of the operators on the states, the electric basis with the basis states $\ket{e_{\vec{r_i}, \mu}}$ is chosen. The basis is made up of all possible states at the links. Thus,
+To explore the effect of the operators on the states, the electric basis with the basis states $\ket{e_{\vec{r}, \mu}}$ is chosen. The basis is made up of all possible states at the links. Thus,
 \begin{align}
-  \hat{E}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}=e_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}.\label{eq:eig}
+  \hat{E}_{\vec{r}, \mu}\ket{e_{\vec{r}, \mu}}=e_{\vec{r}, \mu}\ket{e_{\vec{r}, \mu}}.\label{eq:eig}
 \end{align}
 Furthermore \Crefrange{eq:comu1}{eq:eig} give rise to 
 \begin{align}
-  \hat{U}_{\vec{r}_{i}, \mu}\ket{e_{\vec{r}_{i}, \mu}}      & =\ket{e_{\vec{r}_{i}, \mu}+1}\text{ and}\label{eq:eigu1} \\
-  \hat{U}_{\vec{r}_{i}, \mu}^\dag\ket{e_{\vec{r}_{i}, \mu}} & =\ket{e_{\vec{r}_{i}, \mu}-1}.\label{eq:eigu2}
+  \hat{U}_{\vec{r}, \mu}\ket{e_{\vec{r}, \mu}}      & =\ket{e_{\vec{r}, \mu}+1}\text{ and}\label{eq:eigu1} \\
+  \hat{U}_{\vec{r}, \mu}^\dag\ket{e_{\vec{r}, \mu}} & =\ket{e_{\vec{r}, \mu}-1}.\label{eq:eigu2}
 \end{align}
 This means, the link operators act as ladder operators.
 \subsection{Truncation}
-Since each field can take any real value, there are infinite many possible values for each link, thus constructing an infinite dimensional basis. To be computable, possible values are truncated, such that the basis is finite. Truncating means, doing calculations only to an finite order.
+Since each field can take any real value, there are infinite many possible values for each link, thus constructing an infinite basis. To be computable, possible values are truncated, such that the basis is finite. Truncating means, doing calculations only to an finite order.
 
 Revisiting U(1), shows that is homeomorphic to $S^1$, i.e. the unit circle on the complex plane. By limiting the phase of the exponential mapping in equation \Cref{eq:exp} to $[-l, l]$, the phase is now an element of $\mathbb{Z}_{2l+1}$. This also truncates the electric field, such that
 \begin{align}
@@ -51,7 +51,7 @@ The link operators, which act as ladder operators on the eigenstates, can now al
 		                                                                                    0 & \,\dots \, & \dots \, & 0 \\
 	                                                                                    \end{bmatrix}.
 \end{align*}
-The unitarity $\hat{U}_{\vec{r}, \mu}\hat{U}_{\vec{r}, \mu}^\dag\neq\mathds{1}$ for this is lost, but can be recovered in the continuum limit of $l\rightarrow\infty$. It is important to point out, that the first (last) state is annihilated when using $\hat{U}_{\vec{r}}^{\dag}$ ($\hat{U}_{\vec{r}}$).
+The unitarity $\hat{U}_{\vec{r}, \mu}\hat{U}_{\vec{r}, \mu}^\dag\neq\mathds{1}$ for this is lost, but can be recovered in the continuum limit of $a\rightarrow0$. It is important to point out, that the first (last) state is annihilated when using $\hat{U}_{\vec{r}}^{\dag}$ ($\hat{U}_{\vec{r}}$).
 \subsection{Hamiltonian}
 The Hamiltonian for lattice gauge theory was originally formulated by Kogut and Susskind \cite{PhysRevD.11.395} and therefore since known as the so called Kogut Susskind Hamiltonian. It reads
 \begin{align*}
@@ -73,13 +73,13 @@ Only the electric Hamiltonian $\hat{H}_E$ and the magnetic Hamiltonian $\hat{H}_
 \begin{align}
 	\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y},
 \end{align}
-where e.g. $\vec{r}+x=(r_x+1,r_y)$. The hermitian conjugates of the two latter link operators are used since all link operators are oriented towards the positive $x$ or $y$ direction and when looping around the plaquette, the direction is against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so it is rewritten with the definition of real part as 
+where e.g. $\vec{r}+x=(r_x+1,r_y)$. The hermitian conjugates of the two latter link operators are used since all link operators are oriented towards the positive $x$ or $y$ direction and when looping around the plaquette, the direction is against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so it is rewritten with the definition of the real part as 
 \begin{align}
   \text{Re}(\hat{P}_{\vec{r}})=\frac{\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}}{2}.
 \end{align}
 The hermitian conjugate of the plaquette operator is the same as reversing the direction of the loop.
 
-The heuristic explanation of the form of the magnetic Hamiltonian is the following: The plaquettes, as they are closed loops, are essentially conductor loops which introduce a magnetic moment by Farady's law, that is then measured by the magnetic Hamiltonian. This analogy is not rigorous argument, but rather shall help build a first intuition.
+The heuristic explanation of the form of the magnetic Hamiltonian is the following: plaquettes, as they are closed loops, are essentially conductor loops which introduce a magnetic moment, that is then measured by the magnetic Hamiltonian. This analogy is not a rigorous argument, but rather shall help build a first intuition.
 
 The electric Hamiltonian is essentially the sum over each lattice site over the square of the electric field. Here the electric field operators $\hat{E}_{\vec{r},\mu}$ are being used and no modifications have to be made, since the electric operator is diagonal in the electric basis.
 

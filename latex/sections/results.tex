@@ -6,7 +6,7 @@ As first comparison and confirmation of the presented setup, the plaquette expec
 \end{align}
 From the scaling of the Hamiltonian in respect to $g$, $\lim_{g\rightarrow\infty}\Braket{P}=0$ and $\lim_{g\rightarrow0}\Braket{P}=1$ are expected.
 % TODO: what does the exp value mean intuitivly? (percentage contribution to the hamiltonian) 
-This behaviour is intuitive, when thinking of the plaquette expectation value as a measure of the contribution from the plaquette operator to the Hamiltonian. Since the electric Hamiltonian is proportional to $g^2$, it should dominate for large couplings. For small couplings, the magnetic Hamiltonian is expected to dominate, and thus the plaquette operator, since it is proportional to $1/g^2$. When comparing this expectation to the following results, one has always to be mindful of the fact, that the x-axis shows $\beta=1/g^2$.
+This behaviour is intuitive, when thinking of the plaquette expectation value as a measure of the contribution from the plaquette operator to the Hamiltonian. Since the electric Hamiltonian is proportional to $g^2$, it should dominate for strong couplings. For weak couplings, the magnetic Hamiltonian is expected to dominate, and thus the plaquette operator, since it is proportional to $1/g^2$. When comparing this expectation to the following results, one has always to be mindful of the fact, that the x-axis shows $\beta=1/g^2$.
 
 \Cref{fig:2exp} is the result of the calculation, confirming the expected.
 \begin{figure}[h]
@@ -33,34 +33,28 @@ Now for calculating the quark antiquark potential, the energy of the chargeless 
 \begin{align}
   V = \Braket{\hat{H}} - \Braket{\hat{H}_{0}}
 \end{align}
-with $\hat{H}$ being the lattice with the desired charge. This reduces the total energy to the potential energy emitted by the charge and regularizes it when approaching continuum theory. % TODO: correct?
-For the purpose of this work, one charge is being placed in the bottom left corner and the opposite charge at a lattice site with desired distance. Of interest is also the study the effect of different setups on charge pairs with the same distance. Thus the truncation $l$ is varied from 1 to 3 and compared to the original $3 \cross 3$ lattice with no PBC, with PBC and a lattice with dimensions $4\cross 4$. With these different setups \Cref{fig:qqbar} is obtained. Throughout this section this is the central Figure, that is discussed.
+with $\hat{H}$ being the lattice with the desired charge. This reduces the total energy to the potential energy emitted by the charge and renormalizes it when approaching continuum theory. % TODO: correct?
+For the purpose of this work, one charge is being placed in the bottom left corner and the opposite charge at a lattice site with desired distance.
+The study of the effect of different setups on charge pairs with the same distance is also of interest. Thus the truncation $l$ is varied from 1 to 3 and compared to the original $3 \cross 3$ lattice with no PBC, with PBC and a lattice with dimensions $4\cross 4$. With these different setups \Cref{fig:qqbar} is obtained. Throughout this section this is the central Figure, that is discussed.
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_normal_g.pdf}
+		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_g_1.pdf}
 	\end{center}
 	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{1}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbar}
 \end{figure}
 
-%\iffalse
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_normal_g_corr.pdf}
-	\end{center}
-	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{0.8}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbarscorr}
-\end{figure}
-%\fi
 The most basic setup is a $3\cross 3$ lattice with no PBC and a truncation of $l=1$. The potential raises linearly with increasing distance
 \begin{align}
-	V(r) \propto r.
+	V(r) = \sigma r,
 \end{align}
+where $\sigma$ is the so called string tension.
 From a classical perspective this is surprising. But this phenomena has already been reviewed \cite{RevModPhys.51.659} and it is indeed confinement.
 %TODO: More explanation
 
 Now different lattice parameters are varied.
-Starting with a different truncation $l$, here 2 and 3, the potential has the same behaviour but is negatively shifted. This was expected, since the lattice approaches continuum, and thus the lattice fragments vanish. Therefore the true lowest energy eigenstate is approached. The difference from $l=1$ to $l=2$ is quite significant, but the next step, from $l=2$ to $l=3$, is barely noteworthy. This shows, that that a truncation of at least $l=2$ is favourable.
+Starting with a different truncation $l$, here 2 and 3, the potential has the same behaviour, but is more linear. This shows, that indeed the truncation effects vanish when choosing a weaker truncation, i.e. large $l$. Already choosing a truncation of $l=2$ is a significant improvement. Furthermore improvement with $l=3$ is marginal.
 
-For the next comparison, the charge pair is not set at the rim, but at the center. The scene is sketched in \Cref{fig:3x3no}. The continuum theory has translational invariance. Since moving the charge pair away from the rim gives approximate translational invariance, the lattice converges to the continuum theory and thus another negative shift of the potential is expected. The normal setup is used for our initial calculation with $l=1$ at $r=1$ (upside down triangle). The potential of the offset setup is now depicted by the blue cross in \Cref{fig:qqbar}. Indeed the potential also gets a negative shift. An interesting side note is that it shifts even further then the improvement in truncation.
+For the next comparison, the charge pair is not set at the rim, but at the center. The scene is sketched in \Cref{fig:3x3no}. The continuum theory has translational invariance. Since moving the charge pair away from the rim gives approximate translational invariance, the lattice converges to the continuum theory. The normal setup is used for our initial calculation with $l=1$ at $r=1$ (upside down triangle). The potential of the offset setup is now depicted by the blue cross in \Cref{fig:qqbar}. Unfortunately the lattice is too small, such that no other distances are really feasible. Thus there is no real comparison possible.
 \begin{figure}[h]
 	\begin{center}
 		\input{tikz/3x3no.tex}
@@ -69,8 +63,8 @@ For the next comparison, the charge pair is not set at the rim, but at the cente
 \end{figure}
 
 A clever way to avoid rims, is to use periodic boundary conditions (PBC). The disadvantage is that the shortest path is not always the path through the center links, but through the links that are introduced by the PBC. This limits our possible charge pair setups, since already for a $3 \cross 3$ lattice with PBC, there are only two different setups. All other setups can be created by translation and rotation of those two. They are depicted in \Cref{fig:3x3pbcv1}
-A negative shift is expect again, since there is translational invariance. Even though it is translational invariance, it is not the same as in the continuum limit, since with PBC the paths also loop around through the links that are introduced by the PBC. Those paths are also colored in \Cref{fig:3x3pbcv1}.
-The resulting potentials are marked with circles in \Cref{fig:qqbar}. The expectations are fulfilled. But the shift is even more significant then just centering the pair. The cause of this is probably the fact that with our offset setup, with a $3\cross 3$ lattice and no PBC, the one charge was still placed at a rim site. Unfortunately this cannot be avoided with a $3\cross 3$ lattice.
+Since there is translational invariance, the continuum theory should be approached. Even though it is translational invariance, it is not the same as in the continuum limit, since with PBC the paths also loop around. Those paths are also colored in \Cref{fig:3x3pbcv1}. This should again introduce lattice fragments.
+The resulting potentials are marked with circles in \Cref{fig:qqbar}. There is no real influence to be seen.
 \begin{figure}[h]
 	\begin{center}
 		\subfloat[]{
@@ -88,7 +82,7 @@ The resulting potentials are marked with circles in \Cref{fig:qqbar}. The expect
 \end{figure}
 
 For the continuation of the previous comparison a $4\cross4$ setup is now being used. Again, the charge pair is centered, as shown in \Cref{fig:4x4v1}. Also, only two setups are possible, where no charge is at the rim. All other can be obtained by rotating the lattice.
-Since translational invariance is approached, a negative shift is expected.
+Since translational invariance is approached, lattice fragments should vanish.
 \begin{figure}[h]
 	\begin{center}
 		\subfloat[]{
@@ -101,32 +95,40 @@ Since translational invariance is approached, a negative shift is expected.
 				\input{tikz/4x4v2.tex}
 			}
 		}
-		\caption{Two $4\cross 4$ lattices with two charge pairs with shortest distance (a) and second shortest distance (b).}\label{fig:4x4v1}
+		\caption{Two $4\cross 4$ lattices with two centered charge pairs with shortest distance (a) and second shortest distance (b).}\label{fig:4x4v1}
 	\end{center}
 \end{figure}
+The potential is marked with a dashed red line in \Cref{fig:qqbar}. Again, the small number of different charge pair configurations, gives no real comparison to the other data points. No significant change can be observed. 
 
-The potential is marked with a dashed blue line in \Cref{fig:qqbar}. Comparing to the initial setup, an improvement achieved. But the difference to the $3\cross 3$ lattice with PBC is very small. It does not matter too much, that a lattice has PBC. The only importance lies in the fact, that no charges are on the rim. It would be interesting to see, if this behaviour still holds for larger lattice sizes. Unfortunately, computing those is currently not feasible.
+Using the greater lattice size of the $4\cross4$ lattice, the first analysis, where one charge is placed at the lower left corner and the opposite charges at desired distances, can be extended. The resulting potentials a depicted with a blue dashed line. Though the charges a still placed at the rim, an improvement can be seen, as the data points increase in linearity. 
 
-
-At last a variation of the coupling is done. Already little deviations from the original coupling of $g=1$ show new behaviours. Therefore the potentials with $g=0.8$ and $g=1.2$ are compared to the original.
-First $g=1.2$ is computed with the result in \Cref{fig:qqbarl}.
+At last a variation of the coupling is done. Already little deviations from the original coupling of $g=1$ show new behaviours. Therefore the potentials with $g=0.5$, $g=0.1$ and $g=5$ are compared to the original.
+First $g=5$ is computed with the result in \Cref{fig:qqbarl}.
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_large_g.pdf}
+		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_g_5.pdf}
 	\end{center}
-	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{1.2}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbarl}
+	\caption{Quark-Antiquark potential at $g=\num{5}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbarl}
 \end{figure}
-The linearity of the potential starts to vanish and instead steps emerge, which shows that for larger couplings the lattice fragments are intensified.
-A larger separation of the truncation $l=2$ and $l=3$ in respect to $l=1$ can be observed. Furthermore the potential of the $4\cross4$ lattice or the $3\cross3$ lattice with PBC is unchanged. It seems as if the truncation gains importance for larger couplings, where as the lattice size keeps its importance as is. Interestingly the potential for the centered charge pair ($l=1$, offset) moves with the $l=2$ and $l=3$ truncated potentials.
-
-Secondly $g=0.8$ is computed with the results in \Cref{fig:qqbars}.
+The linearity of the potential starts to vanish and instead steps emerge, which shows that for strong coupling the lattice fragments are intensified.
+There is no separation between the different setups. This is due to the fact, that at this strong coupling regime the theory starts to break down and very weak truncation or large lattices are needed, to be significant.% TODO: more
+After strong couplings, weak couplings are now considered. The coupling $g=0.5$ is computed with the results in \Cref{fig:qqbars5}.
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_small_g.pdf}
+		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_g_0.5.pdf}
 	\end{center}
-	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{0.8}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbars}
+	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{0.5}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbars5}
 \end{figure}
-Here the $l=2$ and $l=3$ truncated potentials decrease in separation in respect to the $l=1$ truncated potential. The potential for the $4\cross 4$ and the $3\cross3$ lattice with PBC start to increase in separation in respect to the $3\cross3$ lattice with PBC and truncation $l=1$. This indicates, that as the coupling decreases the truncation looses in importance and the lattice volume, i.e. the number of total links, increases. The potential with the centered charge pair moves just as with large couplings with the truncation of $l=2$ and $l=3$. This shows that not the fact that no charge is placed on the rim is important, but the actual lattice volume.
+A large separation of the potentials is seen, which shows that this coupling is in appropriate regime for this lattice, such that the approach to continuity is relevant.
+
+With decreasing the coupling even more to $g=0.1$, \Cref{fig:qqbars1} is obtained.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.45\textwidth]{images/quark_antiquark_potential_g_0.1.pdf}
+	\end{center}
+	\caption{Quark-Antiquark potential for different but comparable setups at $g=\num{0.1}$. By default $3\cross3$ dimensions and no PBC, if not stated otherwise.}\label{fig:qqbars1}
+\end{figure}
+Here a coupling regime is reached, where the lattice size fails to describe the continuum theory not even in a approximation. Neither the weakening in truncation to $l=2$ or $l=3$, nor the centering is relevant. Only the $4\cross4$ with offset and the PBC lattice show the capability to be somewhat usable, to approach continuum theory.
 
 
 % TODO: A $3\cross3$ lattice with $l=2$ and PBC has \num{1.9e6} physical states and takes about an hour. A $5\cross 5$ lattice with $l=1$ and no PBC has \num{}

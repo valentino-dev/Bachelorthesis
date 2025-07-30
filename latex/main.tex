@@ -55,11 +55,11 @@
 
 
 \begin{document}
-
 \title[]{Determination of the quark-antiquark potential in the Hamiltonian formulation of the compact U(1) gauge theory.}
 \author{\fnm{Angelo} \sur{Brade}}\email{s72abrad@uni-bonn.de}
 \affil{Rheinische Friedrich--Wilhelms--Universität, Bonn}
 
+\pagenumbering{gobble}
 \maketitle
 \begingroup
 %\setlength{\tabcolsep}{20pt}
@@ -81,29 +81,8 @@
 \endgroup
 
 \clearpage
-\begin{tikzpicture}[remember picture, overlay]
-	\node[anchor=north west] at ([xshift=4.5cm,yshift=-2.5cm]current page.north west) {
-		\begin{minipage}{0.75\textwidth}
-			\tableofcontents
-		\end{minipage}
-	};
-\end{tikzpicture}
-
-\clearpage
-\input{sections/abstract.tex}
-\input{sections/introduction.tex}
-\input{sections/theory.tex}
-\input{sections/implementation.tex}
-\input{sections/results.tex}
-\input{sections/outlook.tex}
-\input{sections/conclusion.tex}
-\input{sections/acknowledgements.tex}
-
-
-\,\clearpage
-\bibliography{refs}
-
-\clearpage
+\pagenumbering{Roman}
+\setcounter{page}{2}
 \begin{textblock*}{140mm}(32.5mm, 150mm)
 	Ich versichere, dass ich diese Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie die Zitate kenntlich gemacht habe.\\[40pt]
 	\begin{center}
@@ -114,6 +93,31 @@
 	\end{center}
 	\,\\[20pt]
 	1. Gutachter: Prof. Dr. Carsten Urbach \\
-	2. Gutachterin: Jun.-Prof. Dr. Lena Funcke
+	2. Gutachterin: Prof. Dr. Lena Funcke
 \end{textblock*}
+
+\,\clearpage
+\begin{tikzpicture}[remember picture, overlay]
+	\node[anchor=north west] at ([xshift=4.5cm,yshift=-2.5cm]current page.north west) {
+		\begin{minipage}{0.75\textwidth}
+			\tableofcontents
+		\end{minipage}
+	};
+\end{tikzpicture}
+
+\clearpage
+\pagenumbering{arabic}
+\input{sections/abstract.tex}
+\input{sections/introduction.tex}
+\input{sections/theory.tex}
+\input{sections/implementation.tex}
+\input{sections/results.tex}
+\clearpage
+\input{sections/outlook.tex}
+\input{sections/conclusion.tex}
+\input{sections/acknowledgements.tex}
+
+
+\,\clearpage\,
+\bibliography{refs}
 \end{document}

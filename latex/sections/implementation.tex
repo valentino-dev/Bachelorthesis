@@ -4,14 +4,14 @@ The code for this work can be accessed via GitHub: \url{https://github.com/valen
 For the implementation, the lattice is constructed and all operators are placed on their links. Then each entry is calculated:
 \begin{align*}
 	\bra{i}\hat{H}\ket{j} = & \frac{g^2}{2}\sum_{\vec{r}}\left(e_{\vec{r}, x}^2+e_{\vec{r}, y}^2\right)\delta_{ij}           \\
-	                        & -\frac{1}{2a^2g^2}\sum_{\vec{r}}\bra{i}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}\right)\ket{j}
+                          & -\frac{1}{2a^2g^2}\sum_{\vec{r}}\bra{i}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}\right)\ket{j}
 \end{align*}
-with $\ket{i}\in\cal{H}$. Let us calculate $\bra{i}\hat{P}_{\vec{r}}\ket{j}$:
+with $\ket{i}\in\cal{H}$. Starting with $\bra{i}\hat{P}_{\vec{r}}\ket{j}$:
 \begin{align*}
 	\bra{i}\hat{P}_{\vec{r}}\ket{j}= & \bra{i}\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}\ket{j} \\
-	=                                & \bra{i}\ket{e^{(j)}_{\vec{r}, x}+1}\otimes\ket{e^{(j)}_{\vec{r}+x, y}+1}                                      \\
+	=                                & \bra{i}(\ket{e^{(j)}_{\vec{r}, x}+1}\otimes\ket{e^{(j)}_{\vec{r}+x, y}+1}                                \\
 	                                 & \otimes\ket{e^{(j)}_{\vec{r}+y, x}-1}\otimes\ket{e^{(j)}_{\vec{r}, y}-1}                                      \\
-	                                 & \bigotimes_\text{rest links}\ket{e^{(j)}_{\vec{r}', \mu'}}                                                    \\
+	                                 & \bigotimes_\text{rest links}\ket{e^{(j)}_{\vec{r}', \mu'}})                                             \\
 	=                                & \Braket{i|k}                                                                                                  \\
 	=                                & \delta_{ik}
 \end{align*}
@@ -50,11 +50,11 @@ Alternatively, instead of exact diagonalization, one could use tensor networks, 
 The disadvantage of the Hamiltonian formulation of the lattice gauge theory, that is its need for computational resources,\cite{Feynman1982} since every link can be in $2l+1$ states and in two dimensions, there are two links for every site. Now depending if periodic boundary conditions (PBC) are being used or not, there are links that connect the sites of opposite sides or not.
 The exact number of states for a square $n \cross n$ lattice with PBC would be $N=(2l+1)^{2n^2}$ and without PBC $N=(2l+1)^{2(n^2-n)}$. Only physical states are of interest. Using Gauss's Law imposes constraints and thus restricts the number of total states to only the physical states. So each site introduces a constraint
 \begin{align}
-	\sum_{\mu=x,y}\left(\hat{E}_{\vec{r}, \mu} - \hat{E}_{\vec{r}, -\mu}\right) = Q_{\vec{r}}.
+  \sum_{\mu=x,y}\left(\hat{E}_{\vec{r}, \mu} - \hat{E}_{\vec{r}, -\mu}\right)\ket{\Psi} = Q_{\vec{r}}\ket{\Psi}.
 \end{align}
 To check if they are linearly independent, Gauss's Law of all sites is summed up:
 \begin{align}
-	\sum_{\vec{r}}\sum_{\mu=x,y}\left(\hat{E}_{\vec{r}, \mu} - \hat{E}_{\vec{r}, -\mu}\right) = \sum_{\vec{r}}Q_{\vec{r}}.
+	\sum_{\vec{r}}\sum_{\mu=x,y}\left(\hat{E}_{\vec{r}, \mu} - \hat{E}_{\vec{r}, -\mu}\right)\ket{\Psi} = \sum_{\vec{r}}Q_{\vec{r}}\ket{\Psi}.
 \end{align}
 Only if the total sum of charges is non zero, linear independency is given. But if the total sum is zero, a redundant constraint arises, which reduces the total number of constraints from $n^2$ to $n^2 -1$. From now on the total charge is always zero, since only lattices with no charges or with a pair of opposite charges are considered.
 
@@ -65,8 +65,8 @@ The number of physical states for a lattice with PBC is thus
 \end{align}
 And without PBC
 \begin{align}
-	N_{\text{ph}} & =(2l+1)^{n^2-2n+1} \\
-                & =(2l+1)^{(n-1)^{2}}\label{eq:pbc}
+	N_{\text{ph}} & =(2l+1)^{n^2-2n+1}                \\
+	              & =(2l+1)^{(n-1)^{2}}\label{eq:pbc}
 \end{align}
 On a side note, \Cref{eq:pbc} shows, that a $n\cross n$ lattice without PBC has just as many links as a lattice with $(n-1)\cross(n-1)$ lattice with PBC.
 Since from the calculations, matrices with size $N_{\text{ph}} \cross N_{\text{ph}}$ are returned, the number of physical states will be a good measure for computation time.
@@ -74,14 +74,15 @@ To get an idea on some realistic lattices and their number of physical states, s
 
 \begin{table}[h]
 	\begin{tabular}{c|c}
-		lattice               & $N_{\text{ph}}$ \\
+		lattice                      & $N_{\text{ph}}$ \\
 		\hline
 		$2\cross2$, no PBC and $l=1$ & \num{3}         \\
 		$2\cross2$, PBC and $l=1$    & \num{243}       \\
 		$2\cross2$, PBC and $l=7$    & \num{759e3}     \\
-		$3\cross3$, PBC and $l=1$    & \num{19.7e3}    \\
-		$3\cross3$, PBC and $l=2$    & \num{1.95e6}    \\
-		$3\cross3$, PBC and $l=4$    & \num{387e6}
+		$3\cross3$, PBC and $l=1$    & \num{59.1e3}    \\
+		$3\cross3$, PBC and $l=2$    & \num{9.77e6}    \\
+		$3\cross3$, PBC and $l=3$    & \num{283e6}    \\
+		$3\cross3$, PBC and $l=4$    & \num{3.49e9}
 	\end{tabular}
 	\caption{Lattice sizes and their number of physical states.}\label{tab:num}
 \end{table}

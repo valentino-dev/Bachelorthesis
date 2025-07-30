@@ -15,6 +15,9 @@ from functools import partial
 
 states_per_kernal = 16
 def magnetic_kernal(sites, digit_base, num_dynamic_links, phys_dim, operation_idx):
+    '''
+        Kernal for multiprocessing. Placed outside for further performance improvement.
+    '''
 
     def idx_to_state(digit_base, num_dynamic_links, idx):
         return np.array(((idx // digit_base**np.arange(num_dynamic_links-1, -1, -1)) % digit_base))
@@ -48,6 +51,9 @@ def magnetic_kernal(sites, digit_base, num_dynamic_links, phys_dim, operation_id
     return [idx_row, idx_column, idx_data]
 
 def timeit(func):
+    '''
+        Debugging funciton for timing of methods/functions.
+    '''
     def inner(*args, **kwargs):
         start = time.time()
         result = func(*args, **kwargs)
@@ -58,6 +64,9 @@ def timeit(func):
 
 
 class Site:
+    '''
+        Store all attributes for a site.
+    '''
     def __init__(self, idx, pos=np.array([]), static_charge = 0., links=dict(), attributes=dict()):
         self.idx = idx
         self.attributes = attributes
@@ -77,6 +86,9 @@ class Site:
 
 
 class Link:
+    '''
+        Store all attributes for a link.
+    '''
     def __init__(self, u, v, attributes=dict()):
         self.u = u
         self.v = v
@@ -106,7 +118,7 @@ class Lattice:
 
     def __init__(self, config=dict()):
         '''
-            Initiating Lattice.
+            Initiating Lattice with attributes and do first calculations of constant values.
         '''
         self.config = dict()
         for attr in self.default_config.keys():
@@ -123,6 +135,9 @@ class Lattice:
 
 
     def calculate_E_and_B_op(self):
+        '''
+            Do all calculations to the point of the construction of the electric (E) and magnetic (B) operator.
+        '''
         self.build()
         self.add_static_charges()
         self.build_linear_system()
@@ -131,31 +146,17 @@ class Lattice:
         self.build_plaquettes()
         self.build_total_magnetic_operator()
 
-    '''
-    def __str__(self) -> str:
-        dims_str = ''
-        for i in range(len(dims)-1):
-            dims_str += f'%d_'%(dims[i])
-        dims_str += f'%d'%(dims[-1])
-
-        static_charges_str = ''
-        for i in range(len(static_charges)-1):
-            charge_key = static_charges.keys()[i]
-            charge = static_charges.values()[i]
-            static_charges_str += f'({charge_key[0]}_{charge_key[1]})_{charge}'
-
-        static_charges_str += f'({charge_key[0]}_{charge_key[1]})_{charge}'
-
-
-        return f'l_%d.g_%.2f.k_%d.dims_({%s}).pbc_.static_charges_'
-        #return f'{[str(site) for site in self]}'
-    '''
-
     def set_param(self, param, value):
+        '''
+            Set the parameter to a given value in the config dictionary and the class attribute.
+        '''
         self.config[param] = value
         self.__setattr__(param, value)
 
     def dict_to_tuple(self, dictionary):
+        '''
+            Convert a dictionary to a tuple.
+        '''
         for key in dictionary:
             if type(dictionary[key]) == dict:
                 dictionary[key] = self.dict_to_tuple(dictionary[key])
@@ -187,14 +188,20 @@ class Lattice:
 
 
     def idx_to_pos(self, idx: int) -> np.ndarray:
+        '''
+            Map the indices i of the sites to the position of the site.
+        '''
         return np.array([(idx//(self.dims[:dim_idx].prod()))%self.dims[dim_idx] for dim_idx in range(len(self.dims))])
 
     def pos_to_idx(self, pos: np.ndarray) -> int:
+        '''
+            Map a position of a site to the corresponding site index i.
+        '''
         return int(pos @ self.projection_vector)
 
     def build(self):
         '''
-
+            Build the lattice for storage of the operators and computation
         '''
         print('>>building lattice..')
         sites = dict()
@@ -221,6 +228,9 @@ class Lattice:
         self.add_static_charges()
 
     def add_static_charges(self) -> None:
+        '''
+            Add the static charges to the sites.
+        '''
         for pos in self.static_charges.keys():
             self.sites[self.pos_to_idx(pos)].static_charge = self.static_charges[pos]
         
@@ -293,8 +303,7 @@ class Lattice:
             idx = link.u
             pos = copy.deepcopy(self.sites[idx].pos)
 
-            # If not deggad, then shift = 1. If deggad, then shift = -1.
-
+            # If not hermitian conjugate, shift = 1. If hermitian conjugate, shift = -1.
             if link['direction'] == 0:
                 self.sites[idx]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': 1})
                 pos[1] = (pos[1]-1) % self.dims[1]
@@ -305,6 +314,7 @@ class Lattice:
                 self.sites[self.pos_to_idx(pos)]['plaquette'].append({'index': self.dynamic_links.index(link), 'shift': 1})
 
         
+        # Remove periodic Plaquettes if the lattice has no PBC.
         if not self.pbc:
             print('>>removing periodic plaquettes..')
             for y in range(self.dims[1]):
@@ -313,9 +323,15 @@ class Lattice:
                 self.sites[self.pos_to_idx(np.array([x, self.dims[1]-1]))]['plaquette'] = list()
 
     def idx_to_state(self, idx):
+        '''
+            Map the state index i to a state with link states in a tensor product. The returned 
+        '''
         return np.array(((idx // self.digit_base**np.arange(len(self.dynamic_links)-1, -1, -1)) % self.digit_base))
 
     def state_to_idx(self, digits: np.ndarray) -> int:
+        '''
+            Map state in a 
+        '''
         return (digits * self.digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
 
     def electric_kernal(self, idx):

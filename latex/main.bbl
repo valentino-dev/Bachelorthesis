@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{10}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -89,6 +89,26 @@
 \endbibitem
 
 %%% 3
+\bibitem[\protect\citeauthoryear{Garofalo et~al.}{2024}]{Garofalo:2024VV}
+\begin{barticle}
+\bauthor{\bsnm{Garofalo}, \binits{M.}},
+\bauthor{\bsnm{Hartung}, \binits{T.}},
+\bauthor{\bsnm{Jakobs}, \binits{T.}},
+\bauthor{\bsnm{Jansen}, \binits{K.}},
+\bauthor{\bsnm{Ostmeyer}, \binits{J.}},
+\bauthor{\bsnm{Rolfes}, \binits{D.}},
+\bauthor{\bsnm{Romiti}, \binits{S.}},
+\bauthor{\bsnm{Urbach}, \binits{C.}}:
+\batitle{{Testing the $\mathrm{SU}(2)$ lattice Hamiltonian built from $S_3$ partitionings}}.
+\bjtitle{PoS}
+\bvolume{LATTICE2023},
+\bfpage{231}
+(\byear{2024})
+\doiurl{10.22323/1.453.0231}
+\end{barticle}
+\endbibitem
+
+%%% 4
 \bibitem[\protect\citeauthoryear{Kogut}{1979}]{RevModPhys.51.659}
 \begin{barticle}
 \bauthor{\bsnm{Kogut}, \binits{J.B.}}:
@@ -101,7 +121,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 4
+%%% 5
 \bibitem[\protect\citeauthoryear{Kogut and Susskind}{1975}]{PhysRevD.11.395}
 \begin{barticle}
 \bauthor{\bsnm{Kogut}, \binits{J.}},
@@ -115,7 +135,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 5
+%%% 6
 \bibitem[\protect\citeauthoryear{Meurer et~al.}{2017}]{10.7717/peerj-cs.103}
 \begin{barticle}
 \bauthor{\bsnm{Meurer}, \binits{A.}},
@@ -154,7 +174,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 6
+%%% 7
 \bibitem[\protect\citeauthoryear{Virtanen et~al.}{2020}]{2020SciPy-NMeth}
 \begin{barticle}
 \bauthor{\bsnm{Virtanen}, \binits{P.}},
@@ -201,7 +221,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 7
+%%% 8
 \bibitem[\protect\citeauthoryear{Crippa et~al.}{2024}]{crippa2024}
 \begin{botherref}
 \oauthor{\bsnm{Crippa}, \binits{A.}},
@@ -217,7 +237,7 @@ Towards determining the (2+1)-dimensional Quantum Electrodynamics running coupli
 \end{botherref}
 \endbibitem
 
-%%% 8
+%%% 9
 \bibitem[\protect\citeauthoryear{Wu and Liu}{2025}]{wu2025accurategaugeinvarianttensornetwork}
 \begin{botherref}
 \oauthor{\bsnm{Wu}, \binits{Y.}},
@@ -228,7 +248,7 @@ Accurate Gauge-Invariant Tensor Network Simulations for Abelian Lattice Gauge Th
 \end{botherref}
 \endbibitem
 
-%%% 9
+%%% 10
 \bibitem[\protect\citeauthoryear{Singh et~al.}{2011}]{Singh_2011}
 \begin{botherref}
 \oauthor{\bsnm{Singh}, \binits{S.}},
