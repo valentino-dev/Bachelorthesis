@@ -2,7 +2,7 @@ from lattice import *
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-
+# style changes to pyplot plots
 f_size = 20
 mpl.rcParams.update({
     "text.usetex": True,
@@ -26,10 +26,17 @@ mpl.rcParams.update({
     """
 })
 
+
 def potential(g):
+    '''
+        Calculations of the potential for a specific coupling g. This function produces all plots showing the quark antiquark potential.
+    '''
+
+    # First all lattices are calculated.
     plt.clf()
     plt.figure(figsize=(8, 8))
     lattices = load()
+    #lattices = dict()
     static_charges = [
                       {(0, 0): 1, (0, 1): -1},
                       {(0, 0): 1, (1, 1): -1},
@@ -41,6 +48,7 @@ def potential(g):
                       #{(0, 0): 1, (2, 3): -1},
                       #{(0, 0): 1, (3, 3): -1},
     ]
+
 
     offset_static_charges = [
         {(1, 0): 1, (1, 1): -1}
@@ -108,6 +116,7 @@ def potential(g):
         {(0, 0): 1, (3, 0): -1},
         {(0, 0): 1, (3, 1): -1},
         {(0, 0): 1, (3, 2): -1},
+        {(0, 0): 1, (3, 3): -1},
     ]
     config = {'dims': (4, 4),'pbc':False, 'l':1}
     check_lat(config, g)
@@ -124,6 +133,8 @@ def potential(g):
 
     save(lattices)
 
+    # Now that all lattices are calculated, the potential can be plottet by reading the lowest eigenvalue.
+
     style = [
         {'marker':'v', 'linestyle':''},
         {'marker':'v', 'linestyle':''},
@@ -131,84 +142,54 @@ def potential(g):
              ]
     marker_size = 10
 
-    config = {'dims': (3, 3), 'pbc': False}
-    for i, l in enumerate(l_list):
-        config['l'] = l
-        config.pop('static_charges', None)
-        print(config)
+    def get_pot(config, charges):
+        # Calculating the potential of the lattice with now charge.
         lattice0 = Lattice(config=config)
         e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
         
-        e0_wcharge = np.zeros(len(static_charges))
-        distance = np.zeros(len(static_charges))
-        for j, charge in enumerate(static_charges):
+        # Calculating the potential for the lattice with charges.
+        e0_wcharge = np.zeros(len(charges))
+        distance = np.zeros(len(charges))
+        for j, charge in enumerate(charges):
             config['static_charges'] = charge
             lattice = Lattice(config)
             e0_wcharge[j] = lattices[lattice.__hash__()].eigenvalues[g][0]
             distance[j] = (np.array(list(charge.items())[1][0])**2).sum()**(1/2)
+
+        return distance, e0_wcharge - e0_nocharge
+
+
+    # Plotting for the 3x3 lattice with no PBC using diffrent truncations l.
+    for i, l in enumerate(l_list):
+
+        # Calculating the potential of the lattice with now charge.
+        config = {'dims': (3, 3), 'pbc': False, 'l':l}
+        distance, potential = get_pot(config, static_charges)
         
-        #print(e0_nocharge, e0_wcharge)
-        plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=%d$'%(l), **(style[i]), markersize=marker_size)
+        # Plotting the quark antiquark potential by subtracting the lattice potentials
+        plt.plot(distance, potential, label=f'$l=%d$'%(l), **(style[i]), markersize=marker_size)
     
-    config = {'dims': (3, 3), 'pbc': False}
-    config['l'] = 1
-    lattice0 = Lattice(config=config)
-    e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
 
-    e0_wcharge = np.zeros(len(offset_static_charges))
-    distance = np.zeros(len(offset_static_charges))
-    for i, charge in enumerate(offset_static_charges):
-        config['static_charges'] = charge
-        lattice = Lattice(config=config)
-        lattice = lattices[lattice.__hash__()]
-        e0_wcharge[i] = lattices[lattice.__hash__()].eigenvalues[g][0]
-        charge_list = list(charge.items())
-        distance[i] = ((np.array(charge_list[1][0])-np.array(charge_list[0][0]))**2).sum()**(1/2)
-    plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=1$, offset', marker='x', linestyle='', c='C0', markersize=15)
+    # Plotting for the 3x3 lattice with no PBC and truncation l for the offset setup of the charge pair.
+    config = {'dims': (3, 3), 'pbc': False, 'l':1}
+    distance, potential = get_pot(config, offset_static_charges)
+    plt.plot(distance, potential, label=f'$l=1$, offset', marker='x', linestyle='', c='C0', markersize=15)
    
-    config = {'dims': (3, 3), 'pbc': True}
-    lattice0 = Lattice(config=config)
-    e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
 
-    e0_wcharge = np.zeros(len(pbc_static_charges))
-    distance = np.zeros(len(pbc_static_charges))
-    for i, charge in enumerate(pbc_static_charges):
-        config['static_charges'] = charge
-        lattice = Lattice(config=config)
-        lattice = lattices[lattice.__hash__()]
-        e0_wcharge[i] = lattices[lattice.__hash__()].eigenvalues[g][0]
-        charge_list = list(charge.items())
-        distance[i] = ((np.array(charge_list[1][0])-np.array(charge_list[0][0]))**2).sum()**(1/2)
-    plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=1$, pbc', marker='o', linestyle='', c='C0', markersize=marker_size)
+    # Plotting of the 3x3 lattice with PBC for the only two different charge pair setups.
+    config = {'dims': (3, 3), 'pbc': True, 'l':1}
+    distance, potential = get_pot(config, pbc_static_charges)
+    plt.plot(distance, potential, label=f'$l=1$, pbc', marker='o', linestyle='', c='C0', markersize=marker_size)
 
+    # Plotting the 4x4 lattice with no PBC and l=1 for the normal setup
     config = {'dims': (4, 4),'pbc':False, 'l':1}
-    lattice0 = Lattice(config=config)
-    e0_nocharge = lattices[lattice0.__hash__()].eigenvalues[g][0]
+    distance, potential = get_pot(config, x4_static_charges)
+    plt.plot(distance, potential, label=f'$l=1$, 4x4', marker='.', linestyle='dashed', c='C0', markersize=marker_size)
 
-    e0_wcharge = np.zeros(len(x4_static_charges))
-    distance = np.zeros(len(x4_static_charges))
-    for i, charge in enumerate(x4_static_charges):
-        config['static_charges'] = charge
-        lattice = Lattice(config=config)
-        lattice = lattices[lattice.__hash__()]
-        e0_wcharge[i] = lattices[lattice.__hash__()].eigenvalues[g][0]
-        charge_list = list(charge.items())
-        distance[i] = ((np.array(charge_list[1][0])-np.array(charge_list[0][0]))**2).sum()**(1/2)
-    plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=1$, 4x4', marker='.', linestyle='dashed', c='C0', markersize=marker_size)
-
-    e0_wcharge = np.zeros(len(x4_static_charges_offset))
-    distance = np.zeros(len(x4_static_charges_offset))
-    for i, charge in enumerate(x4_static_charges_offset):
-        config['static_charges'] = charge
-        lattice = Lattice(config=config)
-        lattice = lattices[lattice.__hash__()]
-        e0_wcharge[i] = lattices[lattice.__hash__()].eigenvalues[g][0]
-        charge_list = list(charge.items())
-        distance[i] = ((np.array(charge_list[1][0])-np.array(charge_list[0][0]))**2).sum()**(1/2)
-    plt.plot(distance, e0_wcharge - e0_nocharge, label=f'$l=1$, 4x4, offset', marker='.', linestyle='dashed', c='red', markersize=marker_size)
-
-
-
+    # Plotting the 4x4 lattice with no PBC and l=1 for the offset setup
+    config = {'dims': (4, 4),'pbc':False, 'l':1}
+    distance, potential = get_pot(config, x4_static_charges_offset)
+    plt.plot(distance, potential, label=f'$l=1$, 4x4, offset', marker='.', linestyle='dashed', c='red', markersize=marker_size)
 
 
     plt.xlabel('$r/a$')
@@ -218,19 +199,10 @@ def potential(g):
     plt.legend(bbox_to_anchor=(0, 1.02, 1, 0.2), loc="lower left",
                 mode="expand", borderaxespad=0, ncol=2, frameon=True, 
                edgecolor='black', fancybox=False)
-    gsize = ''
 
-    print(g)
 
-    if g == 1.:
-        gsize = 'normal'
-        #plt.ylim((-1, 2))
-    elif g > 1.:
-        gsize = 'large'
-        #plt.ylim((-2.5, 2.5))
-    elif g < 1:
-        gsize = 'small'
-    print(gsize)
+    plt.ylim((0, None))
+    plt.xlim((0, 4.6))
     plt.savefig(f'../latex/images/quark_antiquark_potential_g_{g}.pdf', bbox_inches='tight')
 
 
@@ -283,14 +255,10 @@ def plaquette_exp():
         lattices[lattice.__hash__()] = copy.deepcopy(lattice)
         save(lattices)
     print(betas, exp_list)
-    save(lattices)
+    #save(lattices)
 
-    for i, exp in enumerate(exp_list):
-        plt.plot(betas, exp, marker='v', label=f'$l=%d$'%(configs[i]['l']), linestyle='dashed', markersize=7)
-    
-    #exp = 
-
-    #plt.plot(betas, exp, marker='v', label=f'$l=3$', linestyle='dashed')
+    #for i, exp in enumerate(exp_list):
+        #plt.plot(betas, exp, marker='v', label=f'$l=%d$'%(configs[i]['l']), linestyle='dashed', markersize=7)
     '''
 
     
@@ -301,6 +269,8 @@ def plaquette_exp():
     #plt.tight_layout()
     x = np.array([0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0, 2.2, 2.4, 2.6])
 
+
+    # Those values are imported from the HPC. They can be calculated using the commented code above.
     y = np.array([
         [0.2784131,  0.3793732,  0.45965064, 0.50891304, 0.53400858, 0.54694496, 0.55426179, 0.55878894, 0.56178858, 0.56387754],
         [0.30204604, 0.44248772, 0.56788021, 0.6442727,  0.68666457, 0.71301778, 0.73088793, 0.74359415, 0.75290069, 0.75987167],
@@ -322,10 +292,12 @@ if __name__ == '__main__':
     #one_lattice()
 
     #potential(10)
+
     potential(5)
     potential(1)
     potential(0.5)
     potential(0.1)
+
     #potential(1e-7)
     #potential(1e-10)
     #potential(1e-20)

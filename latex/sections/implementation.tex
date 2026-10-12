@@ -1,12 +1,14 @@
 \section{Implementation}
 The code for this work can be accessed via GitHub: \url{https://github.com/valentino-dev/Bachelorthesis/tree/main/src}.
 \subsection{Matrix representation}
-For the implementation, the lattice is constructed and all operators are placed on their links. Then each entry is calculated:
+For the implementation, the lattice is constructed and all operators are placed on their links. Gauss's Law is enforced, such that the fixed electric operators are linearly dependent on the dynamic ones. Then each entry is calculated:
 \begin{align*}
 	\bra{i}\hat{H}\ket{j} = & \frac{g^2}{2}\sum_{\vec{r}}\left(e_{\vec{r}, x}^2+e_{\vec{r}, y}^2\right)\delta_{ij}           \\
                           & -\frac{1}{2a^2g^2}\sum_{\vec{r}}\bra{i}\left(\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}\right)\ket{j}
 \end{align*}
-with $\ket{i}\in\cal{H}$. Starting with $\bra{i}\hat{P}_{\vec{r}}\ket{j}$:
+with $\ket{i}\in\cal{H}_{\text{ph}}$. The electric Hamiltonian is easily calculated through the electric basis
+
+For the magnetic Hamiltonian $\bra{i}\hat{P}_{\vec{r}}\ket{j}$ is further investigated:
 \begin{align*}
 	\bra{i}\hat{P}_{\vec{r}}\ket{j}= & \bra{i}\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}\ket{j} \\
 	=                                & \bra{i}(\ket{e^{(j)}_{\vec{r}, x}+1}\otimes\ket{e^{(j)}_{\vec{r}+x, y}+1}                                \\
@@ -15,9 +17,13 @@ with $\ket{i}\in\cal{H}$. Starting with $\bra{i}\hat{P}_{\vec{r}}\ket{j}$:
 	=                                & \Braket{i|k}                                                                                                  \\
 	=                                & \delta_{ik}
 \end{align*}
-The formulation reads as following: State $\ket{j}$ will be transformed by the plaquette operator $\hat{P}_{\vec{r}}$ into some state $\ket{k}$. Thus $\hat{P}_{\vec{r}}$ gets an entry at row $\bra{i}$ and column $\ket{j}$ if, and only if, state $\ket{j}$ is transformed into state $\ket{i}$.
+Here the state $\hat{P}_{\vec{r}}\ket{j}$ was just renamed to a state $\ket{k}$ to indicate, that a new state was created. It is different to the initial state $\ket{j}$
 
-Now knowing $\hat{P}_{\vec{r}}$ in matrix representation, trivially yields $\hat{P}_{\vec{r}}^{\dag}=\left(\hat{P}_{\vec{r}}^{*}\right)^{T}$ and with it the matrix representation of the magnetic Hamiltonian.
+The formulation reads as following: State $\ket{j}$ will be transformed by the plaquette operator $\hat{P}_{\vec{r}}$ into some state $\ket{k}$. Thus $\hat{P}_{\vec{r}}$ gets an entry at row $\bra{i}$ and column $\ket{j}$ if and only if state $\ket{j}$ is transformed into state $\ket{i}$.
+
+With this procedure every combination of states $\bra{i}$ and $\ket{j}$ would have to be checked, which would be very costly. Instead just the transformation $\hat{P}_{\vec{r}}\ket{j}=\ket{k}$ is calculated for every state $\ket{j}$. Through state $\ket{k}$ it is instantly known, that there is an entry at row $k$ and column $j$. There is no need to verify, that some state $\bra{i}$ is state $\ket{k}$.
+
+Now knowing $\hat{P}_{\vec{r}}$ in matrix representation trivially yields $\hat{P}_{\vec{r}}^{\dag}=\left(\hat{P}_{\vec{r}}^{*}\right)^{T}$ and with it the matrix representation of the magnetic Hamiltonian.
 
 On a side note, going through states $\ket{i}$ means, counting up in base $2l+1$ with the link states $\ket{e_{\vec{r}, \mu}}$ being the "digits". This is schematically illustrated in \Cref{tab:steidx}.
 
@@ -34,20 +40,18 @@ On a side note, going through states $\ket{i}$ means, counting up in base $2l+1$
 		$(2l+1)^{N_{\text{l}}}-2$ & $\ket{l,l,\dots,l,l-1}$                                                                             \\
 		$(2l+1)^{N_{\text{l}}}-1$ & $\ket{l,l,\dots,l,l}$
 	\end{tabular}
-	\caption{Scheme of state indexing with $N_{\text{l}}\coloneq$ number of links and $e_{m}^{(j)}$ being the value for link $m\in[0, N_{\text{l}}-1]$ ($m$ is bijective to $((x, y), \mu)$) in lattice configuration $j\in[0,(2l+1)^{N_{\text{l}}}]$.}\label{tab:steidx}
+	\caption{Scheme of state indexing with the number of links $N_{\text{l}}$ and $e_{m}^{(j)}$ being the value for link $m\in[0, N_{\text{l}}-1]$ ($m$ is bijective to $((x, y), \mu)$) in lattice configuration $j\in[0,(2l+1)^{N_{\text{l}}}]$.}\label{tab:steidx}
 \end{table}
-
-With this procedure every combination of states $\bra{i}$ and $\ket{j}$ would have to be checked, which would be very costly. Instead just the transformation $\hat{P}_{\vec{r}}\ket{j}=\ket{k}$ is calculated for every state $\ket{j}$ and set $(\hat{P}_{\vec{r}})_{kj}=1$, i.e. having a contribution at row $\bra{k}$ and column $\ket{j}$.
 
 Gauss's Law not only restricts the electric operators, but also the corresponding link operator on the same link. But here Gauss's Law does not impose a dependency, but rather the dynamical link operators automatically produce physical states, where as the fixed link operators do not act on our physical space anymore, which is why the fixed ones are ignored. With plaquette operators there are normally always four link operators, where as now the plaquette operators are a product of any number of link operators ranging from 0 to 4. Which number it will be is then dependent on the position of the plaquette, i.e. the number of dynamical links it loops through. When a plaquette does not go through any dynamical link operators, it will never produce a physical state and thus can be ignored entirely.
 
 \subsection{Exact diagonalization}
 Now having the total Hamiltonian in matrix representation, diagonalization is used to compute the eigenvalues and eigenstates. For this the library \texttt{scipy} \cite{2020SciPy-NMeth} is used. It provides the method \texttt{scipy.sparse.linalg.eigsh}, which is an eigensolver and can be used to calculate the $k$ smallest algebraic (SA) eigenvalues. It uses hermitian sparse row matrices, which speed up the process drastically in comparison to dense non hermitian matrices.
 
-Alternatively, instead of exact diagonalization, one could use tensor networks, or on a quantum computer, a variational quantum eigensolver (VQE).
+Alternatively, instead of exact diagonalization, one could use tensor networks\cite{wu2025accurategaugeinvarianttensornetwork, Singh_2011}, or on a quantum computer, a variational quantum eigensolver (VQE)\cite{crippa2024}.
 
 \subsection{Computational resources}
-The disadvantage of the Hamiltonian formulation of the lattice gauge theory, that is its need for computational resources,\cite{Feynman1982} since every link can be in $2l+1$ states and in two dimensions, there are two links for every site. Now depending if periodic boundary conditions (PBC) are being used or not, there are links that connect the sites of opposite sides or not.
+The disadvantage of the Hamiltonian formulation of the lattice gauge theory, is its need for computational resources.\cite{Feynman1982} To understand this, the actual number of physical states will be pursued. Every link can be in $2l+1$ states and in two dimensions, there are two links for every site. Now depending if periodic boundary conditions (PBC) are being used or not, there are links that connect the sites of opposite sides or not.
 The exact number of states for a square $n \cross n$ lattice with PBC would be $N=(2l+1)^{2n^2}$ and without PBC $N=(2l+1)^{2(n^2-n)}$. Only physical states are of interest. Using Gauss's Law imposes constraints and thus restricts the number of total states to only the physical states. So each site introduces a constraint
 \begin{align}
   \sum_{\mu=x,y}\left(\hat{E}_{\vec{r}, \mu} - \hat{E}_{\vec{r}, -\mu}\right)\ket{\Psi} = Q_{\vec{r}}\ket{\Psi}.
@@ -66,9 +70,9 @@ The number of physical states for a lattice with PBC is thus
 And without PBC
 \begin{align}
 	N_{\text{ph}} & =(2l+1)^{n^2-2n+1}                \\
-	              & =(2l+1)^{(n-1)^{2}}\label{eq:pbc}
+	              & =(2l+1)^{(n-1)^{2}}.\label{eq:pbc}
 \end{align}
-On a side note, \Cref{eq:pbc} shows, that a $n\cross n$ lattice without PBC has just as many links as a lattice with $(n-1)\cross(n-1)$ lattice with PBC.
+On a side note, \Cref{eq:pbc} shows that a  lattice with $n\cross n$ sites and no PBC has just as many links as a lattice with $(n-1)\cross(n-1)$ sites and PBC.
 Since from the calculations, matrices with size $N_{\text{ph}} \cross N_{\text{ph}}$ are returned, the number of physical states will be a good measure for computation time.
 To get an idea on some realistic lattices and their number of physical states, see \Cref{tab:num}.
 
@@ -100,6 +104,6 @@ Now that a little intuition for the complexity is obtained, the next step is to 
 	\end{tabular}
 	\caption{Computation time for a $3\cross 3$ lattice with PBC.}\label{tab:times}
 \end{table}
-\Cref{tab:times} confirms the problem, that computation times grow rapidly, and large scale computations are not feasible on classical hardware.
+This confirms the problem, that computation times grow rapidly. Large scale computations are not feasible with classical hardware and methods like exact diagonalization.
 
 To utilize the HPC to capacity, multiprocessing was introduced. The code was rewritten, such that the calculation of the elements are distributed onto the threads, without distributing to thinly, i.e. launching new threads takes more time then processing, or to dense, i.e. not all cores are utilized.

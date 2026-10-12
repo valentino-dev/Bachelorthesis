@@ -4,7 +4,7 @@
 
 The positional space is discretized into a lattice with sites that are connected by links. Sites are spaced by the lattice spacing $a$. To obtain the continuum theory in the limit of $a\rightarrow 0$, the coupling constant $g$ is introduced.\cite{RevModPhys.51.659}
 
-Each site is associated with a corresponding positional vector $\vec{r}=(r_x, r_y)\in \mathbb{Z}^{n_{x} \cross n_{y}}$ for a $n_{x} \cross n_{y}$ lattice. On the sites are the static charges $Q_{\vec{r}}$ positioned. Each link is associated with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example, the link that points from the site $(1, 2)$ to the $x$ direction is denote with $\vec{r}=(1, 2)$ and $\mu=x$. The same link is denoted with $\vec{r}=(2, 2)$ and $\mu=-x$.
+Each site is associated with a corresponding positional vector $\vec{r}=(r_x, r_y)\in \mathbb{Z}^{n_{x} \cross n_{y}}$ for a $n_{x} \cross n_{y}$ lattice. On the sites are the static charges $Q_{\vec{r}}$ positioned. Each link is associated with a corresponding position $\vec{r}$ and a direction $\mu$, where $-\mu$ is its opposite direction. For example, the link that points from the site $(1, 2)$ to the $x$ direction is denoted with $\vec{r}=(1, 2)$ and $\mu=x$. The same link is denoted with $\vec{r}=(2, 2)$ and $\mu=-x$.
 
 On the links are the electric field operators $\hat{E}_{\vec{r},\mu}$ positioned. Each electric field $\hat{E}_{\vec{r}, \mu}$ has the vector potential $\hat{A}_{\vec{r}, \mu}$ as its canonical conjugate variable. Thus,
 \begin{align}
@@ -33,7 +33,7 @@ This means, the link operators act as ladder operators.
 \subsection{Truncation}
 Since each field can take any real value, there are infinite many possible values for each link, thus constructing an infinite basis. To be computable, possible values are truncated, such that the basis is finite. Truncating means, doing calculations only to an finite order.
 
-Revisiting U(1), shows that is homeomorphic to $S^1$, i.e. the unit circle on the complex plane. By limiting the phase of the exponential mapping in equation \Cref{eq:exp} to $[-l, l]$, the phase is now an element of $\mathbb{Z}_{2l+1}$. This also truncates the electric field, such that
+Revisiting U(1), shows that is homeomorphic to $S^1$, i.e. the unit circle on the complex plane. By limiting the phase of the exponential mapping in \Cref{eq:exp} to $[-l, l]$, the phase is now an element of $\mathbb{Z}_{2l+1}$. This also truncates the electric field, such that
 \begin{align}
 e_{\vec{r_i}, \mu}\in[-l, l].
 \end{align}
@@ -53,33 +53,34 @@ The link operators, which act as ladder operators on the eigenstates, can now al
 \end{align*}
 The unitarity $\hat{U}_{\vec{r}, \mu}\hat{U}_{\vec{r}, \mu}^\dag\neq\mathds{1}$ for this is lost, but can be recovered in the continuum limit of $a\rightarrow0$. It is important to point out, that the first (last) state is annihilated when using $\hat{U}_{\vec{r}}^{\dag}$ ($\hat{U}_{\vec{r}}$).
 \subsection{Hamiltonian}
-The Hamiltonian for lattice gauge theory was originally formulated by Kogut and Susskind \cite{PhysRevD.11.395} and therefore since known as the so called Kogut Susskind Hamiltonian. It reads
+The Hamiltonian for lattice gauge theory was originally formulated by Kogut and Susskind \cite{PhysRevD.11.395} and therefore since known as the so-called Kogut Susskind Hamiltonian. It reads
 \begin{align*}
 	\hat{H}            = & \hat{H}_E+\hat{H}_B+\hat{H}_m+\hat{H}_{\text{kin}}\text{ with}                                                              \\
 	\hat{H}_E          = & \frac{g^2}{2}\sum_{\vec{r}} \left(\hat{E}^2_{\vec{r},x}+\hat{E}^2_{\vec{r},y}\right),                                       \\
   \hat{H}_B          = & -\frac{1}{a^2g^2}\sum_{\vec{r}} \text{Re}(\text{Tr}(\hat{P}_{\vec{r}})),                                     \\
 	\hat{H}_m          = & m\sum_{\vec{r}}(-1)^{r_x+r_y}\hat{\phi}^{\dag}_{\vec{r}}\hat{\phi}_{\vec{r}}\text{ and}                                     \\
 	\hat{H}_\text{kin} = & \frac{i}{2a}\sum_{\vec{r}}\left(\phi^{\dag}_{\vec{r}}\hat{U}_{\vec{r}, x}\phi_{\vec{r}+x}-\text{h.c.}\right)                \\
-	                     & -\frac{(-1)^{r_x+r_y}}{2a}\sum_{\vec{r}}\left(\phi^{\dag}_{\vec{r}}\hat{U}_{\vec{r}, y}\phi_{\vec{r}+y}+\text{h.c.}\right).
+	                     & -\frac{(-1)^{r_x+r_y}}{2a}\sum_{\vec{r}}\left(\phi^{\dag}_{\vec{r}}\hat{U}_{\vec{r}, y}\phi_{\vec{r}+y}+\text{h.c.}\right),
 \end{align*}
+where e.g. $\vec{r}+x=(r_x+1,r_y)$.
 
 At the beginning the static charges $Q_{\vec{r}}$ were introduced. They are called static, since they can not move and thus have no field. In the physical context they have infinite mass. Therefore the fermionic fields $\hat{\phi}_{\vec{r}}$ vanish at all $\vec{r}$. This premiss yields
 \begin{align*}
 	\hat{H}_{m}=\hat{H}_{\text{kin}}=0.
 \end{align*}
-The computation can also be done with dynamic charges $\hat{q}_{\vec{r}}$ where the mass and kinetic Hamiltonian will contribute. In this case a phenomenon called the doubling problem will rise. A common approach for this problem is staggered fermions. This will not be looked into further. Instead the, pure gauge case is used, where only gauge fields exist.
+The computation can also be done with dynamic charges $\hat{q}_{\vec{r}}$, where the mass and kinetic Hamiltonian will contribute. In this case a phenomenon called the doubling problem will rise. A common approach for this problem is staggered fermions.\cite{rothe2005lattice} This will not be pursued any further. Instead the pure gauge case is used, where only gauge fields exist.
 
 Only the electric Hamiltonian $\hat{H}_E$ and the magnetic Hamiltonian $\hat{H}_B$ contribute. For the latter one, the plaquette operator $\hat{P}_{\vec{r}}$ is introduced. A plaquette is the smallest Wilson loop (a closed loop through the lattice on the link operators) and the corresponding operator is formed by the oriented product of the link operators, i.e.
 \begin{align}
-	\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y},
+	\hat{P}_{\vec{r}}=\hat{U}_{\vec{r}, x}\hat{U}_{\vec{r}+x,y}\hat{U}^{\dag}_{\vec{r}+y,x}\hat{U}^{\dag}_{\vec{r},y}.
 \end{align}
-where e.g. $\vec{r}+x=(r_x+1,r_y)$. The hermitian conjugates of the two latter link operators are used since all link operators are oriented towards the positive $x$ or $y$ direction and when looping around the plaquette, the direction is against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so it is rewritten with the definition of the real part as 
+The hermitian conjugates of the two latter link operators are used since all link operators are oriented towards the positive $x$ or $y$ direction and when looping around the plaquette, the direction is against the orientation of the two last link operators. Since the link operators are $1\cross1$ matrices, the trace is just its argument. Taking the real part of an operator is not intuitive, so it is rewritten with the definition as 
 \begin{align}
   \text{Re}(\hat{P}_{\vec{r}})=\frac{\hat{P}_{\vec{r}}+\hat{P}_{\vec{r}}^{\dag}}{2}.
 \end{align}
 The hermitian conjugate of the plaquette operator is the same as reversing the direction of the loop.
 
-The heuristic explanation of the form of the magnetic Hamiltonian is the following: plaquettes, as they are closed loops, are essentially conductor loops which introduce a magnetic moment, that is then measured by the magnetic Hamiltonian. This analogy is not a rigorous argument, but rather shall help build a first intuition.
+The heuristic explanation for the form of the magnetic Hamiltonian is the following: Plaquettes, as they are closed loops, are essentially conductor loops which introduce a magnetic moment, that is then measured by the magnetic Hamiltonian. This analogy is not a rigorous argument, but rather shall help build a first intuition.
 
 The electric Hamiltonian is essentially the sum over each lattice site over the square of the electric field. Here the electric field operators $\hat{E}_{\vec{r},\mu}$ are being used and no modifications have to be made, since the electric operator is diagonal in the electric basis.
 

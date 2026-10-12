@@ -19,22 +19,27 @@ def magnetic_kernal(sites, digit_base, num_dynamic_links, phys_dim, operation_id
         Kernal for multiprocessing. Placed outside for further performance improvement.
     '''
 
+    # used functions are defined in the kernal itself to increase performance
     def idx_to_state(digit_base, num_dynamic_links, idx):
         return np.array(((idx // digit_base**np.arange(num_dynamic_links-1, -1, -1)) % digit_base))
 
     def state_to_idx(digit_base, digits: np.ndarray) -> int:
         return (digits * digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
 
-    ideces = np.arange(operation_idx*states_per_kernal, (operation_idx+1)*states_per_kernal)
-    ideces = ideces[ideces < phys_dim]
+    # calculate the range of used state indices (i.e. states)
+    indices = np.arange(operation_idx*states_per_kernal, (operation_idx+1)*states_per_kernal)
+    indices = indices[indices < phys_dim]
 
     idx_row = [0]
     idx_column = [0]
     idx_data = [0]
-    for idx in ideces:
+    for idx in indices:
+
+        # print every 20 threads the progressbar
         if idx%20==0:
             progress = (idx/phys_dim*100)
             print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (progress), end='\r')
+        # plquette calculations on states 
         i_state = idx_to_state(digit_base, num_dynamic_links, idx)
         for site in sites.values():
             if not not site['plaquette']:
@@ -42,7 +47,7 @@ def magnetic_kernal(sites, digit_base, num_dynamic_links, phys_dim, operation_id
                 for u_op in site['plaquette']:
                     f_state[u_op['index']] += u_op['shift']
                 
-                # if all shifts dont exit truncation (if not one exits trunction), the plaquette operation makes a contribution
+                # if all shifts dont exit truncation ( <=> if not one exits trunction), the plaquette operation makes a contribution
                 if not (f_state - (f_state % digit_base)).any():
                     idx_row.append(idx)
                     idx_column.append(state_to_idx(digit_base, f_state))
@@ -65,7 +70,7 @@ def timeit(func):
 
 class Site:
     '''
-        Store all attributes for a site.
+        Class stores all attributes for a site.
     '''
     def __init__(self, idx, pos=np.array([]), static_charge = 0., links=dict(), attributes=dict()):
         self.idx = idx
@@ -87,7 +92,7 @@ class Site:
 
 class Link:
     '''
-        Store all attributes for a link.
+        Class store all attributes for a link.
     '''
     def __init__(self, u, v, attributes=dict()):
         self.u = u
@@ -137,6 +142,7 @@ class Lattice:
     def calculate_E_and_B_op(self):
         '''
             Do all calculations to the point of the construction of the electric (E) and magnetic (B) operator.
+            Helper function, so not every needed function needs to be called manually.
         '''
         self.build()
         self.add_static_charges()
@@ -156,6 +162,7 @@ class Lattice:
     def dict_to_tuple(self, dictionary):
         '''
             Convert a dictionary to a tuple.
+            Needed for hashing the config, such that it can be used as a key for a dictionary.
         '''
         for key in dictionary:
             if type(dictionary[key]) == dict:
@@ -165,6 +172,9 @@ class Lattice:
 
 
     def __hash__(self):
+        '''
+            Hashing for use of a key in a dictionary.
+        '''
         for key in self.default_config:
             self.config[key] = self.config[key] if key in self.config else self.default_config[key]
 
@@ -201,7 +211,7 @@ class Lattice:
 
     def build(self):
         '''
-            Build the lattice for storage of the operators and computation
+            Build the lattice for computation and storage of the operators.
         '''
         print('>>building lattice..')
         sites = dict()
@@ -324,19 +334,24 @@ class Lattice:
 
     def idx_to_state(self, idx):
         '''
-            Map the state index i to a state with link states in a tensor product. The returned 
+            Map the state index i to a state with link states in a tensor product.
         '''
         return np.array(((idx // self.digit_base**np.arange(len(self.dynamic_links)-1, -1, -1)) % self.digit_base))
 
     def state_to_idx(self, digits: np.ndarray) -> int:
         '''
-            Map state in a 
+            Map state to a state index i.
         '''
         return (digits * self.digit_base**np.arange(digits.shape[0]-1, -1, -1)).sum()
 
     def electric_kernal(self, idx):
-        progress = (idx/self.phys_dim*100)
+        '''
+            Kernal for multithreading. Calculates the electric part.
+        '''
+
+        # Print progress every 20 threads.
         if idx%20==0:
+            progress = (idx/self.phys_dim*100)
             print(f'         Progress: [{str((int(progress/5)*"|")+(int(20-progress/5)*" "))}]: %.0f%%' % (idx/self.phys_dim*100), end='\r')
         return self.E_OP.subs(zip(self.dynamic_e_ops, self.idx_to_state(idx) - self.l))
 
@@ -363,14 +378,6 @@ class Lattice:
         tasks = E['row']
         with multiprocessing.Pool() as pool:
             result = pool.map(self.electric_kernal, tasks)
-        
-        '''
-
-        result = list()
-        for i, job_result in enumerate(pool_obj.imap_unordered(self.get_electric_element, tasks)):
-            print('[%.0f%%]' % (i/len(tasks)*100), end='\r')
-            result.append(job_result)
-        '''
 
         print('>>Createing sparse matrix..')
         E['data'] = np.array(result, dtype=np.float32)
@@ -393,14 +400,6 @@ class Lattice:
             result = pool.starmap(magnetic_kernal, [(self.sites, self.digit_base, len(self.dynamic_links), self.phys_dim, task) for task in tasks])
 
 
-        '''
-
-        result = list()
-        for i, job_result in enumerate(pool_obj.imap(self.get_magnetic_vector, tasks)):
-            print('[%.0f%%]' % (i/len(tasks)*100), end='\r')
-            result.append(job_result)
-        '''
-        
         print('>>sorting results..')# sorting results
         row = list()
         column = list()
@@ -459,6 +458,9 @@ class Lattice:
                 print(f'%.4f'%(self.eigenvalues[g][i]))
 
     def get_plaquette_expectation_values(self, beta_list):
+        '''
+            Calculate the plaquette expectaiton value.
+        '''
         print('>>calculating plqauette expection values..')
         g_list = 1/beta_list**(1/2)
         expectation_values = np.zeros(len(beta_list))
@@ -474,15 +476,18 @@ class Lattice:
         return expectation_values
 
 def save(lattices):
+    '''
+        Save the entire lattice.
+    '''
     with open('../data/lattices.pickle', 'wb') as handle:
         pickle.dump(lattices, handle, protocol=pickle.HIGHEST_PROTOCOL)
             
-def load(path=None):
-    if not path:
-        path = '../data/lattices.pickle'
-
+def load(path='../data/lattices.pickle'):
+    '''
+        Load the entire lattice.
+    '''
     if os.path.exists(path):
-        lattcies = None
+        lattices = None
         with open(path, 'rb') as handle:
             lattices = pickle.load(handle)
 
@@ -492,4 +497,7 @@ def load(path=None):
         return dict()
 
 def dprint(*args):
+    '''
+        Debug print for better visibility in output console.
+    '''
     print('debug:', *args)

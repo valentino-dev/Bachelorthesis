@@ -17,9 +17,10 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Discretization}{1}{subsection.3.1}\protected@file@percent }
 \newlabel{eq:com}{{1}{1}{Discretization}{equation.3.1}{}}
 \newlabel{eq:com@cref}{{[equation][1][]1}{[1][1][]1}{}{}{}}
-\newlabel{eq:exp}{{2}{1}{Discretization}{equation.3.2}{}}
-\newlabel{eq:exp@cref}{{[equation][2][]2}{[1][1][]1}{}{}{}}
 \citation{PhysRevD.11.395}
+\citation{rothe2005lattice}
+\newlabel{eq:exp}{{2}{2}{Discretization}{equation.3.2}{}}
+\newlabel{eq:exp@cref}{{[equation][2][]2}{[1][2][]2}{}{}{}}
 \newlabel{eq:comu1}{{3}{2}{Discretization}{equation.3.3}{}}
 \newlabel{eq:comu1@cref}{{[equation][3][]3}{[1][2][]2}{}{}{}}
 \newlabel{eq:comu2}{{4}{2}{Discretization}{equation.3.4}{}}
@@ -37,10 +38,12 @@
 \@writefile{toc}{\contentsline {section}{\numberline {4}Implementation}{3}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Matrix representation}{3}{subsection.4.1}\protected@file@percent }
 \citation{2020SciPy-NMeth}
+\citation{wu2025accurategaugeinvarianttensornetwork,Singh_2011}
+\citation{crippa2024}
 \citation{Feynman1982}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scheme of state indexing with $N_{\text  {l}}\coloneq $ number of links and $e_{m}^{(j)}$ being the value for link $m\in [0, N_{\text  {l}}-1]$ ($m$ is bijective to $((x, y), \mu )$) in lattice configuration $j\in [0,(2l+1)^{N_{\text  {l}}}]$.}}{4}{table.caption.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Scheme of state indexing with the number of links $N_{\text  {l}}$ and $e_{m}^{(j)}$ being the value for link $m\in [0, N_{\text  {l}}-1]$ ($m$ is bijective to $((x, y), \mu )$) in lattice configuration $j\in [0,(2l+1)^{N_{\text  {l}}}]$.}}{4}{table.caption.2}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:steidx}{{1}{4}{Scheme of state indexing with $N_{\text {l}}\coloneq $ number of links and $e_{m}^{(j)}$ being the value for link $m\in [0, N_{\text {l}}-1]$ ($m$ is bijective to $((x, y), \mu )$) in lattice configuration $j\in [0,(2l+1)^{N_{\text {l}}}]$}{table.caption.2}{}}
+\newlabel{tab:steidx}{{1}{4}{Scheme of state indexing with the number of links $N_{\text {l}}$ and $e_{m}^{(j)}$ being the value for link $m\in [0, N_{\text {l}}-1]$ ($m$ is bijective to $((x, y), \mu )$) in lattice configuration $j\in [0,(2l+1)^{N_{\text {l}}}]$}{table.caption.2}{}}
 \newlabel{tab:steidx@cref}{{[table][1][]1}{[1][4][]4}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Exact diagonalization}{4}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Computational resources}{4}{subsection.4.3}\protected@file@percent }
@@ -58,7 +61,7 @@
 \citation{RevModPhys.51.659}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces plaquette expectation values for a $2\cross 2$ lattice with PBC.}}{6}{figure.caption.7}\protected@file@percent }
 \newlabel{fig:2exp}{{1}{6}{plaquette expectation values for a $2\cross 2$ lattice with PBC}{figure.caption.7}{}}
-\newlabel{fig:2exp@cref}{{[figure][1][]1}{[1][5][]6}{}{}{}}
+\newlabel{fig:2exp@cref}{{[figure][1][]1}{[1][6][]6}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Plaquette expectation values for a $3\cross 3$ lattice with PBC.}}{6}{figure.caption.8}\protected@file@percent }
 \newlabel{fig:3exp}{{2}{6}{Plaquette expectation values for a $3\cross 3$ lattice with PBC}{figure.caption.8}{}}
 \newlabel{fig:3exp@cref}{{[figure][2][]2}{[1][6][]6}{}{}{}}
@@ -68,7 +71,7 @@
 \newlabel{fig:qqbar@cref}{{[figure][3][]3}{[1][6][]7}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces $3\cross 3$ lattice with two charge pairs of same distance but different position.}}{7}{figure.caption.10}\protected@file@percent }
 \newlabel{fig:3x3no}{{4}{7}{$3\cross 3$ lattice with two charge pairs of same distance but different position}{figure.caption.10}{}}
-\newlabel{fig:3x3no@cref}{{[figure][4][]4}{[1][6][]7}{}{}{}}
+\newlabel{fig:3x3no@cref}{{[figure][4][]4}{[1][7][]7}{}{}{}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {normal}}}{7}{subfigure.4.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {offset}}}{7}{subfigure.4.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Two $3\cross 3$ lattices with PBC and a charge pair with shortest distance (a) and second shortest distance (b). Colored paths: shortest (Green) and second shortest (Yellow) path.}}{7}{figure.caption.11}\protected@file@percent }
@@ -84,15 +87,14 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Quark-Antiquark potential at $g=\num {5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise.}}{8}{figure.caption.13}\protected@file@percent }
 \newlabel{fig:qqbarl}{{7}{8}{Quark-Antiquark potential at $g=\num {5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise}{figure.caption.13}{}}
 \newlabel{fig:qqbarl@cref}{{[figure][7][]7}{[1][8][]8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Quark-Antiquark potential for different but comparable setups at $g=\num {0.5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise.}}{8}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:qqbars5}{{8}{8}{Quark-Antiquark potential for different but comparable setups at $g=\num {0.5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise}{figure.caption.14}{}}
-\newlabel{fig:qqbars5@cref}{{[figure][8][]8}{[1][8][]8}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Quark-Antiquark potential for different but comparable setups at $g=\num {0.5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise.}}{9}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:qqbars5}{{8}{9}{Quark-Antiquark potential for different but comparable setups at $g=\num {0.5}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise}{figure.caption.14}{}}
+\newlabel{fig:qqbars5@cref}{{[figure][8][]8}{[1][8][]9}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Quark-Antiquark potential for different but comparable setups at $g=\num {0.1}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise.}}{9}{figure.caption.15}\protected@file@percent }
 \newlabel{fig:qqbars1}{{9}{9}{Quark-Antiquark potential for different but comparable setups at $g=\num {0.1}$. By default $3\cross 3$ dimensions and no PBC, if not stated otherwise}{figure.caption.15}{}}
 \newlabel{fig:qqbars1@cref}{{[figure][9][]9}{[1][8][]9}{}{}{}}
 \citation{crippa2024}
-\citation{crippa2024}
-\citation{wu2025accurategaugeinvarianttensornetwork,Singh_2011}
+\citation{crippa2024,wu2025accurategaugeinvarianttensornetwork,Singh_2011}
 \citation{Garofalo:2024VV}
 \citation{crippa2024}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Outlook}{10}{section.6}\protected@file@percent }
@@ -104,9 +106,10 @@
 \bibcite{Garofalo:2024VV}{{3}{2024}{{Garofalo et~al.}}{{}}}
 \bibcite{RevModPhys.51.659}{{4}{1979}{{Kogut}}{{}}}
 \bibcite{PhysRevD.11.395}{{5}{1975}{{Kogut and Susskind}}{{}}}
-\bibcite{10.7717/peerj-cs.103}{{6}{2017}{{Meurer et~al.}}{{}}}
-\bibcite{2020SciPy-NMeth}{{7}{2020}{{Virtanen et~al.}}{{}}}
-\bibcite{crippa2024}{{8}{2024}{{Crippa et~al.}}{{}}}
+\bibcite{rothe2005lattice}{{6}{2005}{{Rothe}}{{}}}
+\bibcite{10.7717/peerj-cs.103}{{7}{2017}{{Meurer et~al.}}{{}}}
+\bibcite{2020SciPy-NMeth}{{8}{2020}{{Virtanen et~al.}}{{}}}
 \bibcite{wu2025accurategaugeinvarianttensornetwork}{{9}{2025}{{Wu and Liu}}{{}}}
 \bibcite{Singh_2011}{{10}{2011}{{Singh et~al.}}{{}}}
+\bibcite{crippa2024}{{11}{2024}{{Crippa et~al.}}{{}}}
 \gdef \@abspage@last{14}

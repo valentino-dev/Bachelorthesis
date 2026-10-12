@@ -1,6 +1,6 @@
 %% BioMed_Central_Bib_Style_v1.01
 
-\begin{thebibliography}{10}
+\begin{thebibliography}{11}
 % BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
 \ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
 \ifx \binits  \undefined \def \binits#1{#1}\fi
@@ -136,6 +136,19 @@
 \endbibitem
 
 %%% 6
+\bibitem[\protect\citeauthoryear{Rothe}{2005}]{rothe2005lattice}
+\begin{bbook}
+\bauthor{\bsnm{Rothe}, \binits{H.J.}}:
+\bbtitle{Lattice Gauge Theories: An Introduction}.
+\bsertitle{EBSCO ebook academic collection}.
+\bpublisher{World Scientific},
+\blocation{Heidelberg}
+(\byear{2005}).
+\burl{https://books.google.de/books?id=U1hBLG-_WxAC}
+\end{bbook}
+\endbibitem
+
+%%% 7
 \bibitem[\protect\citeauthoryear{Meurer et~al.}{2017}]{10.7717/peerj-cs.103}
 \begin{barticle}
 \bauthor{\bsnm{Meurer}, \binits{A.}},
@@ -174,7 +187,7 @@
 \end{barticle}
 \endbibitem
 
-%%% 7
+%%% 8
 \bibitem[\protect\citeauthoryear{Virtanen et~al.}{2020}]{2020SciPy-NMeth}
 \begin{barticle}
 \bauthor{\bsnm{Virtanen}, \binits{P.}},
@@ -221,22 +234,6 @@
 \end{barticle}
 \endbibitem
 
-%%% 8
-\bibitem[\protect\citeauthoryear{Crippa et~al.}{2024}]{crippa2024}
-\begin{botherref}
-\oauthor{\bsnm{Crippa}, \binits{A.}},
-\oauthor{\bsnm{Romiti}, \binits{S.}},
-\oauthor{\bsnm{Funcke}, \binits{L.}},
-\oauthor{\bsnm{Jansen}, \binits{K.}},
-\oauthor{\bsnm{Kühn}, \binits{S.}},
-\oauthor{\bsnm{Stornati}, \binits{P.}},
-\oauthor{\bsnm{Urbach}, \binits{C.}}:
-Towards determining the (2+1)-dimensional Quantum Electrodynamics running coupling with Monte Carlo and quantum computing methods
-(2024).
-\url{https://arxiv.org/abs/2404.17545}
-\end{botherref}
-\endbibitem
-
 %%% 9
 \bibitem[\protect\citeauthoryear{Wu and Liu}{2025}]{wu2025accurategaugeinvarianttensornetwork}
 \begin{botherref}
@@ -259,6 +256,22 @@ Physical Review B
 \textbf{83}(11)
 (2011)
 \doiurl{10.1103/physrevb.83.115125}
+\end{botherref}
+\endbibitem
+
+%%% 11
+\bibitem[\protect\citeauthoryear{Crippa et~al.}{2024}]{crippa2024}
+\begin{botherref}
+\oauthor{\bsnm{Crippa}, \binits{A.}},
+\oauthor{\bsnm{Romiti}, \binits{S.}},
+\oauthor{\bsnm{Funcke}, \binits{L.}},
+\oauthor{\bsnm{Jansen}, \binits{K.}},
+\oauthor{\bsnm{Kühn}, \binits{S.}},
+\oauthor{\bsnm{Stornati}, \binits{P.}},
+\oauthor{\bsnm{Urbach}, \binits{C.}}:
+Towards determining the (2+1)-dimensional Quantum Electrodynamics running coupling with Monte Carlo and quantum computing methods
+(2024).
+\url{https://arxiv.org/abs/2404.17545}
 \end{botherref}
 \endbibitem
 
