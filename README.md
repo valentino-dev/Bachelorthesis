@@ -15,7 +15,7 @@ This project studies the potential between static charges using the Hamiltonian 
 
 ![Quark–antiquark potential at coupling g = 1 for several lattice configurations](latex/images/quark_antiquark_potential_g_1_page-0001.jpg)
 
-*Potential at coupling $g=1$ for several configurations. Unless otherwise indicated, the lattice is $3\times3$ with open boundaries. See the thesis for definitions and interpretation.*
+Potential at coupling $g=1$ for several configurations. Unless otherwise indicated, the lattice is $3\times3$ with open boundaries. See the thesis for definitions and interpretation.
 
 ## Computational approach
 
