@@ -1,0 +1,96 @@
+
+\subfloat[normal]{
+	\begin{tikzpicture}[thick,decoration={
+					markings,
+					mark=at position 0.5 with {\arrow{>}}}
+		]
+
+		\tikzset{
+			site/.style={
+					circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			pcharge/.style={
+					circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			ncharge/.style={
+					circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+		}
+		\node[pcharge](s1){\textbf{$+$}};
+		\node[site, right=0.8cm of s1](s2){};
+		\node[site, right=0.8cm of s2](s3){};
+		\node[ncharge, above=0.8cm of s1](s4){\textbf{-}};
+		\node[site, above=0.8cm of s2](s5){};
+		\node[site, above=0.8cm of s3](s6){};
+		\node[site, above=0.8cm of s4](s7){};
+		\node[site, above=0.8cm of s5](s8){};
+		\node[site, above=0.8cm of s6](s9){};
+
+
+		\draw[postaction={decorate}] (s1)--(s2);
+		\draw[postaction={decorate}] (s2)--(s3);
+
+		\draw[postaction={decorate}] (s1)--(s4);
+		\draw[postaction={decorate}] (s2)--(s5);
+		\draw[postaction={decorate}] (s3)--(s6);
+
+		\draw[postaction={decorate}] (s4)--(s5);
+		\draw[postaction={decorate}] (s5)--(s6);
+
+		\draw[postaction={decorate}] (s4)--(s7);
+		\draw[postaction={decorate}] (s5)--(s8);
+		\draw[postaction={decorate}] (s6)--(s9);
+
+		\draw[postaction={decorate}] (s7)--(s8);
+		\draw[postaction={decorate}] (s8)--(s9);
+
+	\end{tikzpicture}
+}
+\hspace{0.01\textwidth}
+\subfloat[offset]{
+	\begin{tikzpicture}[thick,decoration={
+					markings,
+					mark=at position 0.5 with {\arrow{>}}}
+		]
+
+		\tikzset{
+			site/.style={
+					circle, draw=gray, fill=gray!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			pcharge/.style={
+					circle, draw=red, fill=red!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+			ncharge/.style={
+					circle, draw=blue, fill=blue!20, line width=1.5pt, inner sep=0pt, outer sep=4pt, minimum size=0.4cm
+				},
+		}
+		\node[site](s1){};
+		\node[pcharge, right=0.8cm of s1](s2){\textbf{$+$}};
+		\node[site, right=0.8cm of s2](s3){};
+		\node[site, above=0.8cm of s1](s4){};
+		\node[ncharge, above=0.8cm of s2](s5){\textbf{-}};
+		\node[site, above=0.8cm of s3](s6){};
+		\node[site, above=0.8cm of s4](s7){};
+		\node[site, above=0.8cm of s5](s8){};
+		\node[site, above=0.8cm of s6](s9){};
+
+
+		\draw[postaction={decorate}] (s1)--(s2);
+		\draw[postaction={decorate}] (s2)--(s3);
+
+		\draw[postaction={decorate}] (s1)--(s4);
+		\draw[postaction={decorate}] (s2)--(s5);
+		\draw[postaction={decorate}] (s3)--(s6);
+
+		\draw[postaction={decorate}] (s4)--(s5);
+		\draw[postaction={decorate}] (s5)--(s6);
+
+		\draw[postaction={decorate}] (s4)--(s7);
+		\draw[postaction={decorate}] (s5)--(s8);
+		\draw[postaction={decorate}] (s6)--(s9);
+
+		\draw[postaction={decorate}] (s7)--(s8);
+		\draw[postaction={decorate}] (s8)--(s9);
+
+	\end{tikzpicture}
+}
